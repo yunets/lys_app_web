@@ -8,13 +8,59 @@ export interface Props {
 }
 
 const MyNavigation: React.FC<Props> = () => {
+  const arr = [
+    'a',
+    'b',
+    'd',
+    'e',
+    'f',
+    'a',
+    'b',
+    'd',
+    'e',
+    'f',
+    'b',
+    'd',
+    'e',
+    'f',
+    'a',
+    'b',
+    'd',
+    'e',
+    'f',
+    'b',
+    'd',
+    'e',
+    'f',
+    'a',
+    'b',
+    'd',
+    'e',
+    'f',
+    'b',
+    'd',
+    'e',
+    'f',
+    'a',
+    'b',
+    'd',
+    'e',
+    'f',
+  ];
+
   return (
     <PageContainer>
       MyDemo
       <GridContent>
         <Card bordered={false}>
           User页面
-          <ItemShow name={'222'}>1</ItemShow>
+          {arr.map((item, index) => {
+            return (
+              <ItemShow key={index} name={item}>
+                {index}
+              </ItemShow>
+            );
+          })}
           <ItemShow name={'222'}>1</ItemShow>
           <ItemShow name={'222'}>1</ItemShow>
         </Card>
