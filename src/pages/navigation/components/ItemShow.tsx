@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 import React from 'react';
-
+import styles from './../index.less';
 const style: React.CSSProperties = {
-  background: '#0092ff',
   padding: '8px 0',
   float: 'left',
-  width: '100px',
+  width: '200px',
   marginLeft: '20px',
+  marginTop: '5px',
 };
 
 export interface Props {
@@ -17,7 +17,7 @@ const ItemShow: React.FC<Props> = () => {
   return (
     <Fragment>
       <div>
-        <div style={style}>
+        <div className={styles.urlContent}>
           <a>
             <img src="https://cdn.jsdelivr.net/gh/volfclub/Tundra-Wolf/assets/logos/o2ov.png" />
           </a>
