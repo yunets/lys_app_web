@@ -22,6 +22,7 @@
   {
     path: '/admin',
     name: 'admin',
+    hideInMenu: true,
     icon: 'crown',
     access: 'canAdmin',
     routes: [
@@ -38,6 +39,7 @@
   },
   {
     name: 'list.table-list',
+    hideInMenu: true,
     icon: 'table',
     path: '/list',
     component: './TableList',
