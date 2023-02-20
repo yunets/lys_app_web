@@ -17,7 +17,7 @@
     path: '/welcome',
     name: 'welcome',
     icon: 'smile',
-    component: './Welcome',
+    component: './navigation/index.tsx',
   },
   {
     path: '/admin',
