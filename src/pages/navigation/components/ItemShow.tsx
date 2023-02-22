@@ -24,11 +24,10 @@ const ItemShow: React.FC<Props> = () => {
               src="https://cdn.jsdelivr.net/gh/volfclub/Tundra-Wolf/assets/logos/o2ov.png"
             />
           </a>
-          <div>
+          <div className={styles.urlText}>
             <a href="###">
               <strong>MongoDB</strong>
             </a>
-
             <p>自定义的网站导航，自定义的网站导航，导航</p>
           </div>
         </div>

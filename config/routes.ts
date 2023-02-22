@@ -14,10 +14,16 @@
     ],
   },
   {
-    path: '/welcome',
-    name: 'welcome',
+    path: '/welcome1',
+    name: 'navigation',
     icon: 'smile',
     component: './navigation/index.tsx',
+  },
+  {
+    path: '/welcome',
+    name: 'drag',
+    icon: 'smile',
+    component: './drag/index.tsx',
   },
   {
     path: '/admin',

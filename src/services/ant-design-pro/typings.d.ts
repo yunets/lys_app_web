@@ -98,4 +98,14 @@ declare namespace API {
     description?: string;
     type?: NoticeIconItemType;
   };
+
+
+  type UrlItem = {
+    name?: string;
+    url?: string;
+  }
+
+  type UrlItemList = {
+    lists?: UrlItem[];
+  }
 }
