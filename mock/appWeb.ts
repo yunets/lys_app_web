@@ -45,10 +45,10 @@ const getNotices = (req: Request, res: Response) => {
                         "timeSecond": 1677312706
                     },
                     "uid": "8b92d4e0-109e-464f-8ef4-b53420138255",
-                    "name": "string",
-                    "url": "https://www.baidu.com/",
+                    "name": "iowen",
+                    "url": "https://api.iowen.cn",
                     "imgUrl": "string",
-                    "comment": "string",
+                    "comment": "https://api.iowen.cn",
                     "type": "string",
                     "orderByNum": 0,
                     "userId": "string",

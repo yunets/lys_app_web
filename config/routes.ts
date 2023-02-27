@@ -20,6 +20,18 @@
     component: './navigation/index.tsx',
   },
   {
+    path: '/MyNavigationSoftWare',
+    name: 'MyNavigationSoftWare',
+    icon: 'smile',
+    component: './navigation/software.tsx',
+  },
+  {
+    path: '/MyNavigationDownload',
+    name: 'MyNavigationDownload',
+    icon: 'smile',
+    component: './navigation/download.tsx',
+  },
+  {
     path: '/welcome',
     name: 'drag',
     icon: 'smile',
