@@ -13,9 +13,16 @@ const ItemShow: React.FC<Props> = ({ item }) => {
       <div>
         <div className={styles.urlContent}>
           <a onClick={() => { console.log("添加到个人收藏") }}>
+
             <img
               className={styles.urlImg}
-              src="https://api.iowen.cn/favicon/www.aliued.cn.png"
+              src={"" + item.url + "/favicon.ico"} onError={(e) => {
+                const img = e.currentTarget;
+                img.src = "https://api.iowen.cn/favicon/www.aliued.cn.png";
+                img.οnerrοr = null;
+
+
+              }}
             />
           </a>
           <div className={styles.urlText}>
