@@ -38,7 +38,7 @@ export const Container: FC = () => {
 
         ])
 
-        //const [urlItemList, setUrlItemList] = useState<any>([])
+
         useRequest(() => ({
             url: '/api/url/list',
             method: 'get',
@@ -82,8 +82,11 @@ export const Container: FC = () => {
 
         return (
             <>
-                <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
                 <Button type="primary" onClick={() => { console.log(cards); }}> 当前次序</Button>
+                <br />
+                <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
+
+
             </>
         )
     }

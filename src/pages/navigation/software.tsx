@@ -48,13 +48,7 @@ const MyNavigationSoftWare: React.FC<Props> = () => {
         <PageContainer>
 
 
-            <GridContent>
-                <Card bordered={false}>
 
-                    <ItemCard item="" />
-
-                </Card>
-            </GridContent>
 
 
 
@@ -73,23 +67,16 @@ const MyNavigationSoftWare: React.FC<Props> = () => {
             </GridContent>
 
 
-
-
-
-            <GridContent style={{ marginTop: '10px' }}>
+            <GridContent>
                 <Card bordered={false}>
-                    计算机软件相关的导航2-数据库
-                    {
-                        urlItemList.map((item: any, index: number) => {
-                            return (
-                                <ItemShow key={index} item={item}>
 
-                                </ItemShow>
-                            );
-                        })
-                    }
+                    <ItemCard item="" />
+
                 </Card>
             </GridContent>
+
+
+
         </PageContainer>
     );
 };
