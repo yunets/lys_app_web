@@ -26,6 +26,18 @@
     component: './navigation/software.tsx',
   },
   {
+    path: '/MyDiyWeb',
+    name: 'MyDiyWeb',
+    icon: 'smile',
+    component: './navigation/MyDiyWeb.tsx',
+  },
+  {
+    path: '/MyDiyPrivate',
+    name: 'MyDiyPrivate',
+    icon: 'smile',
+    component: './navigation/MyDiyPrivate.tsx',
+  },
+  {
     path: '/MyNavigationDownload',
     name: 'MyNavigationDownload',
     icon: 'smile',

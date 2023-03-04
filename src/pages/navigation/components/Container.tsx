@@ -83,6 +83,7 @@ export const Container: FC = () => {
         return (
             <>
                 <Button type="primary" onClick={() => { console.log(cards); }}> 当前次序</Button>
+                <Button type="primary" onClick={() => { console.log(cards); }}> 新增</Button>
                 <br />
                 <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
 
