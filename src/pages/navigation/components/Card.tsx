@@ -2,6 +2,7 @@ import type { Identifier, XYCoord } from 'dnd-core'
 import type { FC } from 'react'
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
+import ItemShow from './ItemShow'
 import { ItemTypes } from './ItemTypes'
 
 
@@ -11,11 +12,14 @@ const style = {
     marginBottom: '.5rem',
     backgroundColor: 'white',
     cursor: 'move',
+    with: '100px',
+    float: 'left',
 }
 
 export interface CardProps {
     id: any
     text: string
+    itemUrl: any;
     index: number
     moveCard: (dragIndex: number, hoverIndex: number) => void
 }
@@ -26,7 +30,7 @@ interface DragItem {
     type: string
 }
 
-export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
+export const Card: FC<CardProps> = ({ id, text, itemUrl, index, moveCard }) => {
     const ref = useRef<HTMLDivElement>(null)
     const [{ handlerId }, drop] = useDrop<
         DragItem,
@@ -103,7 +107,8 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
     drag(drop(ref))
     return (
         <div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
-            {text}
+
+            <ItemShow item={itemUrl} />
         </div>
     )
 }

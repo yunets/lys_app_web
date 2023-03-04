@@ -74,35 +74,7 @@ const MyNavigationSoftWare: React.FC<Props> = () => {
 
 
 
-            <GridContent>
-                <Card bordered={false}>
-                    计算机软件相关的导航-前端
-                    {
-                        urlItemList.map((item: any, index: number) => {
-                            return (
-                                <ItemShow key={index} item={item}>
 
-                                </ItemShow>
-                            );
-                        })
-                    }
-                </Card>
-            </GridContent>
-
-            <GridContent style={{ marginTop: '10px' }}>
-                <Card bordered={false}>
-                    计算机软件相关的导航2-后端
-                    {
-                        urlItemList.map((item: any, index: number) => {
-                            return (
-                                <ItemShow key={index} item={item}>
-
-                                </ItemShow>
-                            );
-                        })
-                    }
-                </Card>
-            </GridContent>
 
             <GridContent style={{ marginTop: '10px' }}>
                 <Card bordered={false}>

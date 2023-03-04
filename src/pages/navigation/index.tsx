@@ -4,6 +4,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { request, useRequest } from 'umi';
 
 import ItemShow from './components/ItemShow';
+import VisitorInfo from './components/VisitorInfo';
 
 export interface Props {
   name: string;
@@ -96,7 +97,7 @@ const MyNavigation: React.FC<Props> = () => {
           }
 
 
-
+          <VisitorInfo />
 
 
 

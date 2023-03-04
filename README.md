@@ -2,6 +2,10 @@
 
 拖拽功能 react-dnd
 
+直接可以使用拖拽功能
+
+后续埋点获取用户的设备，平台，版本，地理位置等信息.
+
 # Ant Design Pro
 
 This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.

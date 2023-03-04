@@ -8,7 +8,7 @@ import { Card } from './Card'
 
 
 const style = {
-    width: 400,
+    // width: '300px',
 }
 
 // export interface Item {
@@ -72,6 +72,7 @@ export const Container: FC = () => {
                         index={index}
                         id={card.uid}
                         text={card.name}
+                        itemUrl={card}
                         moveCard={moveCard}
                     />
                 )
