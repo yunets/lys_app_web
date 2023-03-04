@@ -1,9 +1,15 @@
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Card, Input, InputNumber, Select } from 'antd';
+import { Button, Input, InputNumber, Card, Select } from 'antd';
 import React, { useEffect, useReducer, useState } from 'react';
+
+
 import { request, useRequest } from 'umi';
+import ItemCard from './components/ItemCard';
 
 import ItemShow from './components/ItemShow';
+
+
+
 
 const { Option } = Select;
 export interface Props {
@@ -40,6 +46,17 @@ const MyNavigationSoftWare: React.FC<Props> = () => {
     const [searchContent, setSearchContent] = useState<string>("");
     return (
         <PageContainer>
+
+
+            <GridContent>
+                <Card bordered={false}>
+
+                    <ItemCard item="" />
+
+                </Card>
+            </GridContent>
+
+
 
             <GridContent>
                 <Card bordered={false}>

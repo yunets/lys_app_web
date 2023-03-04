@@ -17,7 +17,7 @@ const Settings: LayoutSettings & {
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   iconfontUrl: '',
   menu: {
-    locale: true,  //关闭国际化
+    locale: false,  //关闭国际化
   },
 };
 
