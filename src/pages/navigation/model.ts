@@ -19,7 +19,7 @@ export type URLItemPageState = {
 };
 
 export type UserModelType = {
-    namespace: 'navigation1';
+    namespace: 'navigation';
     state: { list: any, title: any, name: any };
     effects: {
         fetchProject: Effect;
@@ -33,8 +33,8 @@ const initState = {
     list: {},
 };
 
-const UserModel: UserModelType = {
-    namespace: 'navigation1',
+const UserModel1: UserModelType = {
+    namespace: 'navigation',
     state: {
         list: {},
         title: 'Welcome to Wise.Wrong\'s Bolg',
@@ -63,4 +63,4 @@ const UserModel: UserModelType = {
     },
 };
 
-export default UserModel;
+export default UserModel1;
