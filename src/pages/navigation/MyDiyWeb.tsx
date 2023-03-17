@@ -1,6 +1,6 @@
 import UserModel, { UserModelType } from '@/models/navigation';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select } from 'antd';
+import { Button, Input, InputNumber, Card, Select, Modal, Form } from 'antd';
 import React, { useEffect, useReducer, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -40,6 +40,27 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     } = props;
     debugger;
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+
+
+
+
+
+
+
+
     const fetchTest = (data: any) => {
         dispatch({
             type: 'navigation/fetchProject',
@@ -50,19 +71,65 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     };
 
 
-
+    const [url, setUrl] = useState('https://cn.bing.com');
 
     return (
         <PageContainer>
 
 
+            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <Form>
+                    <Form.Item
+                        name="email"
+                        label="网址"
+                        rules={[
+                            {
+                                type: 'url',
+                                message: '网址不合法，样例https://cn.bing.com!',
+                            },
+                            {
+                                required: true,
+                                message: '请输入网址',
+                            },
+                        ]}
+                    >
+                        <Input value={url} onChange={(e) => {
+
+                            setUrl(e.target.value);
+                        }} />
+                    </Form.Item>
+                    <Form.Item
+                        name="nickname"
+                        label="Nickname"
+                        tooltip="What do you want others to call you?"
+                        rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </Form>
+                <div><iframe src={"" + url + ""}></iframe></div>
+            </Modal>
+
+
+
+
+
+
+
 
             <GridContent>
                 <Card bordered={false}>
-                    <a> title: {title}</a><br />
+                    <Button type="primary" onClick={showModal}>
+                        新增网址
+                    </Button>
+                    <hr />
+                    {/* <a> title: {title}</a><br />
                     <a> list: {JSON.stringify(list)}</a><br />
                     <a>loading: {JSON.stringify(loading)}</a>
-                    <Button type="primary" onClick={() => { fetchTest(null) }}> fetchTest</Button>
+                    <Button type="primary" onClick={() => { fetchTest(null) }}> fetchTest</Button> */}
                     <DndProvider backend={HTML5Backend} >
                         <MyContainer name="name111" />
                     </DndProvider>
@@ -71,7 +138,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
 
-        </PageContainer>
+        </PageContainer >
     );
 };
 
