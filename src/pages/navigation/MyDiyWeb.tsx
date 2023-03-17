@@ -2,10 +2,14 @@ import UserModel, { UserModelType } from '@/models/navigation';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
 import { Button, Input, InputNumber, Card, Select } from 'antd';
 import React, { useEffect, useReducer, useState } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
 import { connect, Dispatch, request, useRequest } from 'umi';
+import Example from './components/example';
 import ItemCard from './components/ItemCard';
+import MyContainer from './components/MyContainer';
 import UserModel1 from './model';
 
 
@@ -59,6 +63,9 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                     <a> list: {JSON.stringify(list)}</a><br />
                     <a>loading: {JSON.stringify(loading)}</a>
                     <Button type="primary" onClick={() => { fetchTest(null) }}> fetchTest</Button>
+                    <DndProvider backend={HTML5Backend} >
+                        <MyContainer name="name111" />
+                    </DndProvider>
                 </Card>
             </GridContent>
 
@@ -74,7 +81,7 @@ export type ConnectState = {
     title: any;
 };
 function mapStateToProps(state: any) { //state是项目所有的models
-    debugger
+
     const { list } = state.navigation; //获取namespace命名空间为navigation的models数据state
     const { title } = state.navigation;
     return {
