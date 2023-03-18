@@ -218,6 +218,45 @@ const getNotices = (req: Request, res: Response) => {
     );
 };
 
+
+const webCategoryList = (req: Request, res: Response) => {
+    res.json({
+        "content": [
+            {
+                "uid": "1b497f33-cb4c-4281-b1bf-91fcac8172de",
+                "name": "工作",
+                "weight": 1,
+                "userId": "userId",
+                "delFlag": "0"
+            },
+            {
+                "uid": "81c9a608-5c4a-4d53-8925-7a98006edc1a",
+                "name": "学习",
+                "weight": 2,
+                "userId": "userId",
+                "delFlag": "0"
+            },
+            {
+                "uid": "7d1cde59-cc31-4a82-bd6c-4da21bee2106",
+                "name": "图书",
+                "weight": 3,
+                "userId": "userId",
+                "delFlag": "0"
+            },
+            {
+                "uid": "c6da9794-ef4b-4de2-9acc-4ddc1c1227d7",
+                "name": "前端",
+                "weight": 4,
+                "userId": "userId",
+                "delFlag": "0"
+            }
+        ],
+        "resouce": null,
+        "status_code": 1,
+        "status_mes": "执行成功"
+    });
+};
+
 const sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay))
 
 function getFakeCaptcha1(req: Request, res: Response) {
@@ -227,4 +266,5 @@ function getFakeCaptcha1(req: Request, res: Response) {
 
 export default {
     'GET /api/url/list': getNotices,
+    'GET api/webCategory/list': webCategoryList,
 };

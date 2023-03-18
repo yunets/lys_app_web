@@ -37,19 +37,19 @@ const UserModel1: UserModelType = {
     namespace: 'navigation',
     state: {
         list: {},
-        title: 'Welcome to Wise.Wrong\'s Bolg',
+        title: 'Welcome to liuyunshengsir  Bolg',
         name: 'wise'
     },
     effects: {
-        *fetchProject({ payload }, { call, put }) {
+        *fetchProject({ payload, callback }, { call, put }) {
             const response = yield call(getMyUrlList, { ...payload });
             yield put({
                 type: 'saveProject',
                 payload: response,
             });
-            // if (response?.content?.records) {
-            //     callback(response?.content?.records);
-            // }
+
+            callback(response);
+
         },
     },
     reducers: {

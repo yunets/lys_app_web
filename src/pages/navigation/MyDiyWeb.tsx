@@ -38,7 +38,6 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         dispatch,
         title
     } = props;
-    debugger;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
@@ -46,6 +45,15 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     };
 
     const handleOk = () => {
+        dispatch({
+            type: 'navigation/fetchProject',
+            payload: {
+                data: {},
+            },
+            callback: (response: any) => {
+                console.log('this is callback' + JSON.stringify(response))
+            }
+        });
         setIsModalOpen(false);
     };
 
@@ -102,15 +110,14 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                         }} />
                     </Form.Item>
                     <Form.Item
-                        name="nickname"
-                        label="Nickname"
-                        tooltip="What do you want others to call you?"
-                        rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+                        name="urlName"
+                        label="名称"
+                        rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
                     >
                         <Input />
                     </Form.Item>
                 </Form>
-                <div><iframe src={"" + url + ""}></iframe></div>
+                {/* <div><iframe src={"" + url + ""} id="show"></iframe></div> */}
             </Modal>
 
 
