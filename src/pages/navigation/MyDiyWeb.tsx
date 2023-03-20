@@ -7,10 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
 import { connect, Dispatch, request, useRequest } from 'umi';
-import Example from './components/example';
-import ItemCard from './components/ItemCard';
 import MyContainer from './components/MyContainer';
-import UserModel1 from './model';
 
 
 
@@ -62,6 +59,19 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     };
 
 
+    const [webCategoryList, setWebCategoryList] = useState<any>([])
+    useRequest(() => ({
+        url: '/api/webCategory/list',
+        method: 'get',
+        data: {},
+    }), {
+        manual: false,
+        onSuccess: (result, params) => {
+            console.log(result);
+            setWebCategoryList(result.content);
+
+        },
+    });
 
 
 
@@ -128,19 +138,21 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
             <GridContent>
-                <Card bordered={false}>
-                    <Button type="primary" onClick={showModal}>
-                        新增网址
-                    </Button>
-                    <hr />
-                    {/* <a> title: {title}</a><br />
-                    <a> list: {JSON.stringify(list)}</a><br />
-                    <a>loading: {JSON.stringify(loading)}</a>
-                    <Button type="primary" onClick={() => { fetchTest(null) }}> fetchTest</Button> */}
-                    <DndProvider backend={HTML5Backend} >
-                        <MyContainer name="name111" />
-                    </DndProvider>
-                </Card>
+
+
+                {webCategoryList.map((item, index) => {
+                    return <Card bordered={false} key={item.uid}>
+
+
+
+                        <DndProvider backend={HTML5Backend} >
+                            <MyContainer name={item.name} webCategory={item} />
+                        </DndProvider>
+                    </Card>;
+                })}
+
+
+
             </GridContent>
 
 

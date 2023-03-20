@@ -22,6 +22,7 @@ export interface ContainerState {
     cards: any[]
 }
 export interface Props {
+    webCategory: any;
     name: string;
     list: any;
     loading: any;
@@ -33,6 +34,7 @@ const MyContainer: FC<Props> = (props) => {
         const {
             //     cards,
             //     loading,
+            webCategory,
             dispatch,
             name
         } = props;
@@ -119,9 +121,9 @@ const MyContainer: FC<Props> = (props) => {
 
         return (
             <>
-                <Button type="primary" onClick={() => { console.log(cards); }}> 当前次序</Button>
-                <Button type="primary" onClick={() => { console.log(cards); }}> 新增</Button>
-                <br />{name}
+                {/* <Button type="primary" onClick={() => { console.log(cards); }}> 当前次序</Button>
+                <Button type="primary" onClick={() => { console.log(cards); }}> 新增</Button> */}
+                <br />{webCategory.name}
                 <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
 
 
