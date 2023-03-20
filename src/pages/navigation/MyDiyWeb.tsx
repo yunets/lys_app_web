@@ -91,14 +91,24 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
     const [url, setUrl] = useState('https://cn.bing.com');
 
+
+    const renderWebCategoryOptions = () => {
+        const options: any = []
+        webCategoryList.forEach((item: any) => {
+            options.push(<Option value={item.uid}>{item.name}</Option>)
+        })
+        return <Select style={{ width: 120 }} >
+            {options}
+        </Select>
+    }
+
+
+
     return (
         <PageContainer>
 
 
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+            <Modal title="新增网页" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Form>
                     <Form.Item
                         name="email"
@@ -126,6 +136,14 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                     >
                         <Input />
                     </Form.Item>
+                    <Form.Item
+                        name="urlWebCategory"
+                        label="分类"
+                        rules={[{ required: true, message: '分类!', whitespace: true }]}
+                    >
+                        {renderWebCategoryOptions()}
+
+                    </Form.Item>
                 </Form>
                 {/* <div><iframe src={"" + url + ""} id="show"></iframe></div> */}
             </Modal>
@@ -138,7 +156,9 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
             <GridContent>
-
+                <Button type="primary" onClick={showModal}>
+                    新增网址
+                </Button>
 
                 {webCategoryList.map((item, index) => {
                     return <Card bordered={false} key={item.uid}>
