@@ -267,4 +267,5 @@ function getFakeCaptcha1(req: Request, res: Response) {
 export default {
     'GET /api/url/list': getNotices,
     'GET /api/webCategory/list': webCategoryList,
+    'POST /api/webCategory/save': webCategoryList,
 };

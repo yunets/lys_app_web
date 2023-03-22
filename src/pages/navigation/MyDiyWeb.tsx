@@ -1,7 +1,7 @@
 import UserModel, { UserModelType } from '@/models/navigation';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Modal, Form } from 'antd';
-import React, { useEffect, useReducer, useState } from 'react';
+import { Button, Input, InputNumber, Card, Select, Modal, Form, FormInstance, message } from 'antd';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -35,23 +35,46 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         dispatch,
         title
     } = props;
+    const [form] = Form.useForm();
+
+
+
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);
     };
 
-    const handleOk = () => {
-        dispatch({
-            type: 'navigation/fetchProject',
-            payload: {
-                data: {},
-            },
-            callback: (response: any) => {
-                console.log('this is callback' + JSON.stringify(response))
-            }
-        });
-        setIsModalOpen(false);
+    const handleOk = async () => {
+
+        form.validateFields()
+            .then((values) => {
+                /** 正确后的验证信息 */
+                console.log(values);
+                console.log('Success:', values);
+                message.success('提交校验成功')
+                dispatch({
+                    type: 'navigation/fetchWebCategorySave',
+                    payload: {
+                        ...values,
+                    },
+                    callback: (response: any) => {
+                        console.log('this is callback' + JSON.stringify(response))
+                    }
+                });
+            })
+            .catch((errorInfo) => {
+                /** 错误信息 */
+                console.log(errorInfo);
+            });
+
+
+
+
+
+
+
+        //setIsModalOpen(false);
     };
 
     const handleCancel = () => {
@@ -109,7 +132,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
             <Modal title="新增网页" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <Form>
+                <Form form={form}>
                     <Form.Item
                         name="email"
                         label="网址"
@@ -124,7 +147,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                             },
                         ]}
                     >
-                        <Input value={url} onChange={(e) => {
+                        <Input defaultValue={url} onChange={(e) => {
 
                             setUrl(e.target.value);
                         }} />
@@ -134,7 +157,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                         label="名称"
                         rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
                     >
-                        <Input />
+                        <Input value={url} />
                     </Form.Item>
                     <Form.Item
                         name="urlWebCategory"

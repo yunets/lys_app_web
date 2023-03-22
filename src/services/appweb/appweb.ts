@@ -16,3 +16,11 @@ export async function fakeAccountLogin(params: any) {
         data: params,
     });
 }
+
+
+export async function webCategorySave(params: any) {
+    return request('/api/webCategory/save', {
+        method: 'POST',
+        data: params,
+    });
+}
