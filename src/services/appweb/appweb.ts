@@ -18,8 +18,8 @@ export async function fakeAccountLogin(params: any) {
 }
 
 
-export async function webCategorySave(params: any) {
-    return request('/api/webCategory/save', {
+export async function webInfoSave(params: any) {
+    return request('/api/webInfo/save', {
         method: 'POST',
         data: params,
     });

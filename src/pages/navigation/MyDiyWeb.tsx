@@ -54,7 +54,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                 console.log('Success:', values);
                 message.success('提交校验成功')
                 dispatch({
-                    type: 'navigation/fetchWebCategorySave',
+                    type: 'navigation/fetchWebInfoSave',
                     payload: {
                         ...values,
                     },
@@ -134,7 +134,22 @@ const MyDiyWeb: React.FC<Props> = (props) => {
             <Modal title="新增网页" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Form form={form}>
                     <Form.Item
-                        name="email"
+                        name="webCategoryId"
+                        label="分类"
+                        rules={[{ required: true, message: '分类!', whitespace: true }]}
+                    >
+                        {renderWebCategoryOptions()}
+
+                    </Form.Item>
+                    <Form.Item
+                        name="name"
+                        label="名称"
+                        rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="url"
                         label="网址"
                         rules={[
                             {
@@ -148,25 +163,11 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                         ]}
                     >
                         <Input defaultValue={url} onChange={(e) => {
-
                             setUrl(e.target.value);
                         }} />
                     </Form.Item>
-                    <Form.Item
-                        name="urlName"
-                        label="名称"
-                        rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
-                    >
-                        <Input value={url} />
-                    </Form.Item>
-                    <Form.Item
-                        name="urlWebCategory"
-                        label="分类"
-                        rules={[{ required: true, message: '分类!', whitespace: true }]}
-                    >
-                        {renderWebCategoryOptions()}
 
-                    </Form.Item>
+
                 </Form>
                 {/* <div><iframe src={"" + url + ""} id="show"></iframe></div> */}
             </Modal>
