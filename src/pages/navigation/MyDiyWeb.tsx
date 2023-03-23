@@ -62,6 +62,8 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                         console.log('this is callback' + JSON.stringify(response))
                     }
                 });
+                form.resetFields();
+                setIsModalOpen(false);
             })
             .catch((errorInfo) => {
                 /** 错误信息 */
@@ -74,7 +76,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
 
-        //setIsModalOpen(false);
+
     };
 
     const handleCancel = () => {
@@ -120,7 +122,8 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         webCategoryList.forEach((item: any) => {
             options.push(<Option value={item.uid}>{item.name}</Option>)
         })
-        return <Select style={{ width: 120 }} >
+
+        return <Select style={{ width: 120 }}  >
             {options}
         </Select>
     }
@@ -162,7 +165,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                             },
                         ]}
                     >
-                        <Input defaultValue={url} onChange={(e) => {
+                        <Input onChange={(e) => {
                             setUrl(e.target.value);
                         }} />
                     </Form.Item>

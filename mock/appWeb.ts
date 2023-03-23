@@ -89,10 +89,10 @@ const getNotices = (req: Request, res: Response) => {
                         "timeSecond": 1677312706
                     },
                     "uid": "26139e98-657e-4319-8475-44a8320fdc63",
-                    "name": "string",
-                    "url": "https://www.baidu.com/11",
+                    "name": "ant.design",
+                    "url": "https://ant.design/components/overview-cn/",
                     "imgUrl": "string",
-                    "comment": "string",
+                    "comment": "ant.design",
                     "type": "string",
                     "orderByNum": 0,
                     "userId": "string",
@@ -267,5 +267,8 @@ function getFakeCaptcha1(req: Request, res: Response) {
 export default {
     'GET /api/url/list': getNotices,
     'GET /api/webCategory/list': webCategoryList,
+    'POST /api/webCategory/save': webCategoryList,
+    'GET /api/webInfo/list': getNotices,
     'POST /api/webInfo/save': webCategoryList,
+
 };
