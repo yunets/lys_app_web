@@ -20,7 +20,7 @@ const MyNavigationDownload: React.FC<Props> = () => {
 
     const [urlItemList, setUrlItemList] = useState<any>([])
     useRequest(() => ({
-        url: '/api/url/list',
+        url: '/api/webInfo/list',
         method: 'get',
         data: {},
     }), {

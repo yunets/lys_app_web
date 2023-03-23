@@ -40,7 +40,7 @@ export const Container: FC = () => {
 
 
         useRequest(() => ({
-            url: '/api/url/list',
+            url: '/api/webInfo/list',
             method: 'get',
             data: {},
         }), {

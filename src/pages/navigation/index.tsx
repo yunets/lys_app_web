@@ -24,12 +24,12 @@ const MyNavigation: React.FC<Props> = () => {
   const [count2, setCount2] = useState<number>(0)
 
   const requestF = async () => {
-    const a = await request('/api/url/list');
+    const a = await request('/api/webInfo/list');
     console.log(a);
   }
 
   const requestFetch = async () => {
-    const res = await fetch('/api/url/list');
+    const res = await fetch('/api/webInfo/list');
     const data = await res.json();
     console.log(data);
   }
@@ -46,7 +46,7 @@ const MyNavigation: React.FC<Props> = () => {
 
   const [urlItemList, setUrlItemList] = useState<any>([])
   const { data, loading, run } = useRequest(() => ({
-    url: '/api/url/list',
+    url: '/api/webInfo/list',
     method: 'get',
     data: {},
   }), {

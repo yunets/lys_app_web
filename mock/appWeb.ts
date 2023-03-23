@@ -133,10 +133,10 @@ const getNotices = (req: Request, res: Response) => {
                         "timeSecond": 1677312706
                     },
                     "uid": "cf1a703b-293e-4b61-8a86-c4af494406a3",
-                    "name": "string",
-                    "url": "https://www.baidu.com/",
+                    "name": "liuyunshengsir.blog.csdn",
+                    "url": "https://liuyunshengsir.blog.csdn.net/article/details/129708526",
                     "imgUrl": "string",
-                    "comment": "string",
+                    "comment": "liuyunshengsir.blog.csdn",
                     "type": "string",
                     "orderByNum": 0,
                     "userId": "string",
@@ -265,10 +265,10 @@ function getFakeCaptcha1(req: Request, res: Response) {
 }
 
 export default {
-    'GET /api/url/list': getNotices,
+    'POST /api/webInfo/list': getNotices,
     'GET /api/webCategory/list': webCategoryList,
     'POST /api/webCategory/save': webCategoryList,
-    'GET /api/webInfo/list': getNotices,
+
     'POST /api/webInfo/save': webCategoryList,
 
 };

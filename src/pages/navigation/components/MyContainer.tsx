@@ -40,16 +40,14 @@ const MyContainer: FC<Props> = (props) => {
         } = props;
         // debugger;
 
-        const [cards, setCards] = useState([
-
-
-        ])
+        const [cards, setCards] = useState([])
 
 
         useRequest(() => ({
-            url: '/api/url/list',
-            method: 'get',
-            data: {},
+            url: '/api/webInfo/list',
+            method: 'post',
+            data: { ...webCategory }
+
         }), {
             manual: false,
             onSuccess: (result, params) => {

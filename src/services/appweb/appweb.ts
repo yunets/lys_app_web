@@ -4,7 +4,7 @@ import { request } from 'umi';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function getMyUrlList(params?: any) {
-    return request('/api/url/list', {
+    return request('/api/webInfo/list', {
         method: 'GET',
         data: params,
     });

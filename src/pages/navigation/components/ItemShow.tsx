@@ -8,6 +8,13 @@ export interface Props {
 }
 
 const ItemShow: React.FC<Props> = ({ item }) => {
+  const getImg = (url: { url: string | URL; }) => {
+    console.log(url.url);
+    const u = new URL(url.url);
+    return "" + u.origin + "/favicon.ico";
+  }
+
+
   return (
     <Fragment>
       <div>
@@ -16,7 +23,7 @@ const ItemShow: React.FC<Props> = ({ item }) => {
 
             <img
               className={styles.urlImg}
-              src={"" + item.url + "/favicon.ico"} onError={(e) => {
+              src={getImg(item)} onError={(e) => {
                 const img = e.currentTarget;
                 img.src = "https://api.iowen.cn/favicon/www.aliued.cn.png";
                 img.οnerrοr = null;
