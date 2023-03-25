@@ -37,16 +37,27 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     } = props;
     const [form] = Form.useForm();
 
-
+    const updateWebCategoryList = () => {
+        dispatch({
+            type: 'navigation/fetchWebCategoryList',
+            payload: {},
+            callback: (response: any) => {
+                console.log('this is callback' + JSON.stringify(response))
+            }
+        });
+    }
 
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isWebCategoryModalOpen, setIsWebCategoryModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);
     };
+    const showWebCategoryModal = () => {
+        setIsWebCategoryModalOpen(true);
+    };
 
     const handleOk = async () => {
-
         form.validateFields()
             .then((values) => {
                 /** 正确后的验证信息 */
@@ -60,27 +71,50 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                     },
                     callback: (response: any) => {
                         console.log('this is callback' + JSON.stringify(response))
+                        updateWebCategoryList();
                     }
                 });
                 form.resetFields();
-                setIsModalOpen(false);
+                // setIsModalOpen(false);
             })
             .catch((errorInfo) => {
                 /** 错误信息 */
                 console.log(errorInfo);
             });
-
-
-
-
-
-
-
-
     };
+
+    const handleOkWebCategory = async () => {
+        form.validateFields()
+            .then((values) => {
+                dispatch({
+                    type: 'navigation/fetchWebCategorySave',
+                    payload: {
+                        ...values,
+                    },
+                    callback: (response: any) => {
+                        console.log('this is callback' + JSON.stringify(response))
+                        updateWebCategoryList();
+                        message.success('操作成功！')
+                    }
+                });
+                form.resetFields();
+                // setIsModalOpen(false);
+            })
+            .catch((errorInfo) => {
+                console.log(errorInfo);
+            });
+    };
+
+
+
+
+
 
     const handleCancel = () => {
         setIsModalOpen(false);
+    };
+    const handleCancelWebCategory = () => {
+        setIsWebCategoryModalOpen(false);
     };
 
 
@@ -101,20 +135,6 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
 
-
-
-
-    const fetchTest = (data: any) => {
-        dispatch({
-            type: 'navigation/fetchProject',
-            payload: {
-                data,
-            },
-        });
-    };
-
-
-    const [url, setUrl] = useState('https://cn.bing.com');
 
 
     const renderWebCategoryOptions = () => {
@@ -165,14 +185,33 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                             },
                         ]}
                     >
-                        <Input onChange={(e) => {
-                            setUrl(e.target.value);
-                        }} />
+                        <Input />
                     </Form.Item>
 
 
                 </Form>
-                {/* <div><iframe src={"" + url + ""} id="show"></iframe></div> */}
+            </Modal>
+
+            <Modal title="新增分类" open={isWebCategoryModalOpen} onOk={handleOkWebCategory} onCancel={handleCancelWebCategory}>
+                <Form form={form}>
+                    <Form.Item
+                        name="name"
+                        label="名称"
+                        rules={[{ required: true, message: '请输入名称', whitespace: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="weight"
+                        label="序号"
+                        rules={[{ required: true, message: '序号', whitespace: true }]}
+                    >
+                        <Input type='number' />
+                    </Form.Item>
+
+
+
+                </Form>
             </Modal>
 
 
@@ -186,6 +225,9 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                 <Button type="primary" onClick={showModal}>
                     新增网址
                 </Button>
+                <Button type="primary" onClick={showWebCategoryModal}>
+                    新增分类
+                </Button>
 
                 {webCategoryList.map((item, index) => {
                     return <Card bordered={false} key={item.uid}>
@@ -193,7 +235,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
                         <DndProvider backend={HTML5Backend} >
-                            <MyContainer name={item.name} webCategory={item} />
+                            <MyContainer webCategory={item} />
                         </DndProvider>
                     </Card>;
                 })}

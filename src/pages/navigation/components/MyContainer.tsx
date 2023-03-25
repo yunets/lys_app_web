@@ -23,7 +23,6 @@ export interface ContainerState {
 }
 export interface Props {
     webCategory: any;
-    name: string;
     list: any;
     loading: any;
     title: any;
@@ -32,13 +31,10 @@ export interface Props {
 const MyContainer: FC<Props> = (props) => {
     {
         const {
-            //     cards,
-            //     loading,
             webCategory,
             dispatch,
-            name
         } = props;
-        // debugger;
+
 
         const [cards, setCards] = useState([])
 

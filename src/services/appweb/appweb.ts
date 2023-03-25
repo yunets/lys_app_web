@@ -17,6 +17,19 @@ export async function fakeAccountLogin(params: any) {
     });
 }
 
+export async function webCategoryList(params?: any) {
+    return request('/api/webCategory/list', {
+        method: 'GET',
+        data: params,
+    });
+}
+
+export async function webCategorySave(params?: any) {
+    return request('/api/webCategory/save', {
+        method: 'POST',
+        data: params,
+    });
+}
 
 export async function webInfoSave(params: any) {
     return request('/api/webInfo/save', {
