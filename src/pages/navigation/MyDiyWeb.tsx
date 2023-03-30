@@ -36,13 +36,28 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         title
     } = props;
     const [form] = Form.useForm();
+    const [form2] = Form.useForm();
+    const [webCategoryList, setWebCategoryList] = useState<any>([])
+    useRequest(() => ({
+        url: '/api/webCategory/listAll',
+        method: 'get',
+        data: {},
+    }), {
+        manual: false,
+        onSuccess: (result, params) => {
+            console.log(result);
+            setWebCategoryList(result.content);
+
+        },
+    });
+
 
     const updateWebCategoryList = () => {
         dispatch({
-            type: 'navigation/fetchWebCategoryList',
+            type: 'navigation/fetchWebCategoryListAll',
             payload: {},
             callback: (response: any) => {
-                console.log('this is callback' + JSON.stringify(response))
+                setWebCategoryList(response.content);
             }
         });
     }
@@ -60,9 +75,6 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     const handleOk = async () => {
         form.validateFields()
             .then((values) => {
-                /** 正确后的验证信息 */
-                console.log(values);
-                console.log('Success:', values);
                 message.success('提交校验成功')
                 dispatch({
                     type: 'navigation/fetchWebInfoSave',
@@ -70,21 +82,20 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                         ...values,
                     },
                     callback: (response: any) => {
-                        console.log('this is callback' + JSON.stringify(response))
                         updateWebCategoryList();
+                        message.success('操作成功！')
                     }
                 });
                 form.resetFields();
                 // setIsModalOpen(false);
             })
             .catch((errorInfo) => {
-                /** 错误信息 */
                 console.log(errorInfo);
             });
     };
 
     const handleOkWebCategory = async () => {
-        form.validateFields()
+        form2.validateFields()
             .then((values) => {
                 dispatch({
                     type: 'navigation/fetchWebCategorySave',
@@ -92,12 +103,11 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                         ...values,
                     },
                     callback: (response: any) => {
-                        console.log('this is callback' + JSON.stringify(response))
                         updateWebCategoryList();
                         message.success('操作成功！')
                     }
                 });
-                form.resetFields();
+                form2.resetFields();
                 // setIsModalOpen(false);
             })
             .catch((errorInfo) => {
@@ -118,19 +128,6 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     };
 
 
-    const [webCategoryList, setWebCategoryList] = useState<any>([])
-    useRequest(() => ({
-        url: '/api/webCategory/list',
-        method: 'get',
-        data: {},
-    }), {
-        manual: false,
-        onSuccess: (result, params) => {
-            console.log(result);
-            setWebCategoryList(result.content);
-
-        },
-    });
 
 
 
@@ -140,7 +137,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     const renderWebCategoryOptions = () => {
         const options: any = []
         webCategoryList.forEach((item: any) => {
-            options.push(<Option value={item.uid}>{item.name}</Option>)
+            options.push(<Option key={item.uid} value={item.uid}>{item.name}</Option>)
         })
 
         return <Select style={{ width: 120 }}  >
@@ -193,7 +190,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
             </Modal>
 
             <Modal title="新增分类" open={isWebCategoryModalOpen} onOk={handleOkWebCategory} onCancel={handleCancelWebCategory}>
-                <Form form={form}>
+                <Form form={form2}>
                     <Form.Item
                         name="name"
                         label="名称"

@@ -39,19 +39,19 @@ const MyContainer: FC<Props> = (props) => {
         const [cards, setCards] = useState([])
 
 
-        useRequest(() => ({
-            url: '/api/webInfo/list',
-            method: 'post',
-            data: { ...webCategory }
+        // useRequest(() => ({
+        //     url: '/api/webInfo/list',
+        //     method: 'post',
+        //     data: { ...webCategory }
 
-        }), {
-            manual: false,
-            onSuccess: (result, params) => {
-                console.log(result);
-                setCards(result.content);
+        // }), {
+        //     manual: false,
+        //     onSuccess: (result, params) => {
+        //         console.log(result);
+        //         setCards(result.content);
 
-            },
-        });
+        //     },
+        // });
 
         const fetchTest = (data: any) => {
             dispatch({
@@ -62,13 +62,19 @@ const MyContainer: FC<Props> = (props) => {
             });
         };
 
+        // 只执行一次
         useEffect(() => {
+            setCards(webCategory.webInfoList);
 
+        }, [webCategory.webInfoList]);
+
+
+        useEffect(() => {
             console.log('开启延时器')
             const timer = setTimeout(() => {
                 console.log('进入延时器')
                 // 注:在setCount中使用箭头函数是最好方式之一,只有一个timer生成
-                console.log(cards);
+                //console.log(cards);
                 //fetchTest(cards);
             }, 1000)
             return () => {

@@ -24,6 +24,13 @@ export async function webCategoryList(params?: any) {
     });
 }
 
+export async function webCategoryListAll(params?: any) {
+    return request('/api/webCategory/listAll', {
+        method: 'GET',
+        data: params,
+    });
+}
+
 export async function webCategorySave(params?: any) {
     return request('/api/webCategory/save', {
         method: 'POST',
