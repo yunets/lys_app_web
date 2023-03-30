@@ -1,6 +1,7 @@
 import UserModel, { UserModelType } from '@/models/navigation';
+import { UploadOutlined } from '@ant-design/icons';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Modal, Form, FormInstance, message } from 'antd';
+import { Button, Input, InputNumber, Card, Select, Modal, Form, FormInstance, message, Upload } from 'antd';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -145,7 +146,23 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         </Select>
     }
 
-
+    const UploadProps = {
+        name: 'file',
+        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        headers: {
+            authorization: 'authorization-text',
+        },
+        onChange(info) {
+            if (info.file.status !== 'uploading') {
+                console.log(info.file, info.fileList);
+            }
+            if (info.file.status === 'done') {
+                message.success(`${info.file.name} file uploaded successfully`);
+            } else if (info.file.status === 'error') {
+                message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+    };
 
     return (
         <PageContainer>
@@ -225,6 +242,9 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                 <Button type="primary" onClick={showWebCategoryModal}>
                     新增分类
                 </Button>
+                <Upload {...UploadProps}>
+                    <Button icon={<UploadOutlined />}>批量导入</Button>
+                </Upload>
 
                 {webCategoryList.map((item, index) => {
                     return <Card bordered={false} key={item.uid}>
