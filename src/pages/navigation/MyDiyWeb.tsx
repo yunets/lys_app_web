@@ -88,7 +88,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                     }
                 });
                 form.resetFields();
-                // setIsModalOpen(false);
+                setIsModalOpen(false);
             })
             .catch((errorInfo) => {
                 console.log(errorInfo);
@@ -109,7 +109,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                     }
                 });
                 form2.resetFields();
-                // setIsModalOpen(false);
+                setIsWebCategoryModalOpen(false);
             })
             .catch((errorInfo) => {
                 console.log(errorInfo);
