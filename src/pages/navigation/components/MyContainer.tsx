@@ -53,15 +53,17 @@ const MyContainer: FC<Props> = (props) => {
         //     },
         // });
 
-        const fetchUpdateWebInfoList = (list: any) => {
-            dispatch({
-                type: 'navigation/fetchWebInfoUpdateList',
-                payload: {
-                    webInfoList: { ...list },
-                }, callback: (response: any) => {
-                    console.log("fetchUpdateWebInfoList");
-                }
-            });
+        const fetchUpdateWebInfoList = (webInfoList: any) => {
+            if (webInfoList.length > 0) {
+                dispatch({
+                    type: 'navigation/fetchWebInfoUpdateList',
+                    payload: {
+                        webInfoList,
+                    }, callback: (response: any) => {
+                        console.log("fetchUpdateWebInfoList");
+                    }
+                });
+            }
         };
 
         // 只执行一次

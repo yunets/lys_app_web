@@ -76,7 +76,6 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     const handleOk = async () => {
         form.validateFields()
             .then((values) => {
-                message.success('提交校验成功')
                 dispatch({
                     type: 'navigation/fetchWebInfoSave',
                     payload: {
