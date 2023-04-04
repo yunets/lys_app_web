@@ -163,5 +163,7 @@ export default {
     'POST /api/webCategory/save': webCategoryList,
 
     'POST /api/webInfo/save': webCategoryList,
+    'POST /api/webInfo/updateList': webCategoryList,
+
 
 };

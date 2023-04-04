@@ -1,4 +1,4 @@
-import { getMyUrlList, webInfoSave, webCategoryList, webCategorySave, webCategoryListAll } from '@/services/appweb/appweb';
+import { getMyUrlList, webInfoSave, webCategoryList, webCategorySave, webCategoryListAll, webInfoUpdateList } from '@/services/appweb/appweb';
 import type { Effect, Reducer } from 'umi';
 
 export type URLItem = {
@@ -27,6 +27,7 @@ export type UserModelType = {
         fetchWebCategoryListAll: Effect;
         fetchWebInfoSave: Effect;
         fetchWebCategorySave: Effect;
+        fetchWebInfoUpdateList: Effect;
     };
     reducers: {
         saveProject: Reducer;
@@ -70,6 +71,11 @@ const UserModel1: UserModelType = {
         },
         *fetchWebInfoSave({ payload, callback }, { call, put }) {
             const response = yield call(webInfoSave, { ...payload });
+
+            callback(response);
+        },
+        *fetchWebInfoUpdateList({ payload, callback }, { call, put }) {
+            const response = yield call(webInfoUpdateList, { ...payload });
 
             callback(response);
         },

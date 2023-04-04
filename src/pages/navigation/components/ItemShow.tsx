@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
 import React from 'react';
 import styles from './../index.less';
+import { DeleteOutlined } from '@ant-design/icons';
+import { Popconfirm } from 'antd';
 
 
 export interface Props {
@@ -15,10 +17,18 @@ const ItemShow: React.FC<Props> = ({ item }) => {
   }
 
 
+
+
+
   return (
     <Fragment>
       <div>
+
+
+
+        <DeleteOutlined title='点击移动！！！' onClick={() => { console.log("移动") }} />
         <div className={styles.urlContent}>
+
           <a onClick={() => { console.log("添加到个人收藏") }}>
 
             <img

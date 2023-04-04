@@ -53,12 +53,14 @@ const MyContainer: FC<Props> = (props) => {
         //     },
         // });
 
-        const fetchTest = (data: any) => {
+        const fetchUpdateWebInfoList = (list: any) => {
             dispatch({
-                type: 'navigation/fetchProject',
+                type: 'navigation/fetchWebInfoUpdateList',
                 payload: {
-                    data,
-                },
+                    webInfoList: { ...list },
+                }, callback: (response: any) => {
+                    console.log("fetchUpdateWebInfoList");
+                }
             });
         };
 
@@ -74,11 +76,18 @@ const MyContainer: FC<Props> = (props) => {
             const timer = setTimeout(() => {
                 console.log('进入延时器')
                 // 注:在setCount中使用箭头函数是最好方式之一,只有一个timer生成
+                cards.forEach((i: any, index) => {
+                    i.weight = index;
+                });
+
+                setCards(cards);
+                console.log(cards);
                 //console.log(cards);
-                //fetchTest(cards);
+                fetchUpdateWebInfoList(cards);
             }, 1000)
             return () => {
                 console.log('清除延时器')
+
                 clearTimeout(timer)
             }
 

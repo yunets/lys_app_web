@@ -44,3 +44,10 @@ export async function webInfoSave(params: any) {
         data: params,
     });
 }
+
+export async function webInfoUpdateList(params: any) {
+    return request('/api/webInfo/updateList', {
+        method: 'POST',
+        data: params,
+    });
+}
