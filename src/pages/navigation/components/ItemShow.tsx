@@ -1,15 +1,33 @@
 import { Fragment } from 'react';
 import React from 'react';
 import styles from './../index.less';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, HeartTwoTone, HomeTwoTone } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
+import { connect } from 'umi';
 
 
 export interface Props {
   item: any;
+  dispatch: Dispatch;
 }
 
-const ItemShow: React.FC<Props> = ({ item }) => {
+const ItemShow: React.FC<Props> = ({ item, dispatch }) => {
+
+  const fetchUpdateWebInfoList = (webInfoList: any) => {
+
+    dispatch({
+      type: 'navigation/fetchWebInfoUpdateList',
+      payload: {
+        webInfoList,
+      }, callback: (response: any) => {
+        console.log("fetchUpdateWebInfoList");
+      }
+    });
+
+  };
+
+
+
   const getImg = (url: { url: string | URL; }) => {
     console.log(url.url);
     const u = new URL(url.url);
@@ -20,13 +38,22 @@ const ItemShow: React.FC<Props> = ({ item }) => {
 
 
 
+
+
+
+
+
   return (
     <Fragment>
       <div>
 
 
+        <div className={styles.urlOperate}>
+          <DeleteOutlined onClick={() => fetchUpdateWebInfoList(item)} spin title='点击删除！！！' />
+          <HeartTwoTone twoToneColor="#eb2f96" onClick={() => fetchUpdateWebInfoList(item)} title='收藏！！！' />
+          <HomeTwoTone twoToneColor="#222222" onClick={() => fetchUpdateWebInfoList(item)} title='添加到首页！！！' />
+        </div>
 
-        <DeleteOutlined title='点击移动！！！' onClick={() => { console.log("移动") }} />
         <div className={styles.urlContent}>
 
           <a onClick={() => { console.log("添加到个人收藏") }}>
@@ -56,4 +83,13 @@ const ItemShow: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default ItemShow;
+
+function mapStateToProps(state: any) { //state是项目所有的models
+  const { list } = state.navigation; //获取namespace命名空间为navigation的models数据state
+  const { title } = state.navigation;
+  return {
+    cards: list.content,
+    title
+  };
+}
+export default connect(mapStateToProps)(ItemShow as any);
