@@ -51,3 +51,10 @@ export async function webInfoUpdateList(params: any) {
         data: params,
     });
 }
+
+export async function webInfoDelete(params: any) {
+    return request('/api/webInfo/delete', {
+        method: 'POST',
+        data: params,
+    });
+}

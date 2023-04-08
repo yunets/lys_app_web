@@ -16,11 +16,11 @@ const ItemShow: React.FC<Props> = ({ item, dispatch }) => {
   const fetchUpdateWebInfoList = (webInfoList: any) => {
 
     dispatch({
-      type: 'navigation/fetchWebInfoUpdateList',
+      type: 'navigation/fetchWebInfoDelete',
       payload: {
-        webInfoList,
+        ...webInfoList
       }, callback: (response: any) => {
-        console.log("fetchUpdateWebInfoList");
+        console.log("fetchWebInfoDelete");
       }
     });
 
