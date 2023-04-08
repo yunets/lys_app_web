@@ -7,7 +7,7 @@
  * https://pro.ant.design/docs/deploy
  */
 export default {
-  dev: {
+  dev1: {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
     '/api/': {
       // 要代理的地址
@@ -29,6 +29,17 @@ export default {
       target: 'your pre url',
       changeOrigin: true,
       pathRewrite: { '^': '' },
+    },
+  },
+  dev: {
+    // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
+    '/api/**': {
+      // 要代理的地址
+      target: 'http://10.6.1.26:31105/',
+      // 配置了这个可以从 http 代理到 https
+      // 依赖 origin 的功能可能需要这个，比如 cookie
+      changeOrigin: true,
+      pathRewrite: { "": "" }
     },
   },
 };
