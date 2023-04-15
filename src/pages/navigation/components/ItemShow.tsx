@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Dispatch, Fragment } from 'react';
 import React from 'react';
 import styles from './../index.less';
 import { DeleteOutlined, HeartTwoTone, HomeTwoTone } from '@ant-design/icons';
@@ -9,9 +9,10 @@ import { connect } from 'umi';
 export interface Props {
   item: any;
   dispatch: Dispatch;
+  a: Function;
 }
 
-const ItemShow: React.FC<Props> = ({ item, dispatch }) => {
+const ItemShow: React.FC<Props> = ({ item, dispatch, a }) => {
 
   const fetchUpdateWebInfoList = (webInfoList: any) => {
 
@@ -21,6 +22,7 @@ const ItemShow: React.FC<Props> = ({ item, dispatch }) => {
         ...webInfoList
       }, callback: (response: any) => {
         console.log("fetchWebInfoDelete");
+        a();
       }
     });
 

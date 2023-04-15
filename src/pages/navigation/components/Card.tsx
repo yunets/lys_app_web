@@ -20,7 +20,8 @@ export interface CardProps {
     id: any
     text: string
     itemUrl: any;
-    index: number
+    index: number;
+    aa: Function;
     moveCard: (dragIndex: number, hoverIndex: number) => void
 }
 
@@ -30,7 +31,7 @@ interface DragItem {
     type: string
 }
 
-export const Card: FC<CardProps> = ({ id, text, itemUrl, index, moveCard }) => {
+export const Card: FC<CardProps> = ({ id, text, itemUrl, index, aa, moveCard, }) => {
     const ref = useRef<HTMLDivElement>(null)
     const [{ handlerId }, drop] = useDrop<
         DragItem,
@@ -105,10 +106,17 @@ export const Card: FC<CardProps> = ({ id, text, itemUrl, index, moveCard }) => {
 
     const opacity = isDragging ? 0 : 1
     drag(drop(ref))
+
+    const a = () => {
+        console.log('删除');
+        console.log(ref);
+        debugger
+        aa();
+    }
     return (
         <div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
 
-            <ItemShow item={itemUrl} />
+            <ItemShow item={itemUrl} a={a} />
         </div>
     )
 }

@@ -252,7 +252,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
                         <DndProvider backend={HTML5Backend} >
-                            <MyContainer webCategory={item} />
+                            <MyContainer webCategory={item} updateWebCategoryList={updateWebCategoryList} />
                         </DndProvider>
                     </Card>;
                 })}

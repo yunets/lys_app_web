@@ -27,16 +27,23 @@ export interface Props {
     loading: any;
     title: any;
     dispatch: Dispatch;
+    updateWebCategoryList: any;
 }
 const MyContainer: FC<Props> = (props) => {
     {
         const {
             webCategory,
             dispatch,
+            updateWebCategoryList
         } = props;
 
 
         const [cards, setCards] = useState([])
+
+
+        const aaa = () => {
+            updateWebCategoryList();
+        }
 
 
         // useRequest(() => ({
@@ -124,6 +131,7 @@ const MyContainer: FC<Props> = (props) => {
                         text={card.name}
                         itemUrl={card}
                         moveCard={moveCard}
+                        aa={() => aaa()}
                     />
                 )
             },
