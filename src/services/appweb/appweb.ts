@@ -31,6 +31,13 @@ export async function webCategoryListAll(params?: any) {
     });
 }
 
+export async function webCategoryDelete(params?: any) {
+    return request('/api/webCategory/delete', {
+        method: 'POST',
+        data: params,
+    });
+}
+
 export async function webCategorySave(params?: any) {
     return request('/api/webCategory/save', {
         method: 'POST',

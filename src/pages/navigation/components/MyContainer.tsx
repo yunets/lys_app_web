@@ -4,6 +4,7 @@ import { FC, useEffect } from 'react'
 import { useCallback, useState } from 'react'
 import { connect, Dispatch, useRequest } from 'umi'
 import { Card } from './Card'
+import { DeleteOutlined } from '@ant-design/icons'
 
 
 
@@ -46,19 +47,18 @@ const MyContainer: FC<Props> = (props) => {
         }
 
 
-        // useRequest(() => ({
-        //     url: '/api/webInfo/list',
-        //     method: 'post',
-        //     data: { ...webCategory }
+        const fetchWebCategoryDelete = (webCategory1: any) => {
+            dispatch({
+                type: 'navigation/fetchWebCategoryDelete',
+                payload: {
+                    ...webCategory1,
+                }, callback: (response: any) => {
+                    console.log("fetchUpdateWebInfoList");
+                    aaa();
+                }
+            });
+        };
 
-        // }), {
-        //     manual: false,
-        //     onSuccess: (result, params) => {
-        //         console.log(result);
-        //         setCards(result.content);
-
-        //     },
-        // });
 
         const fetchUpdateWebInfoList = (webInfoList: any) => {
             if (webInfoList.length > 0) {
@@ -142,7 +142,9 @@ const MyContainer: FC<Props> = (props) => {
             <>
                 {/* <Button type="primary" onClick={() => { console.log(cards); }}> 当前次序</Button>
                 <Button type="primary" onClick={() => { console.log(cards); }}> 新增</Button> */}
-                <br />{webCategory.name}
+                <Button type="primary" onClick={() => { console.log(cards); }}> {webCategory.name}</Button>
+                <DeleteOutlined onClick={() => { fetchWebCategoryDelete(webCategory) }} spin title='点击删除！！！' />
+                <br />
                 <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
 
 

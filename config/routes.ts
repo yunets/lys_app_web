@@ -50,6 +50,12 @@
     component: './drag/index.tsx',
   },
   {
+    path: '/Register',
+    name: 'Register',
+    icon: 'smile',
+    component: './user/Register/Register.tsx',
+  },
+  {
     path: '/admin',
     name: 'admin',
     hideInMenu: true,
