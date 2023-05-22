@@ -1,5 +1,6 @@
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Table, Modal, Form, message, Space } from 'antd';
+import { Button, Input, InputNumber, Card, Select, Table, Modal, Form, message, Space, Row, Statistic, Col } from 'antd';
 import React, { useEffect, useReducer, useState } from 'react';
 
 
@@ -208,7 +209,50 @@ const MyFund: React.FC<Props> = (props) => {
             </Modal>
 
 
+            <GridContent>
+                <Card bordered={false}>
 
+                    <Row gutter={16}>
+                        <Col span={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="累计收益"
+                                    value={11.28}
+                                    precision={2}
+                                    valueStyle={{ color: '#3f8600' }}
+                                    prefix={<ArrowUpOutlined />}
+                                    suffix="%"
+                                />
+                            </Card>
+                        </Col>
+                        <Col span={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="今日收益"
+                                    value={9.3}
+                                    precision={2}
+                                    valueStyle={{ color: '#cf1322' }}
+                                    prefix={<ArrowDownOutlined />}
+                                    suffix="%"
+                                />
+                            </Card>
+                        </Col>
+                        <Col span={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="持仓总市值"
+                                    value={9.3}
+                                    precision={2}
+                                    valueStyle={{ color: '#cf1322' }}
+                                    prefix={<ArrowDownOutlined />}
+                                    suffix="%"
+                                />
+                            </Card>
+                        </Col>
+                    </Row>
+
+                </Card>
+            </GridContent>
 
 
             <GridContent>
@@ -219,19 +263,13 @@ const MyFund: React.FC<Props> = (props) => {
                     <Button type="primary" onClick={() => { fetchFundInfoList() }}>
                         刷新
                     </Button>
-                    <Table dataSource={fundList} columns={columns} rowKey={record => record.uid} />;
+                    <Table dataSource={fundList} columns={columns} rowKey={record => record.uid} />
 
                 </Card>
             </GridContent>
 
 
-            <GridContent>
-                <Card bordered={false}>
 
-
-
-                </Card>
-            </GridContent>
 
 
 
