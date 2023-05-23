@@ -7,7 +7,7 @@ import type { RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
 import defaultSettings from '../config/defaultSettings';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-
+import type { RequestConfig } from 'umi';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -67,15 +67,15 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     links: isDev
       ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-            <LinkOutlined />
-            <span>OpenAPI 文档</span>
-          </Link>,
-          <Link to="/~docs" key="docs">
-            <BookOutlined />
-            <span>业务组件文档</span>
-          </Link>,
-        ]
+        <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
+          <LinkOutlined />
+          <span>OpenAPI 文档</span>
+        </Link>,
+        <Link to="/~docs" key="docs">
+          <BookOutlined />
+          <span>业务组件文档</span>
+        </Link>,
+      ]
       : [],
     menuHeaderRender: undefined,
     // 自定义 403 页面
@@ -104,4 +104,30 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     ...initialState?.settings,
   };
+};
+
+
+
+
+
+
+
+// RequestConfig 全局拦截
+export const request: RequestConfig = {
+  // prefix: '/api/*',
+  // timeout: 1000,
+  errorConfig: {},
+  middlewares: [],
+  requestInterceptors: [(_, options) => {
+    return {
+      options: {
+        ...options,
+        headers: {
+          ...(options?.headers ?? {}),
+          Authorization: `bearer liuyunshengsir`,    // 这里获取自己的token携带在请求头上
+        },
+      },
+    };
+  },],
+  responseInterceptors: [],
 };
