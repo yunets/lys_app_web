@@ -26,8 +26,9 @@ export async function FundInfoDelete(params?: any) {
     });
 }
 
+
 export async function FundInfoUpdate(params?: any) {
-    return request('/api/FundInfo/updateSelect', {
+    return request('/api/FundInfo/update', {
         method: 'POST',
         data: params,
     });

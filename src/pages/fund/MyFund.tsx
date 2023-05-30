@@ -24,7 +24,8 @@ const MyFund: React.FC<Props> = (props) => {
 
     } = props;
 
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpenFund, setIsModalOpenFund] = useState({});
 
 
     // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -62,6 +63,15 @@ const MyFund: React.FC<Props> = (props) => {
             }
         });
     }
+    const FundInfoUpdate = (record: any) => {
+        setIsModalOpen(true);
+        setIsModalOpenFund(record);
+        form.setFieldValue("fundCode", record.fundCode);
+        form.setFieldValue("quantity", record.quantity);
+        form.setFieldValue("pastPrice", record.pastPrice)
+
+    }
+
     const columns = [
         {
             title: '名称',
@@ -126,12 +136,13 @@ const MyFund: React.FC<Props> = (props) => {
                 <Space size="middle">
 
                     <a onClick={() => fetchFundInfoDelete(record)}>删除</a>
+                    <a onClick={() => FundInfoUpdate(record)}>编辑</a>
                 </Space >
             ),
         },
 
     ];
-    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -139,7 +150,7 @@ const MyFund: React.FC<Props> = (props) => {
         setIsModalOpen(false);
     };
 
-    const handleOk = async () => {
+    const handleOkAdd = async () => {
         form.validateFields()
             .then((values) => {
                 dispatch({
@@ -159,6 +170,37 @@ const MyFund: React.FC<Props> = (props) => {
             .catch((errorInfo) => {
                 console.log(errorInfo);
             });
+    }
+
+    const handleOkUpdate = async () => {
+        form.validateFields()
+            .then((values) => {
+                dispatch({
+                    type: 'fund/fetchFundInfoUpdate',
+                    payload: {
+                        ...values, pastTotalValue: values.pastPrice * values.pastPrice, uid: isModalOpenFund.uid,
+                    },
+                    callback: (response: any) => {
+
+                        message.success('操作成功！')
+                        fetchFundInfoList();
+                    }
+                });
+                form.resetFields();
+                setIsModalOpen(false);
+            })
+            .catch((errorInfo) => {
+                console.log(errorInfo);
+            });
+    }
+
+
+    const handleOk = async () => {
+        if (true) {
+            console.log(isModalOpenFund);
+            handleOkUpdate();
+            debugger;
+        }
     };
 
 
