@@ -8,6 +8,7 @@ import { history, Link } from 'umi';
 import defaultSettings from '../config/defaultSettings';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import type { RequestConfig } from 'umi';
+import { getAuthority } from './utils/authority';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -124,7 +125,8 @@ export const request: RequestConfig = {
         ...options,
         headers: {
           ...(options?.headers ?? {}),
-          Authorization: `bearer liuyunshengsir`,    // 这里获取自己的token携带在请求头上
+          Authorization: getAuthority(),
+          //`eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImxpdXl1bnNoZW5nc2lyIiwiZXhwIjoxNjg1NjEwNTAwLCJ1c2VySWQiOiIxMTExMTExIn0.IEdyXM2yLei6vrK0pCOF51MRoYENlF_xhcjGBpdjNhc`,    // 这里获取自己的token携带在请求头上
         },
       },
     };

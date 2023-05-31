@@ -9,6 +9,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { connect, Dispatch, request, useRequest } from 'umi';
 import MyContainer from './components/MyContainer';
+import { getAuthority } from '@/utils/authority';
 
 
 
@@ -149,7 +150,8 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         name: 'file',
         action: '/api/webInfo/uploadSave',
         headers: {
-            authorization: 'authorization-text',
+            authorization: getAuthority(),
+            //'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImxpdXl1bnNoZW5nc2lyIiwiZXhwIjoxNjg1NjEwNTAwLCJ1c2VySWQiOiIxMTExMTExIn0.IEdyXM2yLei6vrK0pCOF51MRoYENlF_xhcjGBpdjNhc',
         },
         onChange(info) {
             if (info.file.status !== 'uploading') {
