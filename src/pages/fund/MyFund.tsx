@@ -27,10 +27,24 @@ const MyFund: React.FC<Props> = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpenFund, setIsModalOpenFund] = useState({});
 
+    const [currentTotalValue, setCurrentTotalValue] = useState(0);
+    const [estimatedCost, setEstimatedCost] = useState(0);
+    const [currentCost, setCurrentCost] = useState(0);
 
     // eslint-disable-next-line @typescript-eslint/no-shadow
     const [form] = Form.useForm();
     const [fundList, setFundList] = useState<any>([])
+
+    const computeAll = (arr: any) => {
+        const currentTotalValue1 = arr.reduce((acc: any, curr: any) => acc + curr.currentTotalValue, 0);
+        const estimatedCost1 = arr.reduce((acc: any, curr: any) => acc + curr.estimatedCost, 0);
+        const currentCost1 = arr.reduce((acc: any, curr: any) => acc + curr.currentCost, 0);
+        setCurrentCost(currentCost1);
+        setCurrentTotalValue(currentTotalValue1);
+        setEstimatedCost(estimatedCost1);
+    }
+
+
     useRequest(() => ({
         url: '/api/FundInfo/list',
         method: 'post',
@@ -40,7 +54,7 @@ const MyFund: React.FC<Props> = (props) => {
         onSuccess: (result, params) => {
             console.log(result);
             setFundList(result.content);
-
+            computeAll(result.content);
         },
     });
     const fetchFundInfoList = () => {
@@ -49,6 +63,7 @@ const MyFund: React.FC<Props> = (props) => {
             payload: {},
             callback: (response: any) => {
                 setFundList(response.content);
+                computeAll(response.content);
             }
         });
     }
@@ -259,11 +274,11 @@ const MyFund: React.FC<Props> = (props) => {
                             <Card bordered={false}>
                                 <Statistic
                                     title="累计收益"
-                                    value={11.28}
+                                    value={currentCost}
                                     precision={2}
                                     valueStyle={{ color: '#3f8600' }}
-                                    prefix={<ArrowUpOutlined />}
-                                    suffix="%"
+                                    //  prefix={<ArrowUpOutlined />}
+                                    suffix="元"
                                 />
                             </Card>
                         </Col>
@@ -271,11 +286,11 @@ const MyFund: React.FC<Props> = (props) => {
                             <Card bordered={false}>
                                 <Statistic
                                     title="今日收益"
-                                    value={9.3}
-                                    precision={2}
+                                    value={estimatedCost}
+                                    precision={5}
                                     valueStyle={{ color: '#cf1322' }}
-                                    prefix={<ArrowDownOutlined />}
-                                    suffix="%"
+                                    // prefix={<ArrowDownOutlined />}
+                                    suffix="元"
                                 />
                             </Card>
                         </Col>
@@ -283,11 +298,11 @@ const MyFund: React.FC<Props> = (props) => {
                             <Card bordered={false}>
                                 <Statistic
                                     title="持仓总市值"
-                                    value={9.3}
-                                    precision={2}
+                                    value={currentTotalValue}
+                                    precision={5}
                                     valueStyle={{ color: '#cf1322' }}
-                                    prefix={<ArrowDownOutlined />}
-                                    suffix="%"
+                                    // prefix={<ArrowDownOutlined />}
+                                    suffix="元"
                                 />
                             </Card>
                         </Col>
