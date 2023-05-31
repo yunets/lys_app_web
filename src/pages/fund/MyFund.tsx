@@ -196,10 +196,10 @@ const MyFund: React.FC<Props> = (props) => {
 
 
     const handleOk = async () => {
-        if (true) {
-            console.log(isModalOpenFund);
+        if (undefined === isModalOpenFund.uid) {
+            handleOkAdd();
+        } else {
             handleOkUpdate();
-            debugger;
         }
     };
 
