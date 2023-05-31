@@ -21,7 +21,6 @@ const ItemShow: React.FC<Props> = ({ item, dispatch, a }) => {
       payload: {
         ...webInfoList
       }, callback: (response: any) => {
-        console.log("fetchWebInfoDelete");
         a();
       }
     });
@@ -31,7 +30,6 @@ const ItemShow: React.FC<Props> = ({ item, dispatch, a }) => {
 
 
   const getImg = (url: { url: string | URL; }) => {
-    console.log(url.url);
     const u = new URL(url.url);
     return "" + u.origin + "/favicon.ico";
   }
