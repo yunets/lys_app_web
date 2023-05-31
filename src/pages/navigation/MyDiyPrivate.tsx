@@ -30,7 +30,6 @@ const MyDiyPrivate: React.FC<Props> = () => {
     }), {
         manual: false,
         onSuccess: (result, params) => {
-            console.log(result);
             setUrlItemList(result.content);
 
         },

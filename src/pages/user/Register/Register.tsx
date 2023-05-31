@@ -32,7 +32,7 @@ const Register: React.FC<Props> = () => {
         form.validateFields()
             .then((values) => {
                 console.log(values);
-                form.resetFields();
+                //form.resetFields();
 
             })
             .catch((errorInfo) => {
@@ -58,27 +58,33 @@ const Register: React.FC<Props> = () => {
                         style={{ maxWidth: 600 }}
                         form={form}
                     >
-                        <Form.Item name={['user', 'name']} label="账号" rules={[{ required: true }]}>
+                        <Form.Item name={['user', 'loginname']} label="账号" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['user', 'password']} label="密码" rules={[{ required: true }]}>
+                            <Input type='password' />
+                        </Form.Item>
+                        <Form.Item name={['user', 'username']} label="姓名/昵称" rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'email']} label="邮箱" rules={[{ type: 'email' }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item name={['user', 'phone']} label="手机号" rules={[{ type: 'string' }]}>
+                        <Form.Item name={['user', 'mobile']} label="手机号" rules={[{ type: 'string' }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item name={['user', 'age']} label="Age" rules={[{ type: 'number', min: 0, max: 99 }]}>
+                        <Form.Item name={['user', 'age']} label="年龄" rules={[{ type: 'number', min: 0, max: 99 }]}>
                             <InputNumber />
                         </Form.Item>
                         <Form.Item name={['user', 'website']} label="Website">
                             <Input />
                         </Form.Item>
-                        <Form.Item name={['user', 'introduction']} label="Introduction">
+                        <Form.Item name={['user', 'introduction']} label="个人介绍">
                             <Input.TextArea />
                         </Form.Item>
                         <Form.Item >
                             <Button type="primary" onClick={handleOk}>
-                                Submit
+                                注册
                             </Button>
                         </Form.Item>
                     </Form>

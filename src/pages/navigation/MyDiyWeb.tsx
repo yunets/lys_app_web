@@ -47,7 +47,6 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     }), {
         manual: false,
         onSuccess: (result, params) => {
-            console.log(result);
             setWebCategoryList(result.content);
 
         },

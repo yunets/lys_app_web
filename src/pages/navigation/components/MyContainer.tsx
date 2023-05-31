@@ -90,8 +90,6 @@ const MyContainer: FC<Props> = (props) => {
                 });
 
                 setCards(cards);
-                console.log(cards);
-                //console.log(cards);
                 fetchUpdateWebInfoList(cards);
             }, 1000)
             return () => {

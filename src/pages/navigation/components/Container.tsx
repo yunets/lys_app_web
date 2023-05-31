@@ -46,7 +46,6 @@ export const Container: FC = () => {
         }), {
             manual: false,
             onSuccess: (result, params) => {
-                console.log(result);
                 setCards(result.content);
 
             },
