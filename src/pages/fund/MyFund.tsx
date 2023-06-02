@@ -269,16 +269,16 @@ const MyFund: React.FC<Props> = (props) => {
             <GridContent>
                 <Card bordered={false}>
 
-                    <Row gutter={16}>
+                    <Row gutter={0}>
                         <Col span={4}>
                             <Card bordered={false}>
                                 <Statistic
                                     title="累计收益"
                                     value={currentCost}
                                     precision={2}
-                                    valueStyle={{ color: '#3f8600' }}
+                                    valueStyle={{ color: '#efe9e9' }}
                                     //  prefix={<ArrowUpOutlined />}
-                                    suffix="元"
+                                    suffix=""
                                 />
                             </Card>
                         </Col>
@@ -288,9 +288,9 @@ const MyFund: React.FC<Props> = (props) => {
                                     title="今日收益"
                                     value={estimatedCost}
                                     precision={5}
-                                    valueStyle={{ color: '#cf1322' }}
+                                    valueStyle={{ color: '#efe9e9' }}
                                     // prefix={<ArrowDownOutlined />}
-                                    suffix="元"
+                                    suffix=""
                                 />
                             </Card>
                         </Col>
@@ -300,9 +300,9 @@ const MyFund: React.FC<Props> = (props) => {
                                     title="持仓总市值"
                                     value={currentTotalValue}
                                     precision={5}
-                                    valueStyle={{ color: '#cf1322' }}
+                                    valueStyle={{ color: '#efe9e9' }}
                                     // prefix={<ArrowDownOutlined />}
-                                    suffix="元"
+                                    suffix=""
                                 />
                             </Card>
                         </Col>

@@ -150,7 +150,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         action: '/api/webInfo/uploadSave',
         headers: {
             authorization: getAuthority(),
-            //'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImxpdXl1bnNoZW5nc2lyIiwiZXhwIjoxNjg1NjEwNTAwLCJ1c2VySWQiOiIxMTExMTExIn0.IEdyXM2yLei6vrK0pCOF51MRoYENlF_xhcjGBpdjNhc',
+
         },
         onChange(info) {
             if (info.file.status !== 'uploading') {

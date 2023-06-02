@@ -118,7 +118,20 @@ export const request: RequestConfig = {
   // prefix: '/api/*',
   // timeout: 1000,
   errorConfig: {},
-  middlewares: [],
+  middlewares: [
+    async function middlewareA(ctx, next) {
+
+      console.log(ctx);
+      console.log('A before');
+      await next();
+      if (ctx.res.code === -1 && ctx.res.msg === "jwt 已过期，请重新登录！！！") {
+        history.push(loginPath);
+      } else if (ctx.req.url === '/api/login/account' && ctx.res.jwt != undefined) {
+        localStorage.setItem('antd-pro-authority', JSON.stringify(ctx.res.jwt));
+      }
+      console.log('A after');
+      console.log(ctx);
+    },],
   requestInterceptors: [(_, options) => {
     return {
       options: {
@@ -126,7 +139,7 @@ export const request: RequestConfig = {
         headers: {
           ...(options?.headers ?? {}),
           Authorization: getAuthority(),
-          //`eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImxpdXl1bnNoZW5nc2lyIiwiZXhwIjoxNjg1NjEwNTAwLCJ1c2VySWQiOiIxMTExMTExIn0.IEdyXM2yLei6vrK0pCOF51MRoYENlF_xhcjGBpdjNhc`,    // 这里获取自己的token携带在请求头上
+
         },
       },
     };
