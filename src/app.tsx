@@ -128,6 +128,8 @@ export const request: RequestConfig = {
         history.push(loginPath);
       } else if (ctx.req.url === '/api/login/account' && ctx.res.jwt != undefined) {
         localStorage.setItem('antd-pro-authority', JSON.stringify(ctx.res.jwt));
+      } else if (ctx.req.url === '/api/login/outLogin') {
+        localStorage.setItem('antd-pro-authority', JSON.stringify("no"));
       }
       console.log('A after');
       console.log(ctx);

@@ -1,7 +1,7 @@
 import UserModel, { UserModelType } from '@/models/navigation';
 import { UploadOutlined } from '@ant-design/icons';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Modal, Form, FormInstance, message, Upload } from 'antd';
+import { Button, Input, InputNumber, Card, Select, Modal, Form, FormInstance, message, Upload, BackTop, } from 'antd';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -262,7 +262,9 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
             </GridContent>
 
-
+            <BackTop>
+                <div >UP</div>
+            </BackTop>
 
         </PageContainer >
     );

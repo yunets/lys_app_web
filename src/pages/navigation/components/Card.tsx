@@ -110,7 +110,6 @@ export const Card: FC<CardProps> = ({ id, text, itemUrl, index, aa, moveCard, })
     const a = () => {
         console.log('删除');
         console.log(ref);
-        debugger
         aa();
     }
     return (
