@@ -4,6 +4,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { request, useRequest } from 'umi';
 
 import ItemShow from './components/ItemShow';
+import ItemShowReadOnly from './components/ItemShowReadOnly';
 
 export interface Props {
     name: string;
@@ -20,14 +21,27 @@ const MyNavigationDownload: React.FC<Props> = () => {
 
     const [urlItemList, setUrlItemList] = useState<any>([])
     useRequest(() => ({
-        url: '/api/webInfo/list',
-        method: 'get',
-        data: {},
+        url: '/api/webInfo/listByWebCategoryName',
+        method: 'post',
+        data: { name: '综合学习' },
     }), {
         manual: false,
         onSuccess: (result, params) => {
             console.log(result);
             setUrlItemList(result.content);
+
+        },
+    });
+    const [urlItemList2, setUrlItemList2] = useState<any>([])
+    useRequest(() => ({
+        url: '/api/webInfo/listByWebCategoryName',
+        method: 'post',
+        data: { name: '云盘搜索' },
+    }), {
+        manual: false,
+        onSuccess: (result, params) => {
+            console.log(result);
+            setUrlItemList2(result.content);
 
         },
     });
@@ -42,9 +56,7 @@ const MyNavigationDownload: React.FC<Props> = () => {
                     {
                         urlItemList.map((item: any, index: number) => {
                             return (
-                                <ItemShow key={index} item={item}>
-
-                                </ItemShow>
+                                <ItemShowReadOnly key={index} item={item} />
                             );
                         })
                     }
@@ -53,13 +65,11 @@ const MyNavigationDownload: React.FC<Props> = () => {
 
             <GridContent style={{ marginTop: '10px' }}>
                 <Card bordered={false}>
-                    计算机软件相关的导航2-后端
+                    云盘搜索
                     {
-                        urlItemList.map((item: any, index: number) => {
+                        urlItemList2.map((item: any, index: number) => {
                             return (
-                                <ItemShow key={index} item={item}>
-
-                                </ItemShow>
+                                <ItemShowReadOnly key={index} item={item} />
                             );
                         })
                     }
@@ -72,9 +82,7 @@ const MyNavigationDownload: React.FC<Props> = () => {
                     {
                         urlItemList.map((item: any, index: number) => {
                             return (
-                                <ItemShow key={index} item={item}>
-
-                                </ItemShow>
+                                <ItemShowReadOnly key={index} item={item} />
                             );
                         })
                     }

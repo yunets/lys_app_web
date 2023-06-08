@@ -69,7 +69,7 @@ const MyDiyPrivate: React.FC<Props> = () => {
             <GridContent>
                 <Card bordered={false}>
 
-                    <ItemCard item="" />
+
 
                 </Card>
             </GridContent>

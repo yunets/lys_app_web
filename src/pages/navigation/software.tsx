@@ -24,8 +24,8 @@ const MyNavigationSoftWare: React.FC<Props> = () => {
 
     const [urlItemList, setUrlItemList] = useState<any>([])
     useRequest(() => ({
-        url: '/api/webInfo/list',
-        method: 'get',
+        url: '/api/webInfo/listByWebCategoryName',
+        method: 'post',
         data: {},
     }), {
         manual: false,
