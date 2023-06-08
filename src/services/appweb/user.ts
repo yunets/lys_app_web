@@ -4,8 +4,8 @@ import { request } from 'umi';
 
 
 
-export async function FundInfoList(params?: any) {
-    return request('/api/FundInfo/list', {
+export async function listByPage(params?: any) {
+    return request('/api/user/listByPage', {
         method: 'POST',
         data: params,
     });

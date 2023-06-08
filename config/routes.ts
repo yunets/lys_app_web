@@ -56,6 +56,12 @@
     component: './user/Register/Register.tsx',
   },
   {
+    path: '/UserList',
+    name: 'UserList',
+    icon: 'smile',
+    component: './user/management/UserList.tsx',
+  },
+  {
     path: '/MyFund',
     name: 'MyFund',
     icon: 'smile',
