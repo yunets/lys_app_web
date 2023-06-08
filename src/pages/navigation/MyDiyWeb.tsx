@@ -165,6 +165,33 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         },
     };
 
+
+
+
+    const handleDownload = () => {
+        const fileUrl = '/api/webInfo/download';
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                authorization: getAuthority(),
+            }
+        };
+        fetch(fileUrl, requestOptions)
+            .then(response => {
+                let filename = response.headers.get('content-disposition').split('filename=')[1];
+                filename = decodeURIComponent(filename);
+                response.blob().then(blob => {
+                    const url = window.URL.createObjectURL(new Blob([blob]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', filename);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            });
+
+    }
     return (
         <PageContainer>
 
@@ -246,6 +273,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                 <Upload {...UploadProps}>
                     <Button icon={<UploadOutlined />}>批量导入</Button>
                 </Upload>
+                <Button onClick={handleDownload}>备份下载</Button>
 
                 {webCategoryList.map((item, index) => {
                     return <Card bordered={false} key={item.uid}>
