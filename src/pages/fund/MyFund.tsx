@@ -102,14 +102,16 @@ const MyFund: React.FC<Props> = (props) => {
             title: '净值',
             dataIndex: 'yesterdayPrice',
             key: 'yesterdayPrice',
+            render: (text: any) => parseFloat(text).toFixed(4),
         },
         {
             title: '今日涨跌幅估算',
             dataIndex: 'estimatedPercent',
             key: 'estimatedPercent',
+
             render: (_: any, record: any) => (
                 <Space size="small">
-                    {record.estimatedPercent * 100}%
+                    {(record.estimatedPercent * 100).toFixed(4)}%
 
                 </Space >
             ),
@@ -118,31 +120,37 @@ const MyFund: React.FC<Props> = (props) => {
             title: '持仓份额',
             dataIndex: 'quantity',
             key: 'quantity',
+            render: (text: any) => parseFloat(text).toFixed(4),
         },
         {
             title: '持有总金额',
             dataIndex: 'currentTotalValue',
             key: 'currentTotalValue',
+            render: (text: any) => parseFloat(text).toFixed(2),
         },
         {
             title: '持有收益',
             dataIndex: 'currentCost',
             key: 'currentCost',
+            render: (text: any) => parseFloat(text).toFixed(2),
         },
         {
             title: '今日收益',
             dataIndex: 'estimatedCost',
             key: 'estimatedCost',
+            render: (text: any) => parseFloat(text).toFixed(2),
         },
         {
             title: '成本价',
             dataIndex: 'pastPrice',
             key: 'pastPrice',
+            render: (text: any) => parseFloat(text).toFixed(2),
         },
         {
             title: '成本总额',
             dataIndex: 'pastTotalValue',
             key: 'pastTotalValue',
+            render: (text: any) => parseFloat(text).toFixed(2),
         },
         {
             title: '操作',

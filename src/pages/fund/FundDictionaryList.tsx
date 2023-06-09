@@ -1,13 +1,11 @@
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Table, Form } from 'antd';
-import React, { useEffect, useReducer, useState } from 'react';
+import { Button, Input, Card, Select, Table, Form } from 'antd';
+import React, { useEffect, useState } from 'react';
 
 
 import type { Dispatch } from 'umi';
-import { connect, request, useRequest } from 'umi';
-import ItemCard from './components/ItemCard';
+import { connect, useRequest } from 'umi';
 
-import ItemShow from './components/ItemShow';
 import Pagination from 'antd/es/pagination';
 
 
@@ -30,20 +28,7 @@ const FundDictionaryList: React.FC<Props> = (props) => {
     const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 10, "name": "", "fundType": "" });
     const [totalElements, setTotalElements] = useState<any>(0);
 
-    const dataSource = [
-        {
-            key: '1',
-            name: '胡彦斌',
-            age: 32,
-            address: '西湖区湖底公园1号',
-        },
-        {
-            key: '2',
-            name: '胡彦祖',
-            age: 42,
-            address: '西湖区湖底公园1号',
-        },
-    ];
+
 
     const columns = [
         {
@@ -87,7 +72,6 @@ const FundDictionaryList: React.FC<Props> = (props) => {
         manual: false,
         onSuccess: (result, params) => {
             setFundTypeList(result.content);
-            setTotalElements(result.content.totalElements);
         },
     });
 
@@ -97,19 +81,24 @@ const FundDictionaryList: React.FC<Props> = (props) => {
             payload: { ...seachContent },
             callback: (response: any) => {
                 setUserList(response.content.content);
+                setTotalElements(response.content.totalElements);
+
             }
         });
     }
-
+    useEffect(() => {
+        fetchFundDictionaryList();
+        // 在这里执行需要在状态更新后执行的代码
+    }, [seachContent]);
 
     const handleSearch = async () => {
         form.validateFields()
             .then((values) => {
                 setSeachContent({
-                    "pageNumber": seachContent.pageNumber, "pageSize": seachContent.pageSize, "name": values.name, "fundType": values.fundType
+                    "pageNumber": 0, "pageSize": 10, "name": values.name, "fundType": values.fundType
                 });
 
-                fetchFundDictionaryList();
+
 
             })
             .catch((errorInfo) => {
@@ -124,6 +113,7 @@ const FundDictionaryList: React.FC<Props> = (props) => {
         })
 
         return <Select style={{ width: 300 }}  >
+            <Option key="123" value="">全部</Option>
             {options}
         </Select>
     }
@@ -132,7 +122,7 @@ const FundDictionaryList: React.FC<Props> = (props) => {
         setSeachContent({
             "pageNumber": page, "pageSize": size, "name": seachContent.name, "fundType": seachContent.fundType
         });
-        fetchFundDictionaryList();
+
 
     }
 
@@ -147,7 +137,7 @@ const FundDictionaryList: React.FC<Props> = (props) => {
                         <Form.Item
                             name="fundType"
                             label="分类"
-                            rules={[{ required: true, message: '分类!', whitespace: true }]}
+                            rules={[{ message: '分类!', whitespace: true }]}
                         >
                             {renderWebCategoryOptions()}
 
@@ -165,7 +155,7 @@ const FundDictionaryList: React.FC<Props> = (props) => {
                     </Form>
 
                     <Table dataSource={userList} columns={columns} pagination={false} />
-                    <Pagination defaultCurrent={1} total={500} onChange={(page: number, pageSize: number) => { console.log(page + "------" + pageSize); updateUserList(page, pageSize); }} />
+                    <Pagination defaultCurrent={1} total={totalElements} onChange={(page: number, pageSize: number) => { console.log(page + "------" + pageSize); updateUserList(page, pageSize); }} />
 
                 </Card>
             </GridContent>
