@@ -68,6 +68,12 @@
     component: './fund/MyFund.tsx',
   },
   {
+    path: '/FundDictionaryList',
+    name: 'FundDictionaryList',
+    icon: 'smile',
+    component: './fund/FundDictionaryList.tsx',
+  },
+  {
     path: '/admin',
     name: 'admin',
     hideInMenu: true,

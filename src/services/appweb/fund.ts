@@ -32,3 +32,10 @@ export async function FundInfoUpdate(params?: any) {
         data: params,
     });
 }
+
+export async function FundDictionaryList(params?: any) {
+    return request('/api/FundInfo/dictionary/listByPage', {
+        method: 'POST',
+        data: params,
+    });
+}
