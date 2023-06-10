@@ -25,12 +25,7 @@
     icon: 'smile',
     component: './navigation/software.tsx',
   },
-  {
-    path: '/MyDiyWeb',
-    name: 'MyDiyWeb',
-    icon: 'smile',
-    component: './navigation/MyDiyWeb.tsx',
-  },
+
   {
     path: '/MyDiyPrivate',
     name: 'MyDiyPrivate',
@@ -44,11 +39,27 @@
     component: './navigation/download.tsx',
   },
   {
-    path: '/welcome',
+    path: '/about',
     name: 'drag',
     icon: 'smile',
     component: './drag/index.tsx',
   },
+  {
+    path: '/navigation',
+    name: '网址导航',
+    hideInMenu: false,
+    icon: 'crown',
+    access: 'canAdmin',
+    routes: [
+      {
+        path: 'navigation/MyDiyWeb',
+        name: '网址管理',
+        icon: 'smile',
+        component: './navigation/MyDiyWeb.tsx',
+      },
+    ],
+  },
+
   {
     path: '/fund',
     name: '财富',
