@@ -1,8 +1,6 @@
-import { Dispatch, Fragment } from 'react';
+import { Fragment } from 'react';
 import React from 'react';
 import styles from './../index.less';
-import { DeleteOutlined, HeartTwoTone, HomeTwoTone } from '@ant-design/icons';
-import { Popconfirm } from 'antd';
 import { connect } from 'umi';
 
 
