@@ -180,7 +180,9 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         };
         fetch(fileUrl, requestOptions)
             .then(response => {
-                let filename = response.headers.get('content-disposition').split('filename=')[1];
+                const filenames = response.headers.get('content-disposition');
+                let filename = "";
+                if (filenames !== null && filenames !== undefined) { filename = filenames.split('filename=')[1]; }
                 filename = decodeURIComponent(filename);
                 response.blob().then(blob => {
                     const url = window.URL.createObjectURL(new Blob([blob]));
