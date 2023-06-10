@@ -77,10 +77,11 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     const handleOk = async () => {
         form.validateFields()
             .then((values) => {
+                const result = webCategoryList.find((item: any) => item.uid === values.webCategoryId);
                 dispatch({
                     type: 'navigation/fetchWebInfoSave',
                     payload: {
-                        ...values,
+                        ...values, webCategoryName: result.name
                     },
                     callback: (response: any) => {
                         updateWebCategoryList();
