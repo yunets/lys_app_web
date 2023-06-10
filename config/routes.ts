@@ -50,28 +50,47 @@
     component: './drag/index.tsx',
   },
   {
-    path: '/Register',
-    name: 'Register',
-    icon: 'smile',
-    component: './user/Register/Register.tsx',
+    path: '/fund',
+    name: '财富',
+    hideInMenu: false,
+    icon: 'crown',
+    access: 'canAdmin',
+    routes: [
+      {
+        path: '/fund/MyFund',
+        name: 'MyFund',
+        icon: 'smile',
+        component: './fund/MyFund.tsx',
+      },
+      {
+        path: '/fund/FundDictionaryList',
+        name: 'FundDictionaryList',
+        icon: 'smile',
+        component: './fund/FundDictionaryList.tsx',
+      },
+    ],
   },
   {
-    path: '/UserList',
-    name: 'UserList',
-    icon: 'smile',
-    component: './user/management/UserList.tsx',
-  },
-  {
-    path: '/MyFund',
-    name: 'MyFund',
-    icon: 'smile',
-    component: './fund/MyFund.tsx',
-  },
-  {
-    path: '/FundDictionaryList',
-    name: 'FundDictionaryList',
-    icon: 'smile',
-    component: './fund/FundDictionaryList.tsx',
+    path: '/users',
+    name: '用户',
+    hideInMenu: false,
+    icon: 'crown',
+    access: 'canAdmin',
+    routes: [
+      {
+        path: '/users/Register/Register',
+        name: 'Register',
+        icon: 'smile',
+        component: './user/Register/Register.tsx',
+      },
+      {
+        path: '/users/management/UserList',
+        name: 'UserList',
+        icon: 'smile',
+        component: './user/management/UserList.tsx',
+      },
+
+    ],
   },
   {
     path: '/admin',
