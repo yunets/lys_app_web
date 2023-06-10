@@ -34,7 +34,7 @@
   },
   {
     path: '/MyNavigationDownload',
-    name: 'MyNavigationDownload',
+    name: '资源下载',
     icon: 'smile',
     component: './navigation/download.tsx',
   },
