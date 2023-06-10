@@ -6,6 +6,7 @@ import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+import styles from './index.less';
 
 import { connect, Dispatch, request, useRequest } from 'umi';
 import MyContainer from './components/MyContainer';
@@ -264,16 +265,18 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
             <GridContent>
-                <Button type="primary" onClick={showModal}>
-                    新增网址
-                </Button>
-                <Button type="primary" onClick={showWebCategoryModal}>
-                    新增分类
-                </Button>
-                <Upload {...UploadProps}>
-                    <Button icon={<UploadOutlined />}>批量导入</Button>
-                </Upload>
-                <Button onClick={handleDownload}>备份下载</Button>
+                <div className={styles.MyDiyWebButton}>
+                    <Button type="primary" onClick={showModal}>
+                        新增网址
+                    </Button>
+                    <Button type="primary" onClick={showWebCategoryModal}>
+                        新增分类
+                    </Button>
+                    <Button type="primary" onClick={handleDownload}>备份下载</Button>
+                    <Upload {...UploadProps}>
+                        <Button icon={<UploadOutlined />}>批量导入</Button>
+                    </Upload>
+                </div>
 
                 {webCategoryList.map((item, index) => {
                     return <Card bordered={false} key={item.uid}>
