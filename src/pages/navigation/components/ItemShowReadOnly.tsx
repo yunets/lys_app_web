@@ -48,7 +48,8 @@ const ItemShowReadOnly: React.FC<Props> = ({ item }) => {
               src={getImg(item)} onError={(e) => {
                 const img = e.currentTarget;
                 img.src = "https://api.iowen.cn/favicon/www.aliued.cn.png";
-                img.οnerrοr = null;
+                (img as any).οnerrοr = null;
+                // img.οnerrοr = null;
 
 
               }}
