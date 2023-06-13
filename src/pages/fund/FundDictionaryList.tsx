@@ -7,6 +7,7 @@ import type { Dispatch } from 'umi';
 import { connect, useRequest } from 'umi';
 
 import Pagination from 'antd/es/pagination';
+import { uniqueId } from 'lodash';
 
 
 
@@ -109,7 +110,7 @@ const FundDictionaryList: React.FC<Props> = (props) => {
     const renderWebCategoryOptions = () => {
         const options: any = []
         fundTypeList.forEach((item: any) => {
-            options.push(<Option key={item._id} value={item._id}>{item._id}({item.count})</Option>)
+            options.push(<Option key={uniqueId()} value={item._id}>{item._id}({item.count})</Option>)
         })
 
         return <Select style={{ width: 300 }}  >
