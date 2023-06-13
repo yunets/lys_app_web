@@ -50,6 +50,7 @@
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
+    key: "navigation",
     routes: [
       {
         path: 'navigation/MyDiyWeb',
@@ -66,6 +67,7 @@
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
+    key: "fund",
     routes: [
       {
         path: '/fund/MyFund',

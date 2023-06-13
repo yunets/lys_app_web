@@ -18,6 +18,7 @@ const Settings: LayoutSettings & {
   iconfontUrl: '',
   menu: {
     locale: false,  //关闭国际化
+    defaultOpenAll: true, //关闭国际化
   },
 };
 
