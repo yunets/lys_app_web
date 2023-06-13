@@ -82,6 +82,7 @@ const MyFund: React.FC<Props> = (props) => {
         setIsModalOpen(true);
         setIsModalOpenFund(record);
         form.setFieldValue("fundCode", record.fundCode);
+        form.setFieldValue("name", record.name);
         form.setFieldValue("quantity", record.quantity);
         form.setFieldValue("pastPrice", record.pastPrice)
 
@@ -238,8 +239,24 @@ const MyFund: React.FC<Props> = (props) => {
         }
     };
 
+    const fundCodeGetFundInfo = (fundCode: string) => {
+        dispatch({
+            type: 'fund/fetchGetFundInfo',
+            payload: { fundCode },
+            callback: (response: any) => {
+                if (response.code !== -1) {
+                    const name = response.content.name;
+                    form.setFieldValue("name", name);
+                    message.success('操作成功！' + response.content.name);
+                } else {
+                    form.setFieldValue("name", "");
+                }
 
 
+
+            }
+        });
+    };
 
 
 
@@ -251,9 +268,16 @@ const MyFund: React.FC<Props> = (props) => {
                     <Form.Item
                         name="fundCode"
                         label="基金代码"
-                        rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
+                        rules={[{ required: true, message: '请输入正确的基金代码!', whitespace: true }]}
                     >
-                        <Input />
+                        <Input onBlur={(e) => fundCodeGetFundInfo(e.target.value)} />
+                    </Form.Item>
+                    <Form.Item
+                        name="name"
+                        label="基金名称"
+                        rules={[{ required: true, message: '请输入正确的基金代码才能回显!', whitespace: true }]}
+                    >
+                        <Input disabled />
                     </Form.Item>
                     <Form.Item
                         name="quantity"

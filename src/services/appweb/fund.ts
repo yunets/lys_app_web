@@ -39,3 +39,12 @@ export async function FundDictionaryList(params?: any) {
         data: params,
     });
 }
+
+export async function getFundInfo(fundCode: any) {
+    console.log(fundCode);
+    console.log(`/api/FundInfo/getFundInfo/${fundCode}`);
+    return request(`/api/FundInfo/getFundInfo/${fundCode}`, {
+        method: 'GET',
+        data: {},
+    });
+}
