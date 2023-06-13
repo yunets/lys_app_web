@@ -99,7 +99,7 @@ const MyFund: React.FC<Props> = (props) => {
             key: 'fundCode',
         },
         {
-            title: '净值',
+            title: '昨日净值',
             dataIndex: 'yesterdayPrice',
             key: 'yesterdayPrice',
             render: (text: any) => parseFloat(text).toFixed(4),
@@ -110,10 +110,22 @@ const MyFund: React.FC<Props> = (props) => {
             key: 'estimatedPercent',
 
             render: (_: any, record: any) => (
-                <Space size="small">
+                <div>
                     {(record.estimatedPercent * 100).toFixed(4)}%
+                </div >
+            ),
+        },
+        {
+            title: '策略',
+            dataIndex: 'estimatedPercent',
+            key: 'estimatedPercent',
+            render: (_: any, record: any) => (
+                <div>
+                    5000/({(record.currentPrice).toFixed(4)})={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
+                    加仓：  5000/({(record.currentPrice).toFixed(4)}*1.02)={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
+                    减仓：  5000/({(record.currentPrice).toFixed(4)}*0.98)={(5000 / (record.currentPrice * 0.98)).toFixed(4)}<br />
 
-                </Space >
+                </div >
             ),
         },
         {
