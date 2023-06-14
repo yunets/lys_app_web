@@ -20,6 +20,12 @@
     component: './navigation/index.tsx',
   },
   {
+    path: '/chatgpt',
+    name: 'chatGPT',
+    icon: 'smile',
+    component: './chatgpt/MyChat.tsx',
+  },
+  {
     path: '/MyNavigationSoftWare',
     name: 'MyNavigationSoftWare',
     icon: 'smile',
@@ -60,7 +66,40 @@
       },
     ],
   },
-
+  {
+    path: '/entertainment',
+    name: '影音阅读',
+    hideInMenu: false,
+    icon: 'crown',
+    access: 'canAdmin',
+    key: "navigation",
+    routes: [
+      {
+        path: 'navigation/VideoWebsite',
+        name: '电影',
+        icon: 'smile',
+        component: './navigation/VideoWebsite.tsx',
+      },
+      {
+        path: 'navigation/MusicWebsite',
+        name: '音乐',
+        icon: 'smile',
+        component: './navigation/MusicWebsite.tsx',
+      },
+      {
+        path: 'navigation/BookWebsite',
+        name: '阅读',
+        icon: 'smile',
+        component: './navigation/BookWebsite.tsx',
+      },
+      {
+        path: 'navigation/GameWebsite',
+        name: '游戏',
+        icon: 'smile',
+        component: './navigation/GameWebsite.tsx',
+      },
+    ],
+  },
   {
     path: '/fund',
     name: '财富',
