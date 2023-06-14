@@ -71,15 +71,21 @@
     routes: [
       {
         path: '/fund/MyFund',
-        name: 'MyFund',
+        name: '我的基金',
         icon: 'smile',
         component: './fund/MyFund.tsx',
       },
       {
         path: '/fund/FundDictionaryList',
-        name: 'FundDictionaryList',
+        name: '基金列表',
         icon: 'smile',
         component: './fund/FundDictionaryList.tsx',
+      },
+      {
+        path: '/fund/FinanceWebsite',
+        name: '财经金融',
+        icon: 'smile',
+        component: './navigation/FinanceWebsite.tsx',
       },
     ],
   },
