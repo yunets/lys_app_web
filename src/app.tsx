@@ -126,6 +126,7 @@ export const request: RequestConfig = {
       await next();
       if (ctx.res.code === -1 && ctx.res.msg === "jwt 已过期，请重新登录！！！") {
         history.push(loginPath);
+        ctx.res.content = [];
       } else if (ctx.req.url === '/api/login/account' && ctx.res.jwt != undefined) {
         localStorage.setItem('antd-pro-authority', JSON.stringify(ctx.res.jwt));
       } else if (ctx.req.url === '/api/login/outLogin') {

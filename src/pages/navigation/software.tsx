@@ -20,7 +20,7 @@ export interface Props {
 const MyNavigationSoftWare: React.FC<Props> = () => {
 
     const renderWebCategoryOptions = () => {
-        const list = ['前端开发', '容器生态圈'];
+        const list = ['开发工具', '前端开发', '容器生态圈'];
         const optionList = list.map((item: string) =>
             <GridContent key={uniqueId()}>
                 <Card bordered={false} >

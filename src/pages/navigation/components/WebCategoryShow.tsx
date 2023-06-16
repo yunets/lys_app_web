@@ -24,7 +24,10 @@ const WebCategoryShow: React.FC<Props> = (props) => {
         manual: false,
         onSuccess: (result, params) => {
             console.log(result);
-            setUrlItemList(result.content);
+            if (result.code != -1) {
+                setUrlItemList(result.content);
+            }
+
 
         },
     });

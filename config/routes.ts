@@ -25,16 +25,16 @@
     icon: 'smile',
     component: './chatgpt/MyChat.tsx',
   },
-  {
-    path: '/MyNavigationSoftWare',
-    name: 'MyNavigationSoftWare',
-    icon: 'smile',
-    component: './navigation/software.tsx',
-  },
 
   {
+    path: 'navigation/MyDiyWeb',
+    name: '网址管理',
+    icon: 'smile',
+    component: './navigation/MyDiyWeb.tsx',
+  },
+  {
     path: '/MyDiyPrivate',
-    name: 'MyDiyPrivate',
+    name: '私密导航',
     icon: 'smile',
     component: './navigation/MyDiyPrivate.tsx',
   },
@@ -45,12 +45,6 @@
     component: './navigation/download.tsx',
   },
   {
-    path: '/about',
-    name: 'drag',
-    icon: 'smile',
-    component: './drag/index.tsx',
-  },
-  {
     path: '/navigation',
     name: '网址导航',
     hideInMenu: false,
@@ -59,10 +53,10 @@
     key: "navigation",
     routes: [
       {
-        path: 'navigation/MyDiyWeb',
-        name: '网址管理',
+        path: '/navigation/MyNavigationSoftWare',
+        name: '软件开发',
         icon: 'smile',
-        component: './navigation/MyDiyWeb.tsx',
+        component: './navigation/software.tsx',
       },
     ],
   },
