@@ -42,7 +42,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         loginOut();
         return;
       } else if (key === 'register') {
-        history.push(`/Register`);
+        history.push(`/web/users/Register/Register`);
         return;
       }
       history.push(`/account/${key}`);

@@ -45,15 +45,15 @@
     component: './navigation/download.tsx',
   },
   {
-    path: '/navigation',
-    name: '网址导航',
+    path: '/web/work',
+    name: '工作',
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
     key: "navigation",
     routes: [
       {
-        path: '/web/navigation/MyNavigationSoftWare',
+        path: 'navigation/MyNavigationSoftWare',
         name: '软件开发',
         icon: 'smile',
         component: './navigation/software.tsx',
@@ -61,33 +61,33 @@
     ],
   },
   {
-    path: '/entertainment',
-    name: '影音阅读',
+    path: '/web/play',
+    name: '休闲娱乐',
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
     key: "navigation",
     routes: [
       {
-        path: '/web/navigation/VideoWebsite',
+        path: '/web/play/navigation/VideoWebsite',
         name: '电影',
         icon: 'smile',
         component: './navigation/VideoWebsite.tsx',
       },
       {
-        path: '/web/navigation/MusicWebsite',
+        path: '/web/play/navigation/MusicWebsite',
         name: '音乐',
         icon: 'smile',
         component: './navigation/MusicWebsite.tsx',
       },
       {
-        path: '/web/navigation/BookWebsite',
+        path: '/web/play/navigation/BookWebsite',
         name: '阅读',
         icon: 'smile',
         component: './navigation/BookWebsite.tsx',
       },
       {
-        path: '/web/navigation/GameWebsite',
+        path: '/web/play/navigation/GameWebsite',
         name: '游戏',
         icon: 'smile',
         component: './navigation/GameWebsite.tsx',
@@ -130,13 +130,13 @@
     access: 'canAdmin',
     routes: [
       {
-        path: '/web/users/Register/Register',
+        path: 'Register/Register',
         name: 'Register',
         icon: 'smile',
         component: './user/Register/Register.tsx',
       },
       {
-        path: '/web/users/management/UserList',
+        path: 'management/UserList',
         name: 'UserList',
         icon: 'smile',
         component: './user/management/UserList.tsx',

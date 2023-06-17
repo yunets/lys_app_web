@@ -21,7 +21,7 @@ export interface Props {
 const MusicWebsite: React.FC<Props> = () => {
 
     const renderWebCategoryOptions = () => {
-        const list = ['MusicWebsite1', 'MusicWebsite'];
+        const list = ['在线音乐', '音乐博客', '无损MV'];
         const optionList = list.map((item: string) =>
             <GridContent key={uniqueId()}>
                 <Card bordered={false} >
