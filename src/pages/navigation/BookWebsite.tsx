@@ -21,7 +21,7 @@ export interface Props {
 const BookWebsite: React.FC<Props> = () => {
 
     const renderWebCategoryOptions = () => {
-        const list = ['BookWebsite', 'BookWebsite'];
+        const list = ['网络小说', '漫画', '其他读物'];
         const optionList = list.map((item: string) =>
             <GridContent key={uniqueId()}>
                 <Card bordered={false} >

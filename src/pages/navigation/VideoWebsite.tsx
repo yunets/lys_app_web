@@ -21,7 +21,7 @@ export interface Props {
 const VideoWebsite: React.FC<Props> = () => {
 
     const renderWebCategoryOptions = () => {
-        const list = ['电影1', '电影2'];
+        const list = ['在线', '下载', '美剧', '日韩', '动漫', '纪录片', '直播', '素材'];
         const optionList = list.map((item: string) =>
             <GridContent key={uniqueId()}>
                 <Card bordered={false} >
