@@ -1,10 +1,10 @@
-import { Button } from 'antd'
+import { Button, Form, Input, Modal, message } from 'antd'
 import update from 'immutability-helper'
 import { FC, useEffect } from 'react'
 import { useCallback, useState } from 'react'
 import { connect, Dispatch, useRequest } from 'umi'
 import { Card } from './Card'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
 
 
@@ -136,15 +136,64 @@ const MyContainer: FC<Props> = (props) => {
             [],
         )
 
+        const [form] = Form.useForm();
+
+        const [isWebCategoryModalOpen, setIsWebCategoryModalOpen] = useState(false);
+
+        const handleCancelWebCategory = () => {
+            setIsWebCategoryModalOpen(true);
+        };
+        const handleOk = async () => {
+            form.validateFields()
+                .then((values) => {
+
+                    dispatch({
+                        type: 'navigation/fetchUpdateWebCategoryName',
+                        payload: {
+                            ...values, uid: webCategory.uid
+                        },
+                        callback: (response: any) => {
+                            updateWebCategoryList();
+                            message.success('操作成功！')
+                        }
+                    });
+                    form.resetFields();
+                    setIsWebCategoryModalOpen(false);
+                })
+                .catch((errorInfo) => {
+                    console.log(errorInfo);
+                });
+        };
         return (
             <>
                 {/* <Button type="primary" onClick={() => { console.log(cards); }}> 当前次序</Button>
                 <Button type="primary" onClick={() => { console.log(cards); }}> 新增</Button> */}
                 <Button type="primary" onClick={() => { console.log(cards); }}> {webCategory.name}</Button>
-                <DeleteOutlined onClick={() => { fetchWebCategoryDelete(webCategory) }} spin title='点击删除！！！' />
+
+                <Button type="primary" onClick={() => { handleCancelWebCategory() }}>
+                    <EditOutlined title='重命名' />重命名
+                </Button>
+                <Button onClick={() => { fetchWebCategoryDelete(webCategory) }}>
+                    <DeleteOutlined title='重命名' />删除
+                </Button>
+
                 <br />
                 <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
+                <Modal title="新增分类" open={isWebCategoryModalOpen} onOk={handleOk} onCancel={handleCancelWebCategory}>
+                    <Form form={form}>
+                        <Form.Item
+                            name="name"
+                            label="名称"
+                            rules={[{ required: true, message: '请输入名称', whitespace: true }]}
+                        >
+                            <Input />
+                        </Form.Item>
 
+
+
+
+                    </Form>
+                </Modal>
 
             </>
         )

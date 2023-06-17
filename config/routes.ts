@@ -14,7 +14,7 @@
     ],
   },
   {
-    path: '/welcome1',
+    path: '/web/welcome1',
     name: 'navigation',
     icon: 'smile',
     component: './navigation/index.tsx',
@@ -27,7 +27,7 @@
   },
 
   {
-    path: 'navigation/MyDiyWeb',
+    path: '/web/navigation/MyDiyWeb',
     name: '网址管理',
     icon: 'smile',
     component: './navigation/MyDiyWeb.tsx',
@@ -39,7 +39,7 @@
     component: './navigation/MyDiyPrivate.tsx',
   },
   {
-    path: '/MyNavigationDownload',
+    path: '/web/MyNavigationDownload',
     name: '资源下载',
     icon: 'smile',
     component: './navigation/download.tsx',
@@ -53,7 +53,7 @@
     key: "navigation",
     routes: [
       {
-        path: '/navigation/MyNavigationSoftWare',
+        path: '/web/navigation/MyNavigationSoftWare',
         name: '软件开发',
         icon: 'smile',
         component: './navigation/software.tsx',
@@ -69,25 +69,25 @@
     key: "navigation",
     routes: [
       {
-        path: 'navigation/VideoWebsite',
+        path: '/web/navigation/VideoWebsite',
         name: '电影',
         icon: 'smile',
         component: './navigation/VideoWebsite.tsx',
       },
       {
-        path: 'navigation/MusicWebsite',
+        path: '/web/navigation/MusicWebsite',
         name: '音乐',
         icon: 'smile',
         component: './navigation/MusicWebsite.tsx',
       },
       {
-        path: 'navigation/BookWebsite',
+        path: '/web/navigation/BookWebsite',
         name: '阅读',
         icon: 'smile',
         component: './navigation/BookWebsite.tsx',
       },
       {
-        path: 'navigation/GameWebsite',
+        path: '/web/navigation/GameWebsite',
         name: '游戏',
         icon: 'smile',
         component: './navigation/GameWebsite.tsx',
@@ -95,7 +95,7 @@
     ],
   },
   {
-    path: '/fund',
+    path: '/web/fund',
     name: '财富',
     hideInMenu: false,
     icon: 'crown',
@@ -103,19 +103,19 @@
     key: "fund",
     routes: [
       {
-        path: '/fund/MyFund',
+        path: '/web/fund/MyFund',
         name: '我的基金',
         icon: 'smile',
         component: './fund/MyFund.tsx',
       },
       {
-        path: '/fund/FundDictionaryList',
+        path: '/web/fund/FundDictionaryList',
         name: '基金列表',
         icon: 'smile',
         component: './fund/FundDictionaryList.tsx',
       },
       {
-        path: '/fund/FinanceWebsite',
+        path: '/web/fund/FinanceWebsite',
         name: '财经金融',
         icon: 'smile',
         component: './navigation/FinanceWebsite.tsx',
@@ -123,20 +123,20 @@
     ],
   },
   {
-    path: '/users',
+    path: '/web/users',
     name: '用户',
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
     routes: [
       {
-        path: '/users/Register/Register',
+        path: '/web/users/Register/Register',
         name: 'Register',
         icon: 'smile',
         component: './user/Register/Register.tsx',
       },
       {
-        path: '/users/management/UserList',
+        path: '/web/users/management/UserList',
         name: 'UserList',
         icon: 'smile',
         component: './user/management/UserList.tsx',

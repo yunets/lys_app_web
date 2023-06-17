@@ -65,3 +65,11 @@ export async function webInfoDelete(params: any) {
         data: params,
     });
 }
+
+
+export async function updateWebCategoryName(params: any) {
+    return request('/api/webCategory/updateWebCategoryName', {
+        method: 'POST',
+        data: params,
+    });
+}
