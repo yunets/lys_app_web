@@ -16,7 +16,9 @@ const ItemShowReadOnly: React.FC<Props> = ({ item }) => {
 
   const getImg = (url: { url: string | URL; }) => {
     const u = new URL(url.url);
-    return "" + u.origin + "/favicon.ico";
+    // return "" + u.origin + "/favicon.ico";
+    // return "https://api.iowen.cn/favicon/www.aliued.cn.png";
+    return "https://api.iowen.cn/favicon/" + u.origin.replace("https://", "").replace("http://", "") + ".png";
   }
 
 

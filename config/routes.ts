@@ -20,7 +20,7 @@
     component: './navigation/index.tsx',
   },
   {
-    path: '/chatgpt',
+    path: '/web/chatgpt',
     name: 'chatGPT',
     icon: 'smile',
     component: './chatgpt/MyChat.tsx',
@@ -55,6 +55,12 @@
       {
         path: 'navigation/MyNavigationSoftWare',
         name: '软件开发',
+        icon: 'smile',
+        component: './navigation/software.tsx',
+      },
+      {
+        path: 'navigation/MyNavigationSoftWare',
+        name: '自媒体创作',
         icon: 'smile',
         component: './navigation/software.tsx',
       },
