@@ -14,7 +14,7 @@
     ],
   },
   {
-    path: '/web/welcome1',
+    path: '/web/welcome',
     name: 'navigation',
     icon: 'smile',
     component: './navigation/index.tsx',
@@ -178,7 +178,7 @@
   },
   {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/web/welcome',
   },
   {
     component: './404',
