@@ -144,6 +144,7 @@
       {
         path: 'management/UserList',
         name: 'UserList',
+        hideInMenu: true,
         icon: 'smile',
         component: './user/management/UserList.tsx',
       },
