@@ -39,7 +39,7 @@ const UserModel1: UserModelType = {
     namespace: 'user',
     state: {
         list: {},
-        title: 'Welcome to liuyunshengsir  Bolg',
+        title: '',
         name: 'wise'
     },
     effects: {

@@ -33,7 +33,7 @@
     component: './navigation/MyDiyWeb.tsx',
   },
   {
-    path: '/MyDiyPrivate',
+    path: '/web/MyDiyPrivate',
     name: '私密导航',
     icon: 'smile',
     component: './navigation/MyDiyPrivate.tsx',

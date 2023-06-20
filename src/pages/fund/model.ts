@@ -43,7 +43,7 @@ const UserModel1: FundModelType = {
     namespace: 'fund',
     state: {
         list: {},
-        title: 'Welcome to liuyunshengsir  Bolg',
+        title: '',
         name: 'wise'
     },
     effects: {
