@@ -1,7 +1,7 @@
 import UserModel, { UserModelType } from '@/models/navigation';
 import { UploadOutlined } from '@ant-design/icons';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Modal, Form, FormInstance, message, Upload, BackTop, } from 'antd';
+import { Button, Input, InputNumber, Card, Select, Modal, Form, FormInstance, message, Upload, BackTop, Tabs, } from 'antd';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -281,7 +281,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                     </Upload>
                 </div>
 
-                {webCategoryList.map((item, index) => {
+                {/* {webCategoryList.map((item, index) => {
                     return <Card bordered={false} key={item.uid}>
 
 
@@ -290,9 +290,23 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                             <MyContainer webCategory={item} updateWebCategoryList={updateWebCategoryList} />
                         </DndProvider>
                     </Card>;
-                })}
+                })} */}
+
+                <Tabs tabPosition="top">
 
 
+
+                    {webCategoryList.map((item, index) => {
+                        return <Tabs.TabPane tab={item.name} key={item.uid} >
+                            <Card bordered={false} key={item.uid}>
+
+                                <DndProvider backend={HTML5Backend} >
+                                    <MyContainer webCategory={item} updateWebCategoryList={updateWebCategoryList} />
+                                </DndProvider>
+                            </Card></Tabs.TabPane>;
+                    })}
+
+                </Tabs>
 
             </GridContent>
 
