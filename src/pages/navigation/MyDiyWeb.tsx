@@ -11,6 +11,7 @@ import styles from './index.less';
 import { connect, Dispatch, request, useRequest } from 'umi';
 import MyContainer from './components/MyContainer';
 import { getAuthority } from '@/utils/authority';
+import MutilSearchBar from './components/MutilSearchBar';
 
 
 
@@ -268,6 +269,8 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
 
             <GridContent>
+                <MutilSearchBar name={''} />
+                <br /><br /><br /><br />
                 <div className={styles.MyDiyWebButton}>
                     <Button type="primary" onClick={showModal}>
                         新增网址

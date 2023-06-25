@@ -121,7 +121,6 @@ export const request: RequestConfig = {
   middlewares: [
     async function middlewareA(ctx, next) {
 
-      console.log(ctx);
       console.log('A before');
       await next();
       if (ctx.res.code === -1 && ctx.res.msg === "jwt 已过期，请重新登录！！！") {
@@ -133,8 +132,12 @@ export const request: RequestConfig = {
         localStorage.setItem('antd-pro-authority', JSON.stringify("no"));
         history.push(loginPath);
       }
+      // else if (ctx.req.url === '/api/webInfo/listByWebCategoryName') {
+      //   const a = ctx.res.content;
+      //   const decodedString = atob(a);
+      //   ctx.res.content = JSON.parse(decodedString);
+      // }
       console.log('A after');
-      console.log(ctx);
     },],
   requestInterceptors: [(_, options) => {
     return {
