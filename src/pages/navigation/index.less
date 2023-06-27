@@ -36,8 +36,16 @@
   background-color: rgb(216, 250, 215);
 }
 
-
-.MyDiyWebButton >button{
+.MyDiyWebButton > button {
   margin-left: 20px;
-  background-color: rgb(216, 250, 215);
+  background-color: rgb(8, 20, 235);
+}
+:global {
+  .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list,
+  .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-list {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    transition: transform 0.3s;
+  }
 }
