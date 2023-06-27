@@ -59,10 +59,10 @@
         component: './navigation/software.tsx',
       },
       {
-        path: 'navigation/MyNavigationSoftWare',
+        path: 'navigation/PersonalCreation',
         name: '自媒体创作',
         icon: 'smile',
-        component: './navigation/software.tsx',
+        component: './navigation/PersonalCreation.tsx',
       },
     ],
   },
