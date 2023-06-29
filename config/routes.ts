@@ -20,24 +20,25 @@
     component: './navigation/index.tsx',
   },
   {
-    path: '/web/chatgpt',
-    name: 'chatGPT',
-    icon: 'smile',
-    component: './chatgpt/MyChat.tsx',
-  },
-
-  {
     path: '/web/navigation/MyDiyWeb',
     name: '网址管理',
     icon: 'smile',
     component: './navigation/MyDiyWeb.tsx',
   },
   {
-    path: '/web/MyDiyPrivate',
-    name: '私密导航',
+    path: '/web/chatgpt',
+    name: 'chatGPT',
     icon: 'smile',
-    component: './navigation/MyDiyPrivate.tsx',
+    component: './chatgpt/MyChat.tsx',
   },
+  {
+    path: '/web/AIWebsite',
+    name: 'AI导航',
+    icon: 'smile',
+    component: './navigation/AIWebsite.tsx',
+  },
+
+
   {
     path: '/web/MyNavigationDownload',
     name: '资源下载',
