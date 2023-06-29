@@ -60,6 +60,12 @@
         component: './navigation/software.tsx',
       },
       {
+        path: 'navigation/WebDeveloperWebsite',
+        name: '前端开发',
+        icon: 'smile',
+        component: './navigation/WebDeveloperWebsite.tsx',
+      },
+      {
         path: 'navigation/PersonalCreation',
         name: '自媒体创作',
         icon: 'smile',
