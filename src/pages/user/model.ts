@@ -1,5 +1,5 @@
 import { getMyUrlList, } from '@/services/appweb/appweb';
-import { listByPage } from '@/services/appweb/user';
+import { listByPage, register } from '@/services/appweb/user';
 import type { Effect, Reducer } from 'umi';
 
 export type URLItem = {
@@ -24,7 +24,7 @@ export type UserModelType = {
     state: { list: any, title: any, name: any };
     effects: {
         fetchlistByPage: Effect;
-
+        fetchRegister: Effect;
     };
     reducers: {
         saveProject: Reducer;
@@ -45,10 +45,11 @@ const UserModel1: UserModelType = {
     effects: {
         *fetchlistByPage({ payload, callback }, { call, put }) {
             const response = yield call(listByPage, { ...payload });
-            yield put({
-                type: 'saveProject',
-                payload: response,
-            });
+
+            callback(response);
+        },
+        *fetchRegister({ payload, callback }, { call, put }) {
+            const response = yield call(register, { ...payload });
             callback(response);
         },
 

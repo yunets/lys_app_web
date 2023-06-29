@@ -11,6 +11,13 @@ export async function listByPage(params?: any) {
     });
 }
 
+export async function register(params?: any) {
+    return request('/api/user/register', {
+        method: 'POST',
+        data: params,
+    });
+}
+
 
 export async function FundInfoSave(params?: any) {
     return request('/api/FundInfo/save', {

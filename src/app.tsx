@@ -9,6 +9,7 @@ import defaultSettings from '../config/defaultSettings';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import type { RequestConfig } from 'umi';
 import { getAuthority } from './utils/authority';
+import { message } from 'antd';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -131,7 +132,12 @@ export const request: RequestConfig = {
       } else if (ctx.req.url === '/api/login/outLogin') {
         localStorage.setItem('antd-pro-authority', JSON.stringify("no"));
         history.push(loginPath);
+      } else if (ctx.res.code === -1) {
+        if (ctx.res.code = -1) {
+          message.error(ctx.res.msg);
+        }
       }
+
       // else if (ctx.req.url === '/api/webInfo/listByWebCategoryName') {
       //   const a = ctx.res.content;
       //   const decodedString = atob(a);

@@ -144,7 +144,7 @@
     routes: [
       {
         path: 'Register/Register',
-        name: 'Register',
+        name: '注册',
         icon: 'smile',
         component: './user/Register/Register.tsx',
       },

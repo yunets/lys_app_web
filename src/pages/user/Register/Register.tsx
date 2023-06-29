@@ -1,6 +1,8 @@
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Form } from 'antd';
+import { Button, Input, InputNumber, Card, Select, Form, message } from 'antd';
 import React, { useEffect, useReducer, useState } from 'react';
+import type { Dispatch } from 'umi';
+import { history, connect } from 'umi';
 
 
 
@@ -8,15 +10,20 @@ import React, { useEffect, useReducer, useState } from 'react';
 
 
 
-const { Option } = Select;
 export interface Props {
     name: string;
+    dispatch: Dispatch;
 }
 
 
 
 
-const Register: React.FC<Props> = () => {
+const Register: React.FC<Props> = (props) => {
+    const {
+
+        dispatch,
+
+    } = props;
     const [form] = Form.useForm();
     const layout = {
         labelCol: {
@@ -32,6 +39,13 @@ const Register: React.FC<Props> = () => {
         form.validateFields()
             .then((values) => {
                 console.log(values);
+                dispatch({
+                    type: 'user/fetchRegister',
+                    payload: { ...values.user },
+                    callback: (response: any) => {
+                        console.log(response.content);
+                    }
+                });
                 //form.resetFields();
 
             })
@@ -58,25 +72,26 @@ const Register: React.FC<Props> = () => {
                         style={{ maxWidth: 600 }}
                         form={form}
                     >
-                        <Form.Item name={['user', 'loginname']} label="账号" rules={[{ required: true }]}>
+
+                        <Form.Item name={['user', 'mobile']} label="手机号（登录账号）" rules={[{ type: 'string' }]}>
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'password']} label="密码" rules={[{ required: true }]}>
                             <Input type='password' />
                         </Form.Item>
-                        <Form.Item name={['user', 'username']} label="姓名/昵称" rules={[{ required: true }]}>
+                        <Form.Item name={['user', 'loginname']} label="昵称" rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item name={['user', 'email']} label="邮箱" rules={[{ type: 'email' }]}>
+                        <Form.Item name={['user', 'username']} label="姓名" rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item name={['user', 'mobile']} label="手机号" rules={[{ type: 'string' }]}>
+                        <Form.Item name={['user', 'email']} label="邮箱（找回密码使用）" rules={[{ type: 'email' }]}>
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'age']} label="年龄" rules={[{ type: 'number', min: 0, max: 99 }]}>
                             <InputNumber />
                         </Form.Item>
-                        <Form.Item name={['user', 'website']} label="Website">
+                        <Form.Item name={['user', 'website']} label="个人博客">
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'introduction']} label="个人介绍">
@@ -85,6 +100,9 @@ const Register: React.FC<Props> = () => {
                         <Form.Item >
                             <Button type="primary" onClick={handleOk}>
                                 注册
+                            </Button>
+                            <Button type="primary" onClick={() => { history.push('/user/login'); }}>
+                                登录
                             </Button>
                         </Form.Item>
                     </Form>
@@ -97,5 +115,18 @@ const Register: React.FC<Props> = () => {
         </PageContainer>
     );
 };
+export type ConnectState = {
+    list: any;
+    loading: any;
+    title: any;
+};
+function mapStateToProps(state: any) { //state是项目所有的models
 
-export default Register;
+    const { list } = state.user; //获取namespace命名空间为navigation的models数据state
+    const { title } = state.user;
+    return {
+        list,
+        title
+    };
+}
+export default connect(mapStateToProps)(Register as any);
