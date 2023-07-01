@@ -138,11 +138,16 @@ export const request: RequestConfig = {
         }
       }
 
-      // else if (ctx.req.url === '/api/webInfo/listByWebCategoryName') {
-      //   const a = ctx.res.content;
-      //   const decodedString = atob(a);
-      //   ctx.res.content = JSON.parse(decodedString);
-      // }
+      else if (ctx.req.url === '/api/webInfo/listByWebCategoryName') {
+        const baseStr = ctx.res.content;
+        // 解码Base64字符串为二进制数据
+        const binaryData = atob(baseStr);
+        // 创建一个UTF-8字符串解码器
+        const decoder = new TextDecoder("utf-8");
+        // 解码二进制数据为UTF-8字符串
+        const decodedString = decoder.decode(new Uint8Array([...binaryData].map(char => char.charCodeAt(0))));
+        ctx.res.content = JSON.parse(decodedString);
+      }
       console.log('A after');
     },],
   requestInterceptors: [(_, options) => {
