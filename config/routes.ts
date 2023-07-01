@@ -15,7 +15,7 @@
   },
   {
     path: '/web/welcome',
-    name: 'navigation',
+    name: 'welcome123',
     icon: 'smile',
     component: './navigation/index.tsx',
   },
@@ -51,7 +51,7 @@
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
-    key: "navigation",
+    key: "work",
     routes: [
       {
         path: 'navigation/WebConstructionWebsite',
@@ -77,6 +77,12 @@
         icon: 'smile',
         component: './navigation/PersonalCreation.tsx',
       },
+      {
+        path: 'navigation/PublicWelfareWebsite',
+        name: '公益事业',
+        icon: 'smile',
+        component: './navigation/PublicWelfareWebsite.tsx',
+      },
     ],
   },
   {
@@ -85,7 +91,7 @@
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
-    key: "navigation",
+    key: "play",
     routes: [
       {
         path: '/web/play/navigation/VideoWebsite',
