@@ -15,7 +15,7 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-import { Alert, message, Tabs } from 'antd';
+import { Alert, Button, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import { FormattedMessage, history, SelectLang, useIntl, useModel } from 'umi';
 import styles from './index.less';
@@ -89,7 +89,7 @@ const Login: React.FC = () => {
       <div className={styles.content}>
         <LoginForm
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
+          title="公益导航网站-助力每一个梦想"
           subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,
@@ -276,11 +276,18 @@ const Login: React.FC = () => {
               style={{
                 float: 'right',
               }}
-            >
+            ><Button type='primary' onClick={() => {
+              const url = window.location.origin + "/web/users/Register/Register";
+              // window.location.href = url;
+              window.location.replace(url);
+            }
+            } >注册</Button>
               <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
             </a>
+
           </div>
         </LoginForm>
+
       </div>
       <Footer />
     </div>

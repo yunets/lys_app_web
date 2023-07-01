@@ -54,6 +54,12 @@
     key: "navigation",
     routes: [
       {
+        path: 'navigation/WebConstructionWebsite',
+        name: '网站建设',
+        icon: 'smile',
+        component: './navigation/WebConstructionWebsite.tsx',
+      },
+      {
         path: 'navigation/MyNavigationSoftWare',
         name: '软件开发',
         icon: 'smile',
