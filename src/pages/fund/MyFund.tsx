@@ -1,16 +1,14 @@
-import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, InputNumber, Card, Select, Table, Modal, Form, message, Space, Row, Statistic, Col } from 'antd';
-import React, { useEffect, useReducer, useState } from 'react';
+import { Button, Input, Card, Select, Table, Modal, Form, message, Space, Row, Statistic, Col } from 'antd';
+import React, { useState } from 'react';
 
 
-import { Dispatch, connect, request, useRequest } from 'umi';
+import { Dispatch, connect, useRequest } from 'umi';
 
 
 
 
 
-const { Option } = Select;
 export interface Props {
     dispatch: Dispatch;
 }

@@ -1,5 +1,5 @@
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, Card, Select, Table, Form } from 'antd';
+import { Button, Input, Card, Select, Table, Form, Space, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 
@@ -30,7 +30,20 @@ const FundDictionaryList: React.FC<Props> = (props) => {
     const [totalElements, setTotalElements] = useState<any>(0);
 
 
+    const fetchFundadd = (record: any) => {
+        dispatch({
+            type: 'fund/fetchFundInfoSave',
+            payload: { ...record, quantity: 1, pastPrice: 1, pastTotalValue: 1 },
+            callback: (response: any) => {
+                message.success('操作成功！')
 
+            }
+        });
+    }
+    const detail = (record: any) => {
+        const url = `http://fundf10.eastmoney.com/ccmx_${record.fundCode}.html`
+        window.open(url, '_blank');
+    }
     const columns = [
         {
             title: 'fundCode',
@@ -46,6 +59,17 @@ const FundDictionaryList: React.FC<Props> = (props) => {
             title: 'fundType',
             dataIndex: 'fundType',
             key: 'fundType',
+        },
+        {
+            title: '操作',
+            key: 'action',
+            render: (_: any, record: any) => (
+                <Space size="middle">
+
+                    <a onClick={() => fetchFundadd(record)}>买入持有</a>
+                    <a onClick={() => detail(record)}>持仓详情</a>
+                </Space >
+            ),
         },
 
     ];
