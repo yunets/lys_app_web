@@ -10,7 +10,8 @@ import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import type { RequestConfig } from 'umi';
 import { getAuthority } from './utils/authority';
 import { message } from 'antd';
-const isDev = process.env.NODE_ENV === 'development';
+// const isDev = process.env.NODE_ENV === 'development';
+const isDev = true;
 const loginPath = '/user/login';
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
@@ -69,13 +70,13 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     links: isDev
       ? [
-        <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
+        <Link key="openapi" to="" onClick={() => { window.open("https://txc.qq.com/products/598216", "_blank") }} target="_blank">
           <LinkOutlined />
-          <span>OpenAPI 文档</span>
+          <span>意见反馈</span>
         </Link>,
-        <Link to="/~docs" key="docs">
+        <Link to="" onClick={() => { window.open("https://txc.qq.com/products/598216", "_blank") }} key="docs">
           <BookOutlined />
-          <span>业务组件文档</span>
+          <span>留言</span>
         </Link>,
       ]
       : [],
