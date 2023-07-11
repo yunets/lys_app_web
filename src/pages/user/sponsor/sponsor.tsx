@@ -32,8 +32,8 @@ const MySponsor: React.FC<Props> = () => {
                             <td width={"400px"}><Tag color="magenta">好的想法</Tag></td>
                         </tr>
                         <tr>
-                            <td><img alt="logo" src="/img/wxzsm.jpg" className={styles.myImg} /></td>
-                            <td><img alt="logo" src="/img/wx.jpg" className={styles.myImg} /></td>
+                            <td><img alt="logo" src="../img/wxzsm.jpg" className={styles.myImg} /></td>
+                            <td><img alt="logo" src="../img/wx.jpg" className={styles.myImg} /></td>
                             <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">意见反馈或留言</a></td>
                         </tr>
                         <tr>
