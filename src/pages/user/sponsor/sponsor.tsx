@@ -27,8 +27,8 @@ const MySponsor: React.FC<Props> = () => {
                 <Card bordered={false} >
                     <table>
                         <tr>
-                            <td width={"500px"} ><Tag color="volcano">交流合作</Tag></td>
-                            <td width={"400px"}><Tag color="magenta">友情赞助（还没钱买域名，域名名称也想不出来也可以建议个）</Tag></td>
+                            <td width={"500px"} ><Tag color="volcano">友情赞助（还没钱买域名，域名名称也想不出来也可以建议个）</Tag></td>
+                            <td width={"400px"}><Tag color="magenta">交流合作</Tag></td>
                             <td width={"400px"}><Tag color="magenta">好的想法</Tag></td>
                         </tr>
                         <tr>
