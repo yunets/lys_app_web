@@ -22,7 +22,7 @@ const MyNavigation: React.FC<Props> = () => {
 
 
           <MutilSearchBar name={''} />
-          <WebCategoryShow name="云计算" />
+          <WebCategoryShow name="云服务器" />
 
 
 

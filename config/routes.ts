@@ -86,6 +86,34 @@
     ],
   },
   {
+    path: '/web/fund',
+    name: '财富',
+    hideInMenu: false,
+    icon: 'crown',
+    access: 'canAdmin',
+    key: "fund",
+    routes: [
+      {
+        path: '/web/fund/MyFund',
+        name: '我的基金',
+        icon: 'smile',
+        component: './fund/MyFund.tsx',
+      },
+      {
+        path: '/web/fund/FundDictionaryList',
+        name: '基金列表',
+        icon: 'smile',
+        component: './fund/FundDictionaryList.tsx',
+      },
+      {
+        path: '/web/fund/FinanceWebsite',
+        name: '财经金融',
+        icon: 'smile',
+        component: './navigation/FinanceWebsite.tsx',
+      },
+    ],
+  },
+  {
     path: '/web/play',
     name: '休闲娱乐',
     hideInMenu: false,
@@ -119,34 +147,7 @@
       },
     ],
   },
-  {
-    path: '/web/fund',
-    name: '财富',
-    hideInMenu: false,
-    icon: 'crown',
-    access: 'canAdmin',
-    key: "fund",
-    routes: [
-      {
-        path: '/web/fund/MyFund',
-        name: '我的基金',
-        icon: 'smile',
-        component: './fund/MyFund.tsx',
-      },
-      {
-        path: '/web/fund/FundDictionaryList',
-        name: '基金列表',
-        icon: 'smile',
-        component: './fund/FundDictionaryList.tsx',
-      },
-      {
-        path: '/web/fund/FinanceWebsite',
-        name: '财经金融',
-        icon: 'smile',
-        component: './navigation/FinanceWebsite.tsx',
-      },
-    ],
-  },
+
   {
     path: '/web/users',
     name: '用户',
@@ -168,6 +169,13 @@
         component: './user/management/UserList.tsx',
       },
 
+      {
+        path: 'management/sponsor',
+        name: '友情赞助',
+        hideInMenu: false,
+        icon: 'smile',
+        component: './user/sponsor/sponsor.tsx',
+      },
     ],
   },
   {
