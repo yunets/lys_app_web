@@ -40,10 +40,10 @@
 
 
   {
-    path: '/web/MyNavigationDownload',
-    name: '资源下载',
+    path: '/web/sponsorme',
+    name: '友情赞助',
     icon: 'smile',
-    component: './navigation/download.tsx',
+    component: './user/sponsor/sponsor.tsx',
   },
   {
     path: '/web/work',
