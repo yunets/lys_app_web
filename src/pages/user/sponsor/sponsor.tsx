@@ -3,7 +3,8 @@ import { Card, Tag } from 'antd';
 import React, { } from 'react';
 import styles from './index.less';
 
-
+import wx from '@/assets/img/wx.jpg';
+import wxzsm from '@/assets/img/wxzsm.jpg';
 
 export interface Props {
     name: string;
@@ -32,8 +33,8 @@ const MySponsor: React.FC<Props> = () => {
                             <td width={"400px"}><Tag color="magenta">好的想法</Tag></td>
                         </tr>
                         <tr>
-                            <td><img alt="logo" src="../img/wxzsm.jpg" className={styles.myImg} /></td>
-                            <td><img alt="logo" src="../img/wx.jpg" className={styles.myImg} /></td>
+                            <td><img alt="logo" src={wxzsm} className={styles.myImg} /></td>
+                            <td><img alt="logo" src={wx} className={styles.myImg} /></td>
                             <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">意见反馈或留言</a></td>
                         </tr>
                         <tr>
