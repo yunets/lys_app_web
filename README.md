@@ -1,3 +1,11 @@
+# git 免密
+
+```
+git config --global credential.helper store
+git config --global user.email "578888218@qq.com"
+git config --global user.name "liuyunshengsir"
+```
+
 # 技术点
 
 拖拽功能 react-dnd
