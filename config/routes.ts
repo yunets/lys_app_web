@@ -37,7 +37,13 @@
     icon: 'smile',
     component: './navigation/AIWebsite.tsx',
   },
-
+  {
+    path: '/web/navigation/TodayFrequencyStatistics',
+    name: '最近访问',
+    hideInMenu: true,
+    icon: 'smile',
+    component: './navigation/TodayFrequencyStatistics.tsx',
+  },
 
   {
     path: '/web/sponsorme',
