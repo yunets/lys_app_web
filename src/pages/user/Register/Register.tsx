@@ -73,7 +73,8 @@ const Register: React.FC<Props> = (props) => {
                         form={form}
                     >
 
-                        <Form.Item name={['user', 'mobile']} label="手机号（登录账号）" rules={[{ type: 'string' }]}>
+                        <Form.Item name={['user', 'mobile']} label="手机号（登录账号）"
+                            rules={[{ required: true, message: '请输入手机号' }]}>
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'password']} label="密码" rules={[{ required: true }]}>
