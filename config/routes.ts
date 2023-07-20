@@ -40,7 +40,7 @@
   {
     path: '/web/navigation/TodayFrequencyStatistics',
     name: '最近访问',
-    hideInMenu: true,
+    hideInMenu: false,
     icon: 'smile',
     component: './navigation/TodayFrequencyStatistics.tsx',
   },

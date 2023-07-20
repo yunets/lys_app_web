@@ -73,3 +73,10 @@ export async function updateWebCategoryName(params: any) {
         data: params,
     });
 }
+
+export async function todayFrequencyStatistics(params: any) {
+    return request('/api/visit/todayFrequencyStatistics', {
+        method: 'POST',
+        data: params,
+    });
+}
