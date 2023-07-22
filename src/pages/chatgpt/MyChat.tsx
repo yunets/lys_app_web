@@ -6,8 +6,8 @@ import { uniqueId } from 'lodash';
 import { useRequest } from 'umi';
 import wx from '@/assets/img/wx.jpg';
 import wxzsm from '@/assets/img/wxzsm.jpg';
-
-
+import qqqun1 from '@/assets/img/qqqun1.jpg';
+import zfbhongbao from '@/assets/img/zfbhongbao.jpeg';
 
 
 
@@ -49,12 +49,7 @@ const MyChat: React.FC<Props> = () => {
                     <Tabs.TabPane tab="关于本站" key={uniqueId()} >
 
 
-                        <Tag color="#f50"><div >非常感谢您对ChatGPT的支持！ChatGPT是OpenAI开发的一种强大的自然语言处理模型，它能够进行对话、回答问题、提供建议等。我们致力于不断改进和提升ChatGPT的性能和功能，以便为用户提供更好的体验。<br />
-
-
-                            为了让网站持续运行下去，因此开通了友情赞助。只要您赞助了就可以一直使用它，非常感谢已有同学的赞助，我们会尽最大的努力，让网站更好的运行！我们也乐意与你一起交流进步！<br />
-                            如果使用时不适配，可切换其他线路，继续免费使用，记得保存分享本站，防止迷路，一键打包所有ChatGPT<br />
-                            如果需要ChatGPT官方账号、或者科学上网之类的，可加微信！<br />
+                        <Tag color="#f50"><div ><h3>公益免费，请多多分享，在本页进行打赏支持咱们的免费公益chatgpt</h3>
                             <br />
                             <br />
 
@@ -62,14 +57,18 @@ const MyChat: React.FC<Props> = () => {
 
                         <table>
                             <tr>
-                                <td width={"500px"} ><Tag color="volcano">友情赞助（还没钱买域名，域名名称也想不出来也可以建议个）</Tag></td>
-                                <td width={"400px"}><Tag color="magenta">交流合作</Tag></td>
-                                <td width={"400px"}><Tag color="magenta">好的想法</Tag></td>
+                                <td width={"300px"}><Tag color="magenta">支付宝红包</Tag></td>
+                                <td width={"300px"} ><Tag color="volcano">友情赞助</Tag></td>
+                                <td width={"300px"}><Tag color="magenta">交流合作</Tag></td>
+                                <td width={"300px"}><Tag color="magenta">好的想法</Tag></td>
+
                             </tr>
                             <tr>
+                                <td><img alt="logo" src={zfbhongbao} className={styles.myImg} /></td>
                                 <td><img alt="logo" src={wxzsm} className={styles.myImg} /></td>
                                 <td><img alt="logo" src={wx} className={styles.myImg} /></td>
-                                <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">意见反馈或留言</a></td>
+                                <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">qq群（289881319）</a><br />
+                                    <img alt="logo" src={qqqun1} className={styles.myImg} /> </td>
                             </tr>
                             <tr>
                                 <td colSpan={3}>
