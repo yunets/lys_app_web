@@ -49,11 +49,11 @@ const MyChat: React.FC<Props> = () => {
                     <Tabs.TabPane tab="关于本站" key={uniqueId()} >
 
 
-                        <Tag color="#f50"><div ><h3>公益免费，请多多分享，在本页进行打赏支持咱们的免费公益chatgpt</h3>
-                            <br />
+                        <Tag color="#f50"><h2>公益免费，请多多分享，在本页进行打赏支持咱们的免费公益chatgpt</h2>
                             <br />
 
-                        </div></Tag>
+
+                        </Tag>
 
                         <table>
                             <tr>
