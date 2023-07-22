@@ -24,6 +24,7 @@ const Register: React.FC<Props> = (props) => {
         dispatch,
 
     } = props;
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const [form] = Form.useForm();
     const layout = {
         labelCol: {
@@ -36,6 +37,8 @@ const Register: React.FC<Props> = (props) => {
 
 
     const handleOk = async () => {
+        setIsSubmitted(true);
+        message.info("注册中。。。");
         form.validateFields()
             .then((values) => {
                 console.log(values);
@@ -44,6 +47,8 @@ const Register: React.FC<Props> = (props) => {
                     payload: { ...values.user },
                     callback: (response: any) => {
                         console.log(response.content);
+                        message.info("注册成功，请返回登录页登录!");
+                        setIsSubmitted(false);
                     }
                 });
                 //form.resetFields();
@@ -51,6 +56,7 @@ const Register: React.FC<Props> = (props) => {
             })
             .catch((errorInfo) => {
                 console.log(errorInfo);
+                setIsSubmitted(false);
             });
     };
     return (
@@ -99,7 +105,7 @@ const Register: React.FC<Props> = (props) => {
                             <Input.TextArea />
                         </Form.Item>
                         <Form.Item >
-                            <Button type="primary" onClick={handleOk}>
+                            <Button type="primary" onClick={handleOk} disabled={isSubmitted}>
                                 注册
                             </Button>
                             <Button type="primary" onClick={() => { history.push('/user/login'); }}>
