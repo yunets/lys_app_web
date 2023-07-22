@@ -39,7 +39,7 @@
   },
   {
     path: '/web/navigation/TodayFrequencyStatistics',
-    name: '最近访问',
+    name: '本站流量分析',
     hideInMenu: false,
     icon: 'smile',
     component: './navigation/TodayFrequencyStatistics.tsx',
