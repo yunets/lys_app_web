@@ -14,6 +14,12 @@
     ],
   },
   {
+    path: '/web/chatgpt',
+    name: '免费chatGPT',
+    icon: 'smile',
+    component: './chatgpt/MyChat.tsx',
+  },
+  {
     path: '/web/welcome',
     name: 'welcome123',
     icon: 'smile',
@@ -24,12 +30,6 @@
     name: '网址管理',
     icon: 'smile',
     component: './navigation/MyDiyWeb.tsx',
-  },
-  {
-    path: '/web/chatgpt',
-    name: 'chatGPT',
-    icon: 'smile',
-    component: './chatgpt/MyChat.tsx',
   },
   {
     path: '/web/AIWebsite',

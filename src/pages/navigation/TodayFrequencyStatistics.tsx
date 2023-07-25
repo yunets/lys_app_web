@@ -106,7 +106,7 @@ const TodayFrequencyStatistics: React.FC<Props> = (props) => {
     };
 
     const handleCancel = () => {
-        setIsModalOpen(true);
+        setIsModalOpen(false);
     };
 
 
