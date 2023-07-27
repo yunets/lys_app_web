@@ -59,6 +59,13 @@ export async function webInfoUpdateList(params: any) {
     });
 }
 
+export async function webInfoUpdateSelect(params: any) {
+    return request('/api/webInfo/updateSelect', {
+        method: 'POST',
+        data: params,
+    });
+}
+
 export async function webInfoDelete(params: any) {
     return request('/api/webInfo/delete', {
         method: 'POST',

@@ -1,4 +1,4 @@
-import { getMyUrlList, webInfoSave, webCategoryList, webCategorySave, webCategoryListAll, webInfoUpdateList, webInfoDelete, webCategoryDelete, updateWebCategoryName, todayFrequencyStatistics } from '@/services/appweb/appweb';
+import { getMyUrlList, webInfoSave, webCategoryList, webCategorySave, webCategoryListAll, webInfoUpdateList, webInfoDelete, webCategoryDelete, updateWebCategoryName, todayFrequencyStatistics, webInfoUpdateSelect } from '@/services/appweb/appweb';
 import type { Effect, Reducer } from 'umi';
 
 export type URLItem = {
@@ -20,7 +20,7 @@ export type URLItemPageState = {
 
 export type UserModelType = {
     namespace: 'navigation';
-    state: { list: any, title: any, name: any };
+    state: { list: any, title: any, name: any, webInfoUpdateModal: any };
     effects: {
         fetchProject: Effect;
         fetchWebCategoryList: Effect;
@@ -32,9 +32,11 @@ export type UserModelType = {
         fetchWebCategoryDelete: Effect;
         fetchUpdateWebCategoryName: Effect;
         fetchTodayFrequencyStatistics: Effect;
+        fetchWebInfoUpdateSelect: Effect;
     };
     reducers: {
         saveProject: Reducer;
+        setWebInfoModal: Reducer;
     };
 };
 
@@ -47,7 +49,8 @@ const UserModel1: UserModelType = {
     state: {
         list: {},
         title: 'Welcome to liuyunshengsir  Bolg',
-        name: 'wise'
+        name: 'wise',
+        webInfoUpdateModal: { webInfoModal: false }
     },
     effects: {
         *fetchProject({ payload, callback }, { call, put }) {
@@ -93,6 +96,11 @@ const UserModel1: UserModelType = {
 
             callback(response);
         },
+        *fetchWebInfoUpdateSelect({ payload, callback }, { call, put }) {
+            const response = yield call(webInfoUpdateSelect, { ...payload });
+
+            callback(response);
+        },
         *fetchUpdateWebCategoryName({ payload, callback }, { call, put }) {
             const response = yield call(updateWebCategoryName, { ...payload });
 
@@ -109,6 +117,13 @@ const UserModel1: UserModelType = {
             return {
                 ...state,
                 list: payload,
+            };
+        },
+
+        setWebInfoModal(state, { payload }) {
+            return {
+                ...state,
+                webInfoUpdateModal: { ...payload.webInfoUpdateModal },
             };
         },
     },

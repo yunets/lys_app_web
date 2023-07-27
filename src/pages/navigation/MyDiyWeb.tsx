@@ -23,7 +23,7 @@ export interface Props {
     name: string;
     list: any;
     loading: any;
-    title: any;
+    webInfoUpdateModal: any;
     dispatch: Dispatch;
 }
 
@@ -37,10 +37,11 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         list,
         loading,
         dispatch,
-        title
+        webInfoUpdateModal
     } = props;
     const [form] = Form.useForm();
     const [form2] = Form.useForm();
+    const [form3] = Form.useForm();
     const [webCategoryList, setWebCategoryList] = useState<any>([])
     useRequest(() => ({
         url: '/api/webCategory/listAll',
@@ -197,9 +198,89 @@ const MyDiyWeb: React.FC<Props> = (props) => {
             });
 
     }
+
+    const webInfoUpdate = (record: any) => {
+        setIsModalOpen(true);
+        form.setFieldValue("fundCode", record.fundCode);
+        form.setFieldValue("name", record.name);
+        form.setFieldValue("quantity", record.quantity);
+        form.setFieldValue("pastPrice", record.pastPrice)
+
+    }
+
+    const handleCancel2 = () => {
+        dispatch({
+            type: 'navigation/setWebInfoModal',
+            payload: {
+                webInfoUpdateModal: { webInfoModal: false }
+            }, callback: (response: any) => {
+
+            }
+        });
+
+    };
+    const handleOk3 = async () => {
+        form3.validateFields()
+            .then((values) => {
+                const result = webCategoryList.find((item: any) => item.uid === values.webCategoryId);
+                dispatch({
+                    type: 'navigation/fetchWebInfoUpdateSelect',
+                    payload: {
+                        webInfoUpdateModal: { ...values, webCategoryName: result.name, uid: webInfoUpdateModal.uid },
+                    },
+                    callback: (response: any) => {
+                        updateWebCategoryList();
+                        message.success('操作成功！');
+                        form3.resetFields();
+                        handleCancel2();
+                    }
+                });
+
+            })
+            .catch((errorInfo) => {
+                console.log(errorInfo);
+            });
+    };
+
     return (
         <PageContainer>
+            <Modal title="编辑网址" open={webInfoUpdateModal.webInfoModal} onOk={handleOk3} onCancel={handleCancel2}>
+                <Form form={form3} initialValues={webInfoUpdateModal}>
+                    <Form.Item
+                        name="webCategoryId"
+                        label="分类"
+                        rules={[{ required: true, message: '分类!', whitespace: true }]}
+                    >
+                        {renderWebCategoryOptions()}
 
+                    </Form.Item>
+                    <Form.Item
+                        name="name"
+                        label="名称"
+                        rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="url"
+                        label="网址"
+                        rules={[
+                            {
+                                type: 'url',
+                                message: '网址不合法，样例https://cn.bing.com!',
+                            },
+                            {
+                                required: true,
+                                message: '请输入网址',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+
+                </Form>
+            </Modal>
 
             <Modal title="新增网页" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Form form={form}>
@@ -304,7 +385,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                             <Card bordered={false} key={item.uid}>
 
                                 <DndProvider backend={HTML5Backend} >
-                                    <MyContainer webCategory={item} updateWebCategoryList={updateWebCategoryList} />
+                                    <MyContainer webCategory={item} updateWebCategoryList={updateWebCategoryList} webInfoUpdate={webInfoUpdate} />
                                 </DndProvider>
                             </Card></Tabs.TabPane>;
                     })}
@@ -324,15 +405,15 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 export type ConnectState = {
     list: any;
     loading: any;
-    title: any;
+    webInfoUpdateModal: any;
 };
 function mapStateToProps(state: any) { //state是项目所有的models
 
     const { list } = state.navigation; //获取namespace命名空间为navigation的models数据state
-    const { title } = state.navigation;
+    const { webInfoUpdateModal } = state.navigation;
     return {
         list,
-        title
+        webInfoUpdateModal
     };
 }
 export default connect(mapStateToProps)(MyDiyWeb as any);
