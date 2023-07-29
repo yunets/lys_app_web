@@ -208,13 +208,13 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
     }
 
-    const handleCancel2 = () => {
+    const handleCancel2 = async () => {
         dispatch({
             type: 'navigation/setWebInfoModal',
             payload: {
                 webInfoUpdateModal: { webInfoModal: false }
             }, callback: (response: any) => {
-
+                form3.resetFields();
             }
         });
 
@@ -226,13 +226,14 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                 dispatch({
                     type: 'navigation/fetchWebInfoUpdateSelect',
                     payload: {
-                        webInfoUpdateModal: { ...values, webCategoryName: result.name, uid: webInfoUpdateModal.uid },
+                        ...values, webCategoryName: result.name, uid: webInfoUpdateModal.uid,
                     },
                     callback: (response: any) => {
                         updateWebCategoryList();
                         message.success('操作成功！');
                         form3.resetFields();
                         handleCancel2();
+
                     }
                 });
 
@@ -245,12 +246,16 @@ const MyDiyWeb: React.FC<Props> = (props) => {
     return (
         <PageContainer>
             <Modal title="编辑网址" open={webInfoUpdateModal.webInfoModal} onOk={handleOk3} onCancel={handleCancel2}>
-                <Form form={form3} initialValues={webInfoUpdateModal}>
+                {webInfoUpdateModal.name}<br />
+                {webInfoUpdateModal.url}<br />
+
+                <Form form={form3} >
                     <Form.Item
                         name="webCategoryId"
                         label="分类"
                         rules={[{ required: true, message: '分类!', whitespace: true }]}
                     >
+
                         {renderWebCategoryOptions()}
 
                     </Form.Item>
@@ -259,6 +264,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                         label="名称"
                         rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
                     >
+
                         <Input />
                     </Form.Item>
                     <Form.Item
@@ -275,6 +281,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                             },
                         ]}
                     >
+
                         <Input />
                     </Form.Item>
 
