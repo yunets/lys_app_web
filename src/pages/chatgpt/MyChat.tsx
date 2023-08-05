@@ -8,6 +8,7 @@ import wx from '@/assets/img/wx.jpg';
 import wxzsm from '@/assets/img/wxzsm.jpg';
 import qqqun1 from '@/assets/img/qqqun1.jpg';
 import zfbhongbao from '@/assets/img/zfbhongbao.jpeg';
+import Modal from 'antd/lib/modal/Modal';
 
 
 
@@ -40,11 +41,25 @@ const MyChat: React.FC<Props> = () => {
         },
     });
 
-
+    const [isWebCategoryModalOpen, setIsWebCategoryModalOpen] = useState(false);
+    const handleCancel = () => {
+        setIsWebCategoryModalOpen(false);
+    };
+    const handleShow = (e: any) => {
+        console.log(e)
+        setIsWebCategoryModalOpen(true);
+    };
     return (
         <PageContainer>
+            <Modal title="新增分类" open={isWebCategoryModalOpen} onOk={handleCancel} onCancel={handleCancel} >
+                <div className={styles.wxzsmModal}><img alt="logo" src={wxzsm} className={styles.myImg} /></div>
+
+            </Modal>
+
+
             <GridContent>
-                <Tabs tabPosition="top">
+                <h3><Tag color="magenta">请加QQ群：289881319，或首页微信账号，防止地址更换，错过本站长期提供的公益免费chatgpt服务，个别平台打着充值套餐使用的旗号骗钱，大家小心上当受骗！</Tag></h3>
+                <Tabs tabPosition="top" >
 
                     <Tabs.TabPane tab="关于本站" key={uniqueId()} >
 
@@ -88,8 +103,9 @@ const MyChat: React.FC<Props> = () => {
                     </Tabs.TabPane>
 
                     {urlItemList.map((item: any) => {
-                        return <Tabs.TabPane tab={item.name} key={uniqueId()} >
+                        return <Tabs.TabPane tab={item.name} key={uniqueId()}  >
                             <Card bordered={false} key={uniqueId()}>
+
                                 <div><iframe className={styles.myChat} src={item.url} /></div>
                             </Card></Tabs.TabPane>;
                     })}

@@ -1,7 +1,7 @@
 import { Dispatch, Fragment } from 'react';
 import React from 'react';
 import styles from './../index.less';
-import { DeleteOutlined, HeartTwoTone, HomeTwoTone } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, HeartTwoTone, HomeTwoTone } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
 import { connect } from 'umi';
 
@@ -66,7 +66,7 @@ const ItemShow: React.FC<Props> = ({ item, dispatch, a }) => {
 
         <div className={styles.urlOperate}>
           <DeleteOutlined onClick={() => fetchUpdateWebInfoList(item)} spin title='点击删除！！！' />
-          <HeartTwoTone twoToneColor="#eb2f96" onClick={() => setWebInfoModalEfect(item)} title='收藏！！！' />
+          <EditOutlined twoToneColor="#eb2f96" onClick={() => setWebInfoModalEfect(item)} title='编辑！！！' />
           <HomeTwoTone twoToneColor="#222222" onClick={() => setWebInfoModalEfect(item)} title='添加到首页！！！' />
         </div>
 
