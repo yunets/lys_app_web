@@ -3,6 +3,7 @@ import { Card } from 'antd';
 import React from 'react';
 import MutilSearchBar from './components/MutilSearchBar';
 import WebCategoryShow from './components/WebCategoryShow';
+import { uniqueId } from 'lodash';
 
 export interface Props {
   name: string;
@@ -14,20 +15,24 @@ export interface Props {
 const MyNavigation: React.FC<Props> = () => {
 
 
-  return (
-    <PageContainer>
-      我的主页
-      <GridContent>
-        <Card bordered={false}>
-
-
-          <MutilSearchBar name={''} />
-          <WebCategoryShow name="云服务器" />
-
-
-
+  const renderWebCategoryOptions = () => {
+    const list = ['友情链接', '云服务器'];
+    const optionList = list.map((item: string) =>
+      <GridContent key={uniqueId()}>
+        <Card bordered={false} >
+          <WebCategoryShow name={item} />
         </Card>
       </GridContent>
+    )
+    return optionList;
+  }
+
+  return (
+    <PageContainer>
+      友情链接
+      <MutilSearchBar name={''} />
+      {renderWebCategoryOptions()}
+
     </PageContainer>
   );
 };

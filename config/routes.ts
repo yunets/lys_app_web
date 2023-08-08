@@ -19,12 +19,7 @@
     icon: 'smile',
     component: './chatgpt/MyChat.tsx',
   },
-  {
-    path: '/web/welcome',
-    name: 'welcome123',
-    icon: 'smile',
-    component: './navigation/index.tsx',
-  },
+
   {
     path: '/web/navigation/MyDiyWeb',
     name: '网址管理',
@@ -153,7 +148,12 @@
       },
     ],
   },
-
+  {
+    path: '/web/welcome',
+    name: '友情链接',
+    icon: 'smile',
+    component: './navigation/index.tsx',
+  },
   {
     path: '/web/users',
     name: '用户',
