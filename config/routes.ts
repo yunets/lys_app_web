@@ -211,7 +211,7 @@
   },
   {
     path: '/',
-    redirect: '/web/welcome',
+    redirect: '/web/chatgpt',
   },
   {
     component: './404',
