@@ -19,7 +19,13 @@
     icon: 'smile',
     component: './chatgpt/MyChat.tsx',
   },
-
+  {
+    path: '/web/house',
+    name: '房子',
+    icon: 'smile',
+    hideInMenu: true,
+    component: './house/RentingHouseList.tsx',
+  },
   {
     path: '/web/navigation/MyDiyWeb',
     name: '网址管理',
