@@ -25,7 +25,7 @@ const RentingHouseList: React.FC<Props> = (props) => {
         dispatch,
     } = props;
     const [form] = Form.useForm();
-    const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 20, "name": "", "fundType": "" });
+    const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 20, "address": "" });
     const [totalElements, setTotalElements] = useState<any>(0);
 
 
@@ -95,7 +95,7 @@ const RentingHouseList: React.FC<Props> = (props) => {
             render: (_: any, record: any) => (
                 <Space size="middle">
 
-                    <a onClick={() => fetchFundadd(record)}>预约看房</a>
+                    {/* <a onClick={() => fetchFundadd(record)}>预约看房</a> */}
                     <a onClick={() => detail(record)}>详情</a>
                 </Space >
             ),
@@ -149,7 +149,7 @@ const RentingHouseList: React.FC<Props> = (props) => {
         form.validateFields()
             .then((values) => {
                 setSeachContent({
-                    "pageNumber": 0, "pageSize": 10, "name": values.name, "fundType": values.fundType
+                    "pageNumber": 0, "pageSize": 10, "address": values.address
                 });
 
 
@@ -174,7 +174,7 @@ const RentingHouseList: React.FC<Props> = (props) => {
 
     const updateUserList = (page: number, size: number) => {
         setSeachContent({
-            "pageNumber": page, "pageSize": size, "name": seachContent.name, "fundType": seachContent.fundType
+            "pageNumber": page, "pageSize": size, "address": seachContent.address
         });
 
 
@@ -188,18 +188,11 @@ const RentingHouseList: React.FC<Props> = (props) => {
             <GridContent>
                 <Card bordered={false}>
                     <Form form={form}>
-                        <Form.Item
-                            name="fundType"
-                            label="分类"
-                            rules={[{ message: '分类!', whitespace: true }]}
-                        >
-                            {renderWebCategoryOptions()}
 
-                        </Form.Item>
                         <Form.Item
-                            name="name"
+                            name="address"
                             label="名称"
-                            rules={[{ message: '请输入名称', whitespace: true }]}
+                            rules={[{ message: '请输入小区地址', whitespace: true }]}
                         >
                             <Input />
                         </Form.Item>
