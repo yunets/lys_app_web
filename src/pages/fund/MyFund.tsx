@@ -118,14 +118,20 @@ const MyFund: React.FC<Props> = (props) => {
             title: '策略',
             dataIndex: 'estimatedPercent',
             key: 'estimatedPercent',
-            render: (_: any, record: any) => (
-                <div>
-                    5000/({(record.currentPrice).toFixed(4)})={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
-                    加仓：  5000/({(record.currentPrice).toFixed(4)}*1.02)={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
-                    减仓：  5000/({(record.currentPrice).toFixed(4)}*0.98)={(5000 / (record.currentPrice * 0.98)).toFixed(4)}<br />
+            render: (_: any, record: any) => {
+                if (record.currentPrice == null) {
+                    record.currentPrice = 0.00001;
+                }
+                debugger
+                return (
+                    <div>
+                        5000/({(record.currentPrice).toFixed(4)})={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
+                        加仓：  5000/({(record.currentPrice).toFixed(4)}*1.02)={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
+                        减仓：  5000/({(record.currentPrice).toFixed(4)}*0.98)={(5000 / (record.currentPrice * 0.98)).toFixed(4)}<br />
 
-                </div >
-            ),
+                    </div >
+                )
+            },
         },
         {
             title: '持仓份额',
