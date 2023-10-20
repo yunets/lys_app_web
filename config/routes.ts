@@ -124,7 +124,7 @@
     routes: [
       {
         path: '/web/play/navigation/VideoWebsite',
-        name: '电影',
+        name: '免费电影',
         icon: 'smile',
         component: './navigation/VideoWebsite.tsx',
       },
