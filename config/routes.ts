@@ -123,6 +123,12 @@
     key: "play",
     routes: [
       {
+        path: '/web/play/navigation/VIPVideo',
+        name: 'vip视频解析',
+        icon: 'smile',
+        component: './navigation/VIPVideo.tsx',
+      },
+      {
         path: '/web/play/navigation/VideoWebsite',
         name: '免费电影',
         icon: 'smile',
