@@ -19,7 +19,12 @@
     icon: 'smile',
     component: './chatgpt/MyChat.tsx',
   },
-
+  {
+    path: '/web/play/navigation/VIPVideo',
+    name: 'vip视频免费看（人工智能解析）',
+    icon: 'smile',
+    component: './navigation/VIPVideo.tsx',
+  },
   {
     path: '/web/navigation/MyDiyWeb',
     name: '网址管理',
@@ -122,12 +127,7 @@
     access: 'canAdmin',
     key: "play",
     routes: [
-      {
-        path: '/web/play/navigation/VIPVideo',
-        name: 'vip视频解析',
-        icon: 'smile',
-        component: './navigation/VIPVideo.tsx',
-      },
+
       {
         path: '/web/play/navigation/VideoWebsite',
         name: '免费电影',
