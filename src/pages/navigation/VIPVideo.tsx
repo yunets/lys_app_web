@@ -1,6 +1,7 @@
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Card, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import React, { useState } from 'react';
+import { useRequest } from 'umi';
 
 
 
@@ -17,37 +18,36 @@ export interface Props {
 const VIPVideo: React.FC<Props> = () => {
     const [vipUrl, setVipUrl] = useState("")
     const [form] = Form.useForm();
-    const myList = [
-        { "name": "超级vip", "url": "https://jx.jsonplayer.com/player/?url=", "showType": 3 },
-        { "name": "爱豆", "url": "https://jx.aidouer.net/?url=", "showType": 1 },
-        { "name": "虾米", "url": "https://jx.xmflv.com/?url=", "showType": 1 },
-        { "name": "OK解析", "url": "https://okjx.cc/?url=", "showType": 3 },
-        { "name": "诺讯", "url": "https://www.nxflv.com/?url=", "showType": 1 },
-        { "name": "夜幕", "url": "https://www.yemu.xyz/?url=", "showType": 3 },
-        { "name": "M3U8.TV", "url": "https://jx.m3u8.tv/jiexi/?url=", "showType": 3 },
-        { "name": "人人迷", "url": "https://jx.blbo.cc:4433/?url=", "showType": 3 },
-        { "name": "全民", "url": "https://jx.blbo.cc:4433/?url=", "showType": 3 },
-        { "name": "七哥", "url": "https://jx.nnxv.cn/tv.php?url=", "showType": 3 },
-        { "name": "冰豆", "url": "https://api.qianqi.net/vip/?url=", "showType": 3 },
-        { "name": "迪奥", "url": "https://123.1dior.cn/?url=", "showType": 1 },
-        { "name": "CK", "url": "https://www.ckplayer.vip/jiexi/?url=", "showType": 1 },
-        { "name": "ckmov", "url": "https://www.ckmov.vip/api.php?url=", "showType": 1 },
-        { "name": "playerjy/B站", "url": "https://jx.playerjy.com/?url=", "showType": 3 },
-        { "name": "ccyjjd", "url": "https://ckmov.ccyjjd.com/ckmov/?url=", "showType": 1 },
-        { "name": "诺诺", "url": "https://www.ckmov.com/?url=", "showType": 1 },
-        { "name": "H8", "url": "https://www.h8jx.com/jiexi.php?url=", "showType": 1 },
-        { "name": "BL", "url": "https://vip.bljiex.com/?v=", "showType": 1 },
-        { "name": "解析la", "url": "https://api.jiexi.la/?url=", "showType": 1 },
-    ];
+    const [urlItemList, setUrlItemList] = useState<any>([])
+    useRequest(() => ({
+        url: '/api/webInfo/listByWebCategoryName',
+        method: 'post',
+        data: { name: 'vip视频解析' },
+    }), {
+        manual: false,
+        onSuccess: (result, params) => {
+            console.log(result);
+            if (result.code != -1) {
+                setUrlItemList(result.content);
+            }
+
+
+        },
+    });
+
+
+
+
 
 
 
     const renderWebCategoryOptions = () => {
+
         const options: any = []
-        myList.forEach((item: any) => {
+        urlItemList.forEach((item: any) => {
             options.push(<Option key={item.name} value={item.url}>{item.name}</Option>)
         })
-        return <Select style={{ width: 120 }}   >
+        return <Select style={{ width: 120 }} defaultValue={options[0]} >
             {options}
         </Select>
     }
@@ -66,10 +66,11 @@ const VIPVideo: React.FC<Props> = () => {
     return (
         <PageContainer>
             <GridContent>
+                支持爱奇艺、腾讯视频、优酷视频、B站视频等免费解析观看，如线路不支持请切换线路
                 <Form form={form} >
                     <Form.Item
                         name="vipSrc"
-                        label="vip线路"
+                        label="vip线路："
                         rules={[{ required: true, message: 'vip线路!', whitespace: true }]}
                     >
 
