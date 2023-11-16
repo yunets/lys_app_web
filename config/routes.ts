@@ -20,6 +20,12 @@
     component: './chatgpt/MyChat.tsx',
   },
   {
+    path: '/web/chatgpt',
+    name: '免费国外chatGPT（需要翻墙）',
+    icon: 'smile',
+    component: './chatgpt/MyChat2.tsx',
+  },
+  {
     path: '/web/play/navigation/VIPVideo',
     name: 'vip视频免费看（人工智能解析）',
     icon: 'smile',
