@@ -8,6 +8,7 @@ import wx from '@/assets/img/wx.jpg';
 import wxzsm from '@/assets/img/wxzsm.jpg';
 import qqqun1 from '@/assets/img/qqqun1.jpg';
 import zfbhongbao from '@/assets/img/zfbhongbao.jpeg';
+import wxdyh from '@/assets/img/wxdyh.png';
 import Modal from 'antd/lib/modal/Modal';
 
 
@@ -74,16 +75,16 @@ const MyChat2: React.FC<Props> = () => {
                             <tr>
                                 <td width={"300px"}><Tag color="magenta">支付宝红包</Tag></td>
                                 <td width={"300px"} ><Tag color="volcano">友情赞助</Tag></td>
-                                <td width={"300px"}><Tag color="magenta">交流合作</Tag></td>
-                                <td width={"300px"}><Tag color="magenta">好的想法</Tag></td>
+                                <td width={"300px"}><Tag color="magenta">微信公众号</Tag></td>
+                                <td width={"300px"}><Tag color="magenta">微信</Tag></td>
 
                             </tr>
                             <tr>
                                 <td><img alt="logo" src={zfbhongbao} className={styles.myImg} /></td>
                                 <td><img alt="logo" src={wxzsm} className={styles.myImg} /></td>
-                                <td><img alt="logo" src={wx} className={styles.myImg} /></td>
                                 <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">qq群（915997953、289881319、901169719）</a><br />
-                                    <img alt="logo" src={qqqun1} className={styles.myImg} /> </td>
+                                    <img alt="logo" src={wxdyh} className={styles.myImg} /> </td>
+                                <td><img alt="logo" src={wx} className={styles.myImg} /></td>
                             </tr>
                             <tr>
                                 <td colSpan={3}>

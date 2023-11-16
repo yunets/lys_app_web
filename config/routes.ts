@@ -20,7 +20,7 @@
     component: './chatgpt/MyChat.tsx',
   },
   {
-    path: '/web/chatgpt',
+    path: '/web/chatgpt2',
     name: '免费国外chatGPT（需要翻墙）',
     icon: 'smile',
     component: './chatgpt/MyChat2.tsx',

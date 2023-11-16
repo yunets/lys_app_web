@@ -6,7 +6,7 @@ import { uniqueId } from 'lodash';
 import { useRequest } from 'umi';
 import wx from '@/assets/img/wx.jpg';
 import wxzsm from '@/assets/img/wxzsm.jpg';
-import qqqun1 from '@/assets/img/qqqun1.jpg';
+import wxdyh from '@/assets/img/wxdyh.png';
 import zfbhongbao from '@/assets/img/zfbhongbao.jpeg';
 import Modal from 'antd/lib/modal/Modal';
 
@@ -81,9 +81,10 @@ const MyChat: React.FC<Props> = () => {
                             <tr>
                                 <td><img alt="logo" src={zfbhongbao} className={styles.myImg} /></td>
                                 <td><img alt="logo" src={wxzsm} className={styles.myImg} /></td>
-                                <td><img alt="logo" src={wx} className={styles.myImg} /></td>
+
                                 <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">qq群（915997953、289881319、901169719）</a><br />
-                                    <img alt="logo" src={qqqun1} className={styles.myImg} /> </td>
+                                    <img alt="logo" src={wxdyh} className={styles.myImg} /> </td>
+                                <td><img alt="logo" src={wx} className={styles.myImg} /></td>
                             </tr>
                             <tr>
                                 <td colSpan={3}>
