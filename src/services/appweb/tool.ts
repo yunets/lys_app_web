@@ -7,6 +7,6 @@ import { request } from 'umi';
 export async function getDomainsByDomain(params?: any) {
     return request('/api/tool/getDomainsByDomain', {
         method: 'GET',
-        data: params,
+        params,
     });
 }

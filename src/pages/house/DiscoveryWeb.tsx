@@ -25,54 +25,44 @@ const DiscoveryWeb: React.FC<Props> = (props) => {
         dispatch,
     } = props;
     const [form] = Form.useForm();
-    const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 20, "domainName": "" });
+    const [seachContent, setSeachContent] = useState<any>({ "domainName": "" });
+
+
+    const detail = (record: any) => {
+        const domains = record.domains;
+        domains.forEach(element => {
+            window.open("https://" + element, '_blank');
+        });
+
+    }
 
     const columns = [
         {
-            title: 'domainName',
-            dataIndex: 'domainName',
-            key: 'domainName',
+            title: 'ip',
+            dataIndex: 'ip',
+            key: 'ip',
         },
         {
-            title: 'title',
-            dataIndex: 'title',
-            key: 'title',
-        },
-        {
-            title: 'price',
-            dataIndex: 'price',
-            key: 'price',
-        },
-        {
-            title: 'area',
-            dataIndex: 'area',
-            key: 'area',
-        },
-        {
-            title: 'tags',
-            dataIndex: 'tags',
-            key: 'tags',
-            render: (_, { tags }) => (
+            title: 'domains',
+            dataIndex: 'domains',
+            key: 'domains',
+            render: (_, { domains }) => (
                 <>
-                    {Array.isArray(tags) ? tags.map((tag) => {
+                    {Array.isArray(domains) ? domains.map((tag) => {
                         let color = tag.length > 2 ? 'geekblue' : 'green';
                         if (tag === 'loser') {
                             color = 'volcano';
                         }
                         return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
+                            <Tag color={color} key={tag} onClick={() => { window.open("https://" + tag, '_blank'); }}>
+                                {tag}
                             </Tag>
                         );
                     }) : null}
                 </>
             ),
         },
-        {
-            title: 'mobile',
-            dataIndex: 'mobile',
-            key: 'mobile',
-        },
+
         {
             title: '操作',
             key: 'action',
@@ -80,7 +70,7 @@ const DiscoveryWeb: React.FC<Props> = (props) => {
                 <Space size="middle">
 
                     {/* <a onClick={() => fetchFundadd(record)}>预约看房</a> */}
-                    <a onClick={() => detail(record)}>详情</a>
+                    <a onClick={() => detail(record)}>全部打开</a>
                 </Space >
             ),
         },
@@ -93,7 +83,9 @@ const DiscoveryWeb: React.FC<Props> = (props) => {
             type: 'house/fetchGetDomainsByDomain',
             payload: { ...seachContent },
             callback: (response: any) => {
-                setUserList(response.content.content);
+                const list = response.content;
+                const filteredList = list.filter(item => item.domains.length > 0);
+                setUserList(filteredList);
 
             }
         });
@@ -107,7 +99,7 @@ const DiscoveryWeb: React.FC<Props> = (props) => {
         form.validateFields()
             .then((values) => {
                 setSeachContent({
-                    "pageNumber": 0, "pageSize": 10, "domainName": values.domainName
+                    "domainName": values.domainName
                 });
 
 
