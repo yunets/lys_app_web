@@ -171,7 +171,7 @@
     name: '房子',
     icon: 'smile',
     hideInMenu: false,
-    component: './house/RentingHouseList.tsx',
+    component: './house/DiscoveryWeb.tsx',
   },
   {
     path: '/web/users',
