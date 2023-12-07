@@ -20,16 +20,28 @@
     component: './chatgpt/MyChat.tsx',
   },
   {
-    path: '/web/chatgpt2',
-    name: '免费国外chatGPT（需要翻墙）',
-    icon: 'smile',
-    component: './chatgpt/MyChat2.tsx',
-  },
-  {
     path: '/web/play/navigation/VIPVideo',
     name: 'vip视频免费看（人工智能解析）',
     icon: 'smile',
     component: './navigation/VIPVideo.tsx',
+  },
+  {
+    path: '/web/chatgpt3',
+    name: '免费影视',
+    icon: 'smile',
+    component: './chatgpt/MyChat3.tsx',
+  },
+  {
+    path: '/web/chatgpt2',
+    name: '免费文档转换',
+    icon: 'smile',
+    component: './chatgpt/MyChat2.tsx',
+  },
+  {
+    path: '/web/chatgpt4',
+    name: '免费视频去水印',
+    icon: 'smile',
+    component: './chatgpt/MyChat4.tsx',
   },
   {
     path: '/web/navigation/MyDiyWeb',
