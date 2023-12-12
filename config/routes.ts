@@ -20,6 +20,12 @@
     component: './chatgpt/MyChat.tsx',
   },
   {
+    path: '/web/chatgpt5',
+    name: '公共聊天室',
+    icon: 'smile',
+    component: './chatgpt/MyChat5.tsx',
+  },
+  {
     path: '/web/play/navigation/VIPVideo',
     name: 'vip视频免费看（人工智能解析）',
     icon: 'smile',
