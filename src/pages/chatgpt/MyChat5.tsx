@@ -32,26 +32,19 @@ const MyChat5: React.FC<Props> = () => {
 
 
         };
-        ws.current.addEventListener("message", event => {
-            console.log("Message from server ", event.data)
-            const obj = JSON.parse(event.data);
+
+
+        ws.current.onmessage = (evt) => {
+            console.log("数据已接收..." + evt.data);
+
+            const obj = JSON.parse(evt.data);
             // 等于这个条件说明就是JSON字符串 会返回true
             if (typeof obj == 'object' && obj) {
-                list.push(obj);
-                setList([...list, obj]);
+                // list.push(obj);
+                // setList([...list, obj]);
+                setList((prevState) => [...prevState, obj]);
             }
-        });
-
-        // ws.current.onmessage = (evt) => {
-        //     console.log("数据已接收..." + evt.data);
-
-        //     const obj = JSON.parse(evt.data);
-        //     // 等于这个条件说明就是JSON字符串 会返回true
-        //     if (typeof obj == 'object' && obj) {
-        //         // list.push(obj);
-        //         // setList(list);
-        //     }
-        // };
+        };
 
 
 
