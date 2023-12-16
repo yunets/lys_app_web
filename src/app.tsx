@@ -133,6 +133,10 @@ export const request: RequestConfig = {
       } if (ctx.res.code === -1 && ctx.res.msg.includes("The")) {
         history.push(loginPath);
         ctx.res.content = [];
+      } else if (ctx.req.url === '/api/currentUser' && ctx.res.data != undefined) {
+        localStorage.setItem('user-ip', ctx.res.data.ip);
+        localStorage.setItem('user-address', ctx.res.data.address);
+        localStorage.setItem('user-name', ctx.res.data.name);
       } else if (ctx.req.url === '/api/login/account' && ctx.res.jwt != undefined) {
         localStorage.setItem('antd-pro-authority', JSON.stringify(ctx.res.jwt));
       } else if (ctx.req.url === '/api/login/outLogin') {
