@@ -1,6 +1,6 @@
 import { formatDate } from '@/utils/TimeUtils';
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Card, Form, Tag, Button, Input, Avatar } from 'antd';
+import { Card, Form, Tag, Button, Input, Avatar, message } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 
 import styles from './index.less';
@@ -14,7 +14,8 @@ export interface Props {
 
 
 const MyChat5: React.FC<Props> = () => {
-    const [list, setList] = useState<{}[]>([])
+    const [list, setList] = useState<{}[]>([]);
+    const [chatCount, setChatCount] = useState<any>(0);
     const ws = useRef<WebSocket | null>(null);
 
 
@@ -27,7 +28,8 @@ const MyChat5: React.FC<Props> = () => {
             const a = {
                 "ip": localStorage.getItem("user-ip"),
                 "address": localStorage.getItem("user-address"),
-                "msg": "上线了！"
+                "msg": "上线了！",
+                "time": formatDate(new Date())
             };
             ws.current.send(JSON.stringify(a));
 
@@ -61,36 +63,47 @@ const MyChat5: React.FC<Props> = () => {
     const handleSearch = async () => {
         form.validateFields()
             .then((values) => {
-
-                const a = {
-                    "ip": localStorage.getItem("user-ip"),
-                    "address": localStorage.getItem("user-address"),
-                    "msg": values.name,
-                    "time": formatDate(new Date())
-                };
-                ws.current.send(JSON.stringify(a));
-
-
+                if (chatCount > 5 && localStorage.getItem("user-name").includes("未登录")) {
+                    message.info("关注公共号：恒生科技小姐姐！,回复666即可每日不限次数！");
+                } else {
+                    const a = {
+                        "ip": localStorage.getItem("user-ip"),
+                        "address": localStorage.getItem("user-address"),
+                        "msg": values.name,
+                        "time": formatDate(new Date())
+                    };
+                    ws.current.send(JSON.stringify(a));
+                    setChatCount(chatCount + 1);
+                }
 
             })
             .catch((errorInfo) => {
                 console.log(errorInfo);
             });
     };
+    const handleClear = async () => {
+        setList([]);
+    };
     return (
         <PageContainer>
-
-
-
             <GridContent>
-                <h3><Tag color="magenta">chatgpt在线交流</Tag></h3>
-                <div className={styles.myChatLeft}>
+                <div className={styles.myChatDiv}>
                     {list.map((item: any) => {
-                        return <Tag color="#108ee9" key={item.ip} >
+
+                        if (localStorage.getItem("user-ip") === item.ip) {
+                            return <div key={item.ip} className={styles.myChatRight} >
+                                <Avatar src={<img src={gpt} alt="avatar" />} />
+                                {item.address} {item.time}--防止失联，关注微信公共号：恒生科技小姐姐
+                                <br />
+                                {JSON.stringify(item)}</div>;
+                        }
+
+
+                        return <div key={item.ip} className={styles.myChatLeft} >
                             <Avatar src={<img src={gpt} alt="avatar" />} />
-                            {item.address} {item.time}
+                            {item.address} {item.time}--防止失联，关注微信公共号：恒生科技小姐姐
                             <br />
-                            {JSON.stringify(item)}</Tag>;
+                            {JSON.stringify(item)}</div>;
                     })}
                 </div>
                 <Form form={form} className={styles.myChatForm}>
@@ -98,13 +111,15 @@ const MyChat5: React.FC<Props> = () => {
                     <Form.Item
                         name="name"
                         label="名称"
-                        rules={[{ message: '请输入内容', whitespace: true }]}
+                        rules={[{ required: true, message: '请输入聊天内容，关注微信公共号：恒生科技小姐姐！', whitespace: true }]}
                     >
                         <Input.TextArea />
                     </Form.Item>
                     <Form.Item> <Button type="primary" onClick={() => { handleSearch(); }}>
                         群发消息
-                    </Button></Form.Item>
+                    </Button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <Button type="primary" onClick={() => { handleClear(); }}>
+                            清空聊天记录
+                        </Button></Form.Item>
                 </Form>
 
             </GridContent>
