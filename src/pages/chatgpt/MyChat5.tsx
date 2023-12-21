@@ -93,17 +93,17 @@ const MyChat5: React.FC<Props> = () => {
                         if (localStorage.getItem("user-ip") === item.ip) {
                             return <div key={item.ip} className={styles.myChatRight} >
                                 <Avatar src={<img src={gpt} alt="avatar" />} />
-                                {item.address} {item.time}--防止失联，关注微信公共号：恒生科技小姐姐
+                                {item.address} {item.time}--每日扫码领红包，月初最大
                                 <br />
-                                {JSON.stringify(item)}</div>;
+                                {item.msg}</div>;
                         }
 
 
                         return <div key={item.ip} className={styles.myChatLeft} >
                             <Avatar src={<img src={gpt} alt="avatar" />} />
-                            {item.address} {item.time}--防止失联，关注微信公共号：恒生科技小姐姐
+                            {item.address} {item.time}--每日扫码领红包，月初最大
                             <br />
-                            {JSON.stringify(item)}</div>;
+                            {item.msg}</div>;
                     })}
                 </div>
                 <Form form={form} className={styles.myChatForm}>

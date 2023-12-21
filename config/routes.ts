@@ -21,7 +21,8 @@
   },
   {
     path: '/web/chatgpt5',
-    name: '公共聊天室',
+    name: 'chatpgt用户聊天室',
+    hideInMenu: true,
     icon: 'smile',
     component: './chatgpt/MyChat5.tsx',
   },
