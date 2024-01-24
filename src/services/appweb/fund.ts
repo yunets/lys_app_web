@@ -48,3 +48,11 @@ export async function getFundInfo(fundCode: any) {
         data: {},
     });
 }
+
+
+export async function THistoryList(params?: any) {
+    return request('/api/th/list', {
+        method: 'POST',
+        data: params,
+    });
+}

@@ -1,4 +1,4 @@
-import { FundDictionaryList, FundInfoDelete, FundInfoList, FundInfoSave, FundInfoUpdate, getFundInfo, } from '@/services/appweb/fund';
+import { FundDictionaryList, FundInfoDelete, FundInfoList, FundInfoSave, FundInfoUpdate, THistoryList, getFundInfo, } from '@/services/appweb/fund';
 import type { Effect, Reducer } from 'umi';
 
 export type URLItem = {
@@ -28,6 +28,7 @@ export type FundModelType = {
         fetchFundInfoUpdate: Effect;
         fetchFundDictionaryList: Effect;
         fetchGetFundInfo: Effect;
+        fetchTHistoryList: Effect;
 
     };
     reducers: {
@@ -79,6 +80,11 @@ const UserModel1: FundModelType = {
             const fundCode = payload.fundCode;
             const response = yield call(getFundInfo, payload.fundCode, {});
             //const response = yield call(getFundInfo(payload.fundCode), {});
+
+            callback(response);
+        },
+        *fetchTHistoryList({ payload, callback }, { call, put }) {
+            const response = yield call(THistoryList, { ...payload });
 
             callback(response);
         },

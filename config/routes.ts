@@ -131,6 +131,12 @@
         component: './fund/MyFund.tsx',
       },
       {
+        path: '/web/fund/TransactionHistory',
+        name: '我的网格',
+        icon: 'smile',
+        component: './fund/TransactionHistory.tsx',
+      },
+      {
         path: '/web/fund/FundDictionaryList',
         name: '基金列表',
         icon: 'smile',
