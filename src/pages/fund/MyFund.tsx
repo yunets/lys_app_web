@@ -125,7 +125,7 @@ const MyFund: React.FC<Props> = (props) => {
                 debugger
                 return (
                     <div>
-                        5000/({(record.currentPrice).toFixed(4)})={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
+                        5000/({(record.currentPrice).toFixed(4)})={(5000 / (record.currentPrice)).toFixed(4)}<br />
                         加仓：  5000/({(record.currentPrice).toFixed(4)}*1.02)={(5000 / (record.currentPrice * 1.02)).toFixed(4)}<br />
                         减仓：  5000/({(record.currentPrice).toFixed(4)}*0.98)={(5000 / (record.currentPrice * 0.98)).toFixed(4)}<br />
 

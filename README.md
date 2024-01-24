@@ -23,7 +23,7 @@ This project is initialized with [Ant Design Pro](https://pro.ant.design). Follo
 Install `node_modules`:
 
 ```bash
-npm install
+yarn start:dev
 ```
 
 or
