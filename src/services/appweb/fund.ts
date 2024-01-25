@@ -56,3 +56,17 @@ export async function THistoryList(params?: any) {
         data: params,
     });
 }
+
+export async function THistorySave(params?: any) {
+    return request('/api/th/save', {
+        method: 'POST',
+        data: params,
+    });
+}
+
+export async function THistoryUpdate(params?: any) {
+    return request('/api/th/updateSelect', {
+        method: 'POST',
+        data: params,
+    });
+}

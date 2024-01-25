@@ -1,5 +1,5 @@
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Input, Card, Select, Table, Form, Space, message } from 'antd';
+import { Button, Input, Card, Select, Table, Form, Space, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 
@@ -26,9 +26,11 @@ const TransactionHistory: React.FC<Props> = (props) => {
         dispatch,
     } = props;
     const [form] = Form.useForm();
+    const [form2] = Form.useForm();
     const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 10, "name": "", "fundCode": "002987" });
     const [totalElements, setTotalElements] = useState<any>(0);
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpenFund, setIsModalOpenFund] = useState({});
 
     const fetchFundadd = (record: any) => {
         dispatch({
@@ -148,15 +150,21 @@ const TransactionHistory: React.FC<Props> = (props) => {
             });
     };
 
-
+    const selectChange = (fundCode: string) => {
+        debugger;
+        form2.setFieldValue("fundCode", fundCode);
+        setSeachContent({
+            "pageNumber": seachContent.page, "pageSize": seachContent.size, "fundCode": fundCode
+        });
+    }
 
     const renderWebCategoryOptions = () => {
         const options: any = []
         fundTypeList.forEach((item: any) => {
-            options.push(<Option key={uniqueId()} value={item.fundCode}>{item.fundCode} -{item.name}</Option>)
+            options.push(<Option key={uniqueId()} lable={item.name} value={item.fundCode}>{item.fundCode}-{item.name}</Option>)
         })
 
-        return <Select style={{ width: 300 }}  >
+        return <Select style={{ width: 300 }} onChange={(fundCode) => selectChange(fundCode)} >
             <Option key="123" value="">全部</Option>
             {options}
         </Select>
@@ -169,11 +177,95 @@ const TransactionHistory: React.FC<Props> = (props) => {
 
 
     }
+    const handleOkAdd = async () => {
+        form2.validateFields()
+            .then((values) => {
+                dispatch({
+                    type: 'fund/fetchTHistorySave',
+                    payload: {
+                        ...values,
+                    },
+                    callback: (response: any) => {
+
+                        message.success('操作成功！')
+                        fetchTHistoryList();
+                    }
+                });
+                form2.resetFields();
+                form2.setFieldValue("fundCode", seachContent.fundCode);
+                setIsModalOpen(false);
+            })
+            .catch((errorInfo) => {
+                console.log(errorInfo);
+            });
+    }
+
+    const handleOkUpdate = async () => {
+
+    }
 
 
+    const handleOk = async () => {
+        if (true) {
+            handleOkAdd();
+        } else {
+            handleOkUpdate();
+        }
+    };
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     return (
         <PageContainer>
+            <Modal title="新增交易" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <Form form={form2}>
 
+                    <Form.Item
+                        name="fundCode"
+                        label="基金代码"
+                        rules={[{ required: true, message: '请输入正确的基金代码!', whitespace: true }]}
+                    >
+                        <Input value={seachContent.fundCode} disabled />
+                    </Form.Item>
+                    {/* <Form.Item
+                        name="name"
+                        label="基金名称"
+                        rules={[{ required: true, message: '请输入正确的基金代码才能回显!', whitespace: true }]}
+                    >
+                        <Input value={seachContent.name} disabled />
+                    </Form.Item> */}
+                    <Form.Item
+                        name="buyPrice"
+                        label="买入价格"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效数量！',
+                            },
+                        ]}
+                    >
+                        <Input type='number' />
+                    </Form.Item>
+                    <Form.Item
+                        name="buyCount"
+                        label="买入数量"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效成本价！',
+                            },
+                        ]}
+                    >
+                        <Input type='number' />
+                    </Form.Item>
+
+
+
+                </Form>
+            </Modal>
 
             <GridContent>
                 <Card bordered={false}>
@@ -193,9 +285,14 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         >
                             <Input />
                         </Form.Item>
-                        <Form.Item> <Button type="primary" onClick={() => { handleSearch(); }}>
-                            查询
-                        </Button></Form.Item>
+                        <Form.Item>
+                            <Button type="primary" onClick={() => { handleSearch(); }}>
+                                查询
+                            </Button>
+                            <Button type="primary" onClick={showModal}>
+                                新增
+                            </Button>
+                        </Form.Item>
                     </Form>
 
                     <Table dataSource={userList} columns={columns} pagination={false} />
