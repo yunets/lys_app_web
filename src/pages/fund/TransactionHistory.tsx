@@ -51,14 +51,44 @@ const TransactionHistory: React.FC<Props> = (props) => {
             key: 'fundCode',
         },
         {
-            title: 'name',
-            dataIndex: 'name',
-            key: 'name',
+            title: '买入时间',
+            dataIndex: 'buyTime',
+            key: 'buyTime',
         },
         {
-            title: 'fundType',
-            dataIndex: 'fundType',
-            key: 'fundType',
+            title: '买入价格',
+            dataIndex: 'buyPrice',
+            key: 'buyPrice',
+        },
+        {
+            title: '买入数量',
+            dataIndex: 'buyCount',
+            key: 'buyCount',
+        },
+        {
+            title: 'sellTime',
+            dataIndex: 'sellTime',
+            key: 'sellTime',
+        },
+        {
+            title: 'sellPrice',
+            dataIndex: 'sellPrice',
+            key: 'sellPrice',
+        },
+        {
+            title: 'sellCount',
+            dataIndex: 'sellCount',
+            key: 'sellCount',
+        },
+        {
+            title: 'profitMoney',
+            dataIndex: 'profitMoney',
+            key: 'profitMoney',
+        },
+        {
+            title: 'profitPercent',
+            dataIndex: 'profitPercent',
+            key: 'profitPercent',
         },
         {
             title: '操作',
@@ -151,7 +181,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         <Form.Item
                             name="fundCode"
                             label="持有基金"
-                            rules={[{ message: '分类!', whitespace: true }]}
+                            rules={[{ required: true, message: '请输入正确的基金代码!', whitespace: true }]}
                         >
                             {renderWebCategoryOptions()}
 
