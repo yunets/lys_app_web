@@ -30,17 +30,14 @@ const TransactionHistory: React.FC<Props> = (props) => {
     const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 10, "name": "", "fundCode": "002987" });
     const [totalElements, setTotalElements] = useState<any>(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalSellOpen, setIsModalSellOpen] = useState(false);
+
+
     const [isModalOpenFund, setIsModalOpenFund] = useState({});
 
     const fetchFundadd = (record: any) => {
-        dispatch({
-            type: 'fund/fetchFundInfoSave',
-            payload: { ...record, quantity: 1, pastPrice: 1, pastTotalValue: 1 },
-            callback: (response: any) => {
-                message.success('操作成功！')
-
-            }
-        });
+        setIsModalSellOpen(true);
+        setIsModalOpenFund(record);
     }
     const detail = (record: any) => {
         const url = `http://fundf10.eastmoney.com/ccmx_${record.fundCode}.html`
@@ -98,7 +95,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
             render: (_: any, record: any) => (
                 <Space size="middle">
 
-                    <a onClick={() => fetchFundadd(record)}>买入持有</a>
+                    <a onClick={() => fetchFundadd(record)}>清仓获利</a>
                     <a onClick={() => detail(record)}>持仓详情</a>
                 </Space >
             ),
@@ -206,7 +203,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
 
 
     const handleOk = async () => {
-        if (true) {
+        if (isModalOpenFund) {
             handleOkAdd();
         } else {
             handleOkUpdate();
@@ -220,7 +217,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
     };
     return (
         <PageContainer>
-            <Modal title="新增交易" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="买入交易" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Form form={form2}>
 
                     <Form.Item
@@ -237,6 +234,79 @@ const TransactionHistory: React.FC<Props> = (props) => {
                     >
                         <Input value={seachContent.name} disabled />
                     </Form.Item> */}
+                    <Form.Item
+                        name="buyTime"
+                        label="买入日期"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效成本价！',
+                            },
+                        ]}
+                    >
+                        <Input type='date' />
+                    </Form.Item>
+                    <Form.Item
+                        name="buyPrice"
+                        label="买入价格"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效数量！',
+                            },
+                        ]}
+                    >
+                        <Input type='number' />
+                    </Form.Item>
+                    <Form.Item
+                        name="buyCount"
+                        label="买入数量"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效成本价！',
+                            },
+                        ]}
+                    >
+                        <Input type='number' />
+                    </Form.Item>
+
+
+
+                </Form>
+            </Modal>
+
+            <Modal title="卖出交易" open={isModalSellOpen} onOk={handleOk} onCancel={() => {
+                setIsModalSellOpen(false);
+            }}>
+                <Form form={form2}>
+
+                    <Form.Item
+                        name="fundCode"
+                        label="基金代码"
+                        rules={[{ required: true, message: '请输入正确的基金代码!', whitespace: true }]}
+                    >
+                        <Input value={seachContent.fundCode} disabled />
+                    </Form.Item>
+                    {/* <Form.Item
+                        name="name"
+                        label="基金名称"
+                        rules={[{ required: true, message: '请输入正确的基金代码才能回显!', whitespace: true }]}
+                    >
+                        <Input value={seachContent.name} disabled />
+                    </Form.Item> */}
+                    <Form.Item
+                        name="buyTime"
+                        label="买入日期"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效成本价！',
+                            },
+                        ]}
+                    >
+                        <Input type='date' />
+                    </Form.Item>
                     <Form.Item
                         name="buyPrice"
                         label="买入价格"
