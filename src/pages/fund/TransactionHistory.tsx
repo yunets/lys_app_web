@@ -27,6 +27,8 @@ const TransactionHistory: React.FC<Props> = (props) => {
     } = props;
     const [form] = Form.useForm();
     const [form2] = Form.useForm();
+    const [form3] = Form.useForm();
+
     const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 10, "name": "", "fundCode": "002987" });
     const [totalElements, setTotalElements] = useState<any>(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +38,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
     const [isModalOpenFund, setIsModalOpenFund] = useState({});
 
     const fetchFundadd = (record: any) => {
+        form3.setFieldValue("fundCode", seachContent.fundCode);
         setIsModalSellOpen(true);
         setIsModalOpenFund(record);
     }
@@ -198,12 +201,14 @@ const TransactionHistory: React.FC<Props> = (props) => {
     }
 
     const handleOkUpdate = async () => {
-
+        setIsModalOpenFund({});
     }
 
 
     const handleOk = async () => {
-        if (isModalOpenFund) {
+        console.log(isModalOpenFund);
+        debugger
+        if (isModalOpenFund.id === undefined) {
             handleOkAdd();
         } else {
             handleOkUpdate();
@@ -214,6 +219,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
     };
     const handleCancel = () => {
         setIsModalOpen(false);
+        setIsModalOpenFund({});
     };
     return (
         <PageContainer>
@@ -279,7 +285,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
             <Modal title="卖出交易" open={isModalSellOpen} onOk={handleOk} onCancel={() => {
                 setIsModalSellOpen(false);
             }}>
-                <Form form={form2}>
+                <Form form={form3}>
 
                     <Form.Item
                         name="fundCode"
