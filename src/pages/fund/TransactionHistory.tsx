@@ -87,7 +87,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
     }
     const columns = [
         {
-            title: 'fundCode',
+            title: '基金代码',
             dataIndex: 'fundCode',
             key: 'fundCode',
         },
@@ -107,27 +107,27 @@ const TransactionHistory: React.FC<Props> = (props) => {
             key: 'buyCount',
         },
         {
-            title: 'sellTime',
+            title: '卖出时间',
             dataIndex: 'sellTime',
             key: 'sellTime',
         },
         {
-            title: 'sellPrice',
+            title: '卖出价格',
             dataIndex: 'sellPrice',
             key: 'sellPrice',
         },
         {
-            title: 'sellCount',
+            title: '卖出数量',
             dataIndex: 'sellCount',
             key: 'sellCount',
         },
         {
-            title: 'profitMoney',
+            title: '盈利金额',
             dataIndex: 'profitMoney',
             key: 'profitMoney',
         },
         {
-            title: 'profitPercent',
+            title: '收益率',
             dataIndex: 'profitPercent',
             key: 'profitPercent',
         },
