@@ -35,10 +35,13 @@ const TransactionHistory: React.FC<Props> = (props) => {
     const [isModalSellOpen, setIsModalSellOpen] = useState(false);
 
 
-    const [isModalOpenFund, setIsModalOpenFund] = useState({});
+    const [isModalOpenFund, setIsModalOpenFund] = useState<any>({});
 
     const fetchFundadd = (record: any) => {
-        form3.setFieldValue("fundCode", seachContent.fundCode);
+        form3.setFieldValue("fundCode", record.fundCode);
+        form3.setFieldValue("buyTime", record.buyTime);
+        form3.setFieldValue("buyPrice", record.buyPrice);
+        form3.setFieldValue("buyPrice", record.buyCount);
         setIsModalSellOpen(true);
         setIsModalOpenFund(record);
     }
@@ -201,14 +204,38 @@ const TransactionHistory: React.FC<Props> = (props) => {
     }
 
     const handleOkUpdate = async () => {
-        setIsModalOpenFund({});
+        form3.validateFields()
+            .then((values) => {
+
+                const profitMoney = values.sellPrice * values.sellCount - values.buyPrice * values.buyCount;
+                const profitPercent = profitMoney / (values.buyPrice * values.buyCount);
+
+
+                dispatch({
+                    type: 'fund/fetchTHistoryUpdate',
+                    payload: {
+                        ...values, uid: isModalOpenFund.uid, profitMoney, profitPercent
+                    },
+                    callback: (response: any) => {
+
+                        message.success('操作成功！')
+                        fetchTHistoryList();
+                    }
+                });
+                form3.resetFields();
+
+                setIsModalOpen(false);
+            })
+            .catch((errorInfo) => {
+                console.log(errorInfo);
+            });
     }
 
 
     const handleOk = async () => {
         console.log(isModalOpenFund);
         debugger
-        if (isModalOpenFund.id === undefined) {
+        if (isModalOpenFund.uid === "1") {
             handleOkAdd();
         } else {
             handleOkUpdate();
@@ -311,7 +338,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                             },
                         ]}
                     >
-                        <Input type='date' />
+                        <Input />
                     </Form.Item>
                     <Form.Item
                         name="buyPrice"
@@ -338,6 +365,42 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         <Input type='number' />
                     </Form.Item>
 
+                    <Form.Item
+                        name="sellTime"
+                        label="卖出日期"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效成本价！',
+                            },
+                        ]}
+                    >
+                        <Input type='date' />
+                    </Form.Item>
+                    <Form.Item
+                        name="sellPrice"
+                        label="卖出价格"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效数量！',
+                            },
+                        ]}
+                    >
+                        <Input type='number' />
+                    </Form.Item>
+                    <Form.Item
+                        name="sellCount"
+                        label="卖出数量"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入有效成本价！',
+                            },
+                        ]}
+                    >
+                        <Input type='number' />
+                    </Form.Item>
 
 
                 </Form>
