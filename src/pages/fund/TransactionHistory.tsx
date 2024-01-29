@@ -41,7 +41,12 @@ const TransactionHistory: React.FC<Props> = (props) => {
         form3.setFieldValue("fundCode", record.fundCode);
         form3.setFieldValue("buyTime", record.buyTime);
         form3.setFieldValue("buyPrice", record.buyPrice);
-        form3.setFieldValue("buyPrice", record.buyCount);
+        form3.setFieldValue("buyCount", record.buyCount);
+
+        form3.setFieldValue("sellTime", record.sellTime);
+        form3.setFieldValue("sellPrice", record.sellPrice);
+        form3.setFieldValue("sellCount", record.sellCount);
+
         setIsModalSellOpen(true);
         setIsModalOpenFund(record);
     }
@@ -224,7 +229,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                 });
                 form3.resetFields();
 
-                setIsModalOpen(false);
+                setIsModalSellOpen(false);
             })
             .catch((errorInfo) => {
                 console.log(errorInfo);
