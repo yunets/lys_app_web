@@ -43,8 +43,13 @@ const TransactionHistory: React.FC<Props> = (props) => {
         form3.setFieldValue("buyTime", record.buyTime);
         form3.setFieldValue("buyPrice", record.buyPrice);
         form3.setFieldValue("buyCount", record.buyCount);
+        if (record.sellTime === null) {
+            form3.setFieldValue("sellTime", new Date().toISOString().slice(0, 10));
+        } else {
 
-        form3.setFieldValue("sellTime", record.sellTime);
+            form3.setFieldValue("sellTime", record.sellTime);
+        }
+
         form3.setFieldValue("sellPrice", record.sellPrice);
         form3.setFieldValue("sellCount", record.sellCount);
 
@@ -248,6 +253,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
         }
     };
     const showModal = () => {
+        form2.setFieldValue("buyTime", new Date().toISOString().slice(0, 10));
         setIsModalOpen(true);
     };
     const handleCancel = () => {
