@@ -223,7 +223,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         ...values, uid: isModalOpenFund.uid, profitMoney, profitPercent
                     },
                     callback: (response: any) => {
-
+                        setIsModalOpenFund({});
                         message.success('操作成功！')
                         fetchTHistoryList();
                     }
@@ -241,7 +241,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
     const handleOk = async () => {
         console.log(isModalOpenFund);
         debugger
-        if (isModalOpenFund.uid === "1") {
+        if (isModalOpenFund.uid === undefined) {
             handleOkAdd();
         } else {
             handleOkUpdate();
@@ -253,6 +253,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
     const handleCancel = () => {
         setIsModalOpen(false);
         setIsModalOpenFund({});
+        setIsModalSellOpen(false);
     };
     return (
         <PageContainer>
@@ -315,9 +316,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                 </Form>
             </Modal>
 
-            <Modal title="卖出交易" open={isModalSellOpen} onOk={handleOk} onCancel={() => {
-                setIsModalSellOpen(false);
-            }}>
+            <Modal title="卖出交易" open={isModalSellOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Form form={form3}>
 
                     <Form.Item
@@ -441,8 +440,8 @@ const TransactionHistory: React.FC<Props> = (props) => {
                     </Form>
 
                     <Table dataSource={userList} columns={columns} pagination={false} rowClassName={(record, index) => {
-                        if (record.profitPercent > 0) {
-                            return styles.red; // 最高的reply_count值设置为黄色  
+                        if (record.profitPercent < 0) {
+                            return styles.green; // 最高的reply_count值设置为黄色  
                         } else if (record.profitPercent > 0) {
                             return styles.red; // 最小的reply_count值设置为绿色  
                         } else {
