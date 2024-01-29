@@ -8,6 +8,7 @@ import { connect, useRequest } from 'umi';
 
 import Pagination from 'antd/es/pagination';
 import { uniqueId } from 'lodash';
+import styles from './index.less';
 
 
 
@@ -439,7 +440,15 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         </Form.Item>
                     </Form>
 
-                    <Table dataSource={userList} columns={columns} pagination={false} />
+                    <Table dataSource={userList} columns={columns} pagination={false} rowClassName={(record, index) => {
+                        if (record.profitPercent > 0) {
+                            return styles.red; // 最高的reply_count值设置为黄色  
+                        } else if (record.profitPercent > 0) {
+                            return styles.red; // 最小的reply_count值设置为绿色  
+                        } else {
+                            return styles.red; // 其他情况不设置颜色  
+                        }
+                    }} />
                     <Pagination defaultCurrent={1} total={totalElements} onChange={(page: number, pageSize: number) => { console.log(page + "------" + pageSize); updateUserList(page, pageSize); }} />
 
                 </Card>
