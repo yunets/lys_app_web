@@ -70,3 +70,10 @@ export async function THistoryUpdate(params?: any) {
         data: params,
     });
 }
+
+export async function THistoryDelete(params?: any) {
+    return request('/api/th/delete', {
+        method: 'POST',
+        data: params,
+    });
+}

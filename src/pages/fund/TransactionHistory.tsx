@@ -29,7 +29,8 @@ const TransactionHistory: React.FC<Props> = (props) => {
     const [form] = Form.useForm();
     const [form2] = Form.useForm();
     const [form3] = Form.useForm();
-
+    const [fundTypeList, setFundTypeList] = useState<any>([])
+    const [userList, setUserList] = useState<any>([])
     const [seachContent, setSeachContent] = useState<any>({ "pageNumber": 0, "pageSize": 10, "name": "", "fundCode": "002987" });
     const [totalElements, setTotalElements] = useState<any>(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,6 +60,30 @@ const TransactionHistory: React.FC<Props> = (props) => {
     const detail = (record: any) => {
         const url = `http://fundf10.eastmoney.com/ccmx_${record.fundCode}.html`
         window.open(url, '_blank');
+    }
+    const fetchTHistoryList = () => {
+        dispatch({
+            type: 'fund/fetchTHistoryList',
+            payload: { ...seachContent },
+            callback: (response: any) => {
+                setUserList(response.content);
+                setTotalElements(response.content.totalElements);
+
+            }
+        });
+    }
+    const deleteTH = (record: any) => {
+        dispatch({
+            type: 'fund/fetchTHistoryDelete',
+            payload: {
+                ...record,
+            },
+            callback: (response: any) => {
+
+                message.success('操作成功！')
+                fetchTHistoryList();
+            }
+        });
     }
     const columns = [
         {
@@ -114,13 +139,13 @@ const TransactionHistory: React.FC<Props> = (props) => {
 
                     <a onClick={() => fetchFundadd(record)}>清仓获利</a>
                     <a onClick={() => detail(record)}>持仓详情</a>
+                    <a onClick={() => deleteTH(record)}>删除</a>
                 </Space >
             ),
         },
 
     ];
-    const [fundTypeList, setFundTypeList] = useState<any>([])
-    const [userList, setUserList] = useState<any>([])
+
     useRequest(() => ({
         url: '/api/FundInfo/list',
         method: 'post',
@@ -133,17 +158,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
         },
     });
 
-    const fetchTHistoryList = () => {
-        dispatch({
-            type: 'fund/fetchTHistoryList',
-            payload: { ...seachContent },
-            callback: (response: any) => {
-                setUserList(response.content);
-                setTotalElements(response.content.totalElements);
 
-            }
-        });
-    }
 
     useEffect(() => {
         fetchTHistoryList();
