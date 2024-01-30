@@ -85,7 +85,7 @@
       },
       {
         path: '/web/fund/TransactionHistory',
-        name: '我的网格',
+        name: '我的网格交易策略',
         icon: 'smile',
         component: './fund/TransactionHistory.tsx',
       },

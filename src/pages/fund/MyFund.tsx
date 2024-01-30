@@ -122,7 +122,7 @@ const MyFund: React.FC<Props> = (props) => {
                 if (record.currentPrice == null) {
                     record.currentPrice = 0.00001;
                 }
-                debugger
+
                 return (
                     <div>
                         5000/({(record.currentPrice).toFixed(4)})={(5000 / (record.currentPrice)).toFixed(4)}<br />

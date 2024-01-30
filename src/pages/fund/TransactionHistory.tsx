@@ -67,7 +67,9 @@ const TransactionHistory: React.FC<Props> = (props) => {
             type: 'fund/fetchTHistoryList',
             payload: { ...seachContent },
             callback: (response: any) => {
-                setUserList(response.content);
+                const list = response.content.sort((a: string, b: string) => new Date(b.buyTime) - new Date(a.buyTime));
+
+                setUserList(list);
                 setTotalElements(response.content.totalElements);
 
             }
@@ -128,9 +130,19 @@ const TransactionHistory: React.FC<Props> = (props) => {
             key: 'profitMoney',
         },
         {
+            title: '当前价格',
+            dataIndex: 'currentPrice',
+            key: 'currentPrice',
+        },
+        {
             title: '收益率',
             dataIndex: 'profitPercent',
             key: 'profitPercent',
+            render: (_: any, record: any) => (
+                <div>
+                    {(record.profitPercent * 100).toFixed(4)}%
+                </div >
+            ),
         },
         {
             title: '操作',
@@ -138,7 +150,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
             render: (_: any, record: any) => (
                 <Space size="middle">
 
-                    <a onClick={() => fetchFundadd(record)}>清仓获利</a>
+                    <a onClick={() => fetchFundadd(record)}>{record.profitMoney >= 0 ? "清仓获利" : "割肉离场"}</a>
                     <a onClick={() => detail(record)}>持仓详情</a>
                     <a onClick={() => deleteTH(record)}>删除</a>
                 </Space >
@@ -444,30 +456,32 @@ const TransactionHistory: React.FC<Props> = (props) => {
 
                         </Form.Item>
                         <Form.Item
-                            name="name"
-                            label="名称"
-                            rules={[{ message: '请输入名称', whitespace: true }]}
+
+                            label="使用技巧："
+                            rules={[{ message: '', whitespace: true }]}
                         >
-                            <Input />
+                            基金C类份额大于七天的免收手续费，背景为绿色的部分可以进行交易，助力每一笔交易都盈利，关注公众号，盈利后麻烦打赏下站长可以不
                         </Form.Item>
                         <Form.Item>
                             <Button type="primary" onClick={() => { handleSearch(); }}>
                                 查询
                             </Button>
                             <Button type="primary" onClick={showModal}>
-                                新增
+                                新增交易记录
                             </Button>
                         </Form.Item>
                     </Form>
 
                     <Table dataSource={userList} columns={columns} pagination={false} rowKey={record => record.uid} rowClassName={(record, index) => {
                         let days: number = 0;
-                        if (record.sellTime !== null) {
-                            days = getDaysDifference(record.buyTime, record.sellTime);
-                        }
-
-                        if (days > 8 && record.profitMoney === 0) { return styles.sellRed }
-                        else if (record.profitPercent < 0) {
+                        if (record.sellTime === null) {
+                            record.profitMoney = (record.currentPrice - record.buyPrice) * record.buyCount;
+                            record.profitPercent = record.profitMoney / (record.buyPrice * record.buyCount);
+                            const sellTime = new Date().toISOString().slice(0, 10)
+                            days = getDaysDifference(record.buyTime, sellTime);
+                            if (days > 8 && record.currentPrice > record.buyPrice) { return styles.sellRed }
+                            else if (days > 8 && record.currentPrice < record.buyPrice) { return styles.sellGreen }
+                        } else if (record.profitPercent < 0) {
                             return styles.green; // 最高的reply_count值设置为黄色  
                         } else if (record.profitPercent > 0) {
                             return styles.red; // 最小的reply_count值设置为绿色  
