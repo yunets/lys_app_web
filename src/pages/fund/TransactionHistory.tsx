@@ -9,6 +9,7 @@ import { connect, useRequest } from 'umi';
 import Pagination from 'antd/es/pagination';
 import { uniqueId } from 'lodash';
 import styles from './index.less';
+import { getDaysDifference } from '@/utils/TimeUtils';
 
 
 
@@ -180,7 +181,6 @@ const TransactionHistory: React.FC<Props> = (props) => {
     };
 
     const selectChange = (fundCode: string) => {
-        debugger;
         form2.setFieldValue("fundCode", fundCode);
         setSeachContent({
             "pageNumber": seachContent.page, "pageSize": seachContent.size, "fundCode": fundCode
@@ -260,7 +260,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
 
     const handleOk = async () => {
         console.log(isModalOpenFund);
-        debugger
+
         if (isModalOpenFund.uid === undefined) {
             handleOkAdd();
         } else {
@@ -360,11 +360,11 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         rules={[
                             {
                                 required: true,
-                                message: '请输入有效成本价！',
+                                message: '请输入有效买入日期！',
                             },
                         ]}
                     >
-                        <Input />
+                        <Input type='date' />
                     </Form.Item>
                     <Form.Item
                         name="buyPrice"
@@ -372,7 +372,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         rules={[
                             {
                                 required: true,
-                                message: '请输入有效数量！',
+                                message: '请输入有效买入价格！',
                             },
                         ]}
                     >
@@ -384,7 +384,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         rules={[
                             {
                                 required: true,
-                                message: '请输入有效成本价！',
+                                message: '请输入有效买入数量！',
                             },
                         ]}
                     >
@@ -397,7 +397,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         rules={[
                             {
                                 required: true,
-                                message: '请输入有效成本价！',
+                                message: '请输入有效卖出日期！',
                             },
                         ]}
                     >
@@ -409,7 +409,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         rules={[
                             {
                                 required: true,
-                                message: '请输入有效数量！',
+                                message: '请输入有效卖出价格！',
                             },
                         ]}
                     >
@@ -421,7 +421,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         rules={[
                             {
                                 required: true,
-                                message: '请输入有效成本价！',
+                                message: '请输入有效卖出数量！',
                             },
                         ]}
                     >
@@ -461,7 +461,13 @@ const TransactionHistory: React.FC<Props> = (props) => {
                     </Form>
 
                     <Table dataSource={userList} columns={columns} pagination={false} rowClassName={(record, index) => {
-                        if (record.profitPercent < 0) {
+                        let days: number = 0;
+                        if (record.sellTime !== null) {
+                            days = getDaysDifference(record.buyTime, record.sellTime);
+                        }
+
+                        if (days > 8 && record.profitMoney === 0) { return styles.sellRed }
+                        else if (record.profitPercent < 0) {
                             return styles.green; // 最高的reply_count值设置为黄色  
                         } else if (record.profitPercent > 0) {
                             return styles.red; // 最小的reply_count值设置为绿色  

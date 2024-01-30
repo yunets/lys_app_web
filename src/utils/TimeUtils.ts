@@ -19,7 +19,7 @@ export function getDaysDifference(date1: string, date2: string) {
 
     // 确保日期字符串格式正确，例如 "YYYY-MM-DD"  
     if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
-        return false;
+        return 0;
     }
 
     // 计算两个日期之间的差异（以毫秒为单位）  
