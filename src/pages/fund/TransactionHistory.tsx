@@ -194,7 +194,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
         })
 
         return <Select style={{ width: 300 }} onChange={(fundCode) => selectChange(fundCode)} >
-            <Option key="123" value="">全部</Option>
+            {/* <Option key="123" value="">全部</Option> */}
             {options}
         </Select>
     }
@@ -460,7 +460,7 @@ const TransactionHistory: React.FC<Props> = (props) => {
                         </Form.Item>
                     </Form>
 
-                    <Table dataSource={userList} columns={columns} pagination={false} rowClassName={(record, index) => {
+                    <Table dataSource={userList} columns={columns} pagination={false} rowKey={record => record.uid} rowClassName={(record, index) => {
                         let days: number = 0;
                         if (record.sellTime !== null) {
                             days = getDaysDifference(record.buyTime, record.sellTime);
