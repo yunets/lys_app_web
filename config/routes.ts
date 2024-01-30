@@ -69,13 +69,41 @@
     icon: 'smile',
     component: './navigation/TodayFrequencyStatistics.tsx',
   },
-
   {
-    path: '/web/sponsorme',
-    name: '友情赞助',
-    icon: 'smile',
-    component: './user/sponsor/sponsor.tsx',
+    path: '/web/fund',
+    name: '财富',
+    hideInMenu: false,
+    icon: 'crown',
+    access: 'canAdmin',
+    key: "fund",
+    routes: [
+      {
+        path: '/web/fund/MyFund',
+        name: '我的基金',
+        icon: 'smile',
+        component: './fund/MyFund.tsx',
+      },
+      {
+        path: '/web/fund/TransactionHistory',
+        name: '我的网格',
+        icon: 'smile',
+        component: './fund/TransactionHistory.tsx',
+      },
+      {
+        path: '/web/fund/FundDictionaryList',
+        name: '基金列表',
+        icon: 'smile',
+        component: './fund/FundDictionaryList.tsx',
+      },
+      {
+        path: '/web/fund/FinanceWebsite',
+        name: '财经金融',
+        icon: 'smile',
+        component: './navigation/FinanceWebsite.tsx',
+      },
+    ],
   },
+
   {
     path: '/web/work',
     name: '工作',
@@ -116,40 +144,7 @@
       },
     ],
   },
-  {
-    path: '/web/fund',
-    name: '财富',
-    hideInMenu: false,
-    icon: 'crown',
-    access: 'canAdmin',
-    key: "fund",
-    routes: [
-      {
-        path: '/web/fund/MyFund',
-        name: '我的基金',
-        icon: 'smile',
-        component: './fund/MyFund.tsx',
-      },
-      {
-        path: '/web/fund/TransactionHistory',
-        name: '我的网格',
-        icon: 'smile',
-        component: './fund/TransactionHistory.tsx',
-      },
-      {
-        path: '/web/fund/FundDictionaryList',
-        name: '基金列表',
-        icon: 'smile',
-        component: './fund/FundDictionaryList.tsx',
-      },
-      {
-        path: '/web/fund/FinanceWebsite',
-        name: '财经金融',
-        icon: 'smile',
-        component: './navigation/FinanceWebsite.tsx',
-      },
-    ],
-  },
+
   {
     path: '/web/play',
     name: '休闲娱乐',
