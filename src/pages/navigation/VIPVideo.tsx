@@ -103,7 +103,7 @@ const VIPVideo: React.FC<Props> = () => {
                     播放
                 </Button>
                 <div><iframe src={vipUrl} allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" width="100%" height="450px" /></div>
-                <SettingCard name="合作" />
+                <SettingCard name="vipPageFooter" />
             </GridContent>
         </PageContainer>
     );

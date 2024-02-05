@@ -63,7 +63,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       width: 800,
       fontSize: 18,
     },
-    footerRender: () => <div><SettingCard name="联系方式" /><Footer /></div>,
+    footerRender: () => <div><SettingCard name="footer" /><Footer /></div>,
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login

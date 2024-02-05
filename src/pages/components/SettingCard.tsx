@@ -1,3 +1,4 @@
+import { Tag } from 'antd';
 import { Fragment, useState } from 'react';
 import React from 'react';
 import { useRequest } from 'umi';
@@ -32,14 +33,15 @@ const SettingCard: React.FC<Props> = (props) => {
 
     return (
         <Fragment>
-            <div>
+            <h3>
+
                 {urlItemList && urlItemList.length > 0 && (
-                    <h5>
+                    <Tag color="magenta">
                         {urlItemList[0] && urlItemList[0].content ? urlItemList[0].content : '暂无内容'}
-                    </h5>
+                    </Tag>
                 )}
 
-            </div>
+            </h3>
         </Fragment >
     );
 };

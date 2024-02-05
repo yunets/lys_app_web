@@ -9,6 +9,7 @@ import wxzsm from '@/assets/img/wxzsm.jpg';
 import wxdyh from '@/assets/img/wxdyh.png';
 import zfbhongbao from '@/assets/img/zfbhongbao.jpeg';
 import Modal from 'antd/lib/modal/Modal';
+import SettingCard from '../components/SettingCard';
 
 
 
@@ -58,7 +59,8 @@ const MyChat: React.FC<Props> = () => {
 
 
             <GridContent>
-                <h3><Tag color="magenta">请加QQ群：915997953、901169719、289881319，或首页微信账号，防止地址更换，错过本站长期提供的公益免费chatgpt服务，个别平台打着充值套餐使用的旗号骗钱，大家小心上当受骗！多关注本站公告！</Tag></h3>
+
+                <SettingCard name="gptPageHeader" />
                 <Tabs tabPosition="top" >
 
                     <Tabs.TabPane tab="关于本站" key={uniqueId()} >
