@@ -2,6 +2,7 @@ import { GridContent, PageContainer } from '@ant-design/pro-layout';
 import { Button, Form, Input, Select } from 'antd';
 import React, { useState } from 'react';
 import { useRequest } from 'umi';
+import SettingCard from '../components/SettingCard';
 
 
 
@@ -102,6 +103,7 @@ const VIPVideo: React.FC<Props> = () => {
                     播放
                 </Button>
                 <div><iframe src={vipUrl} allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" width="100%" height="450px" /></div>
+                <SettingCard name="合作" />
             </GridContent>
         </PageContainer>
     );

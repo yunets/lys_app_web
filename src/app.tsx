@@ -10,6 +10,7 @@ import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import type { RequestConfig } from 'umi';
 import { getAuthority } from './utils/authority';
 import { message } from 'antd';
+import SettingCard from './pages/components/SettingCard';
 // const isDev = process.env.NODE_ENV === 'development';
 const isDev = true;
 const loginPath = '/user/login';
@@ -62,7 +63,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       width: 800,
       fontSize: 18,
     },
-    footerRender: () => <Footer />,
+    footerRender: () => <div><SettingCard name="联系方式" /><Footer /></div>,
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
