@@ -34,9 +34,6 @@ const SettingCard: React.FC<Props> = (props) => {
     return (
         <Fragment>
             <h3>
-                <div dangerouslySetInnerHTML={{
-                    __html: ''
-                }} />
 
 
                 {urlItemList && urlItemList.length > 0 && (
