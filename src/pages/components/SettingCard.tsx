@@ -35,7 +35,7 @@ const SettingCard: React.FC<Props> = (props) => {
         <Fragment>
             <h3>
                 <div dangerouslySetInnerHTML={{
-                    __html: '<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js?id=3HP9G8T8ZTwrnSrm&ck=3HP9G8T8ZTwrnSrm&autoTrack=true"></script>'
+                    __html: ''
                 }} />
 
 
