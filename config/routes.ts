@@ -62,20 +62,14 @@
     icon: 'smile',
     component: './navigation/AIWebsite.tsx',
   },
-  {
-    path: '/web/navigation/TodayFrequencyStatistics',
-    name: '本站流量分析',
-    hideInMenu: false,
-    icon: 'smile',
-    component: './navigation/TodayFrequencyStatistics.tsx',
-  },
+
   {
     path: '/web/fund',
     name: '财富',
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
-    key: "fund",
+    key: 'fund',
     routes: [
       {
         path: '/web/fund/MyFund',
@@ -110,7 +104,7 @@
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
-    key: "work",
+    key: 'work',
     routes: [
       {
         path: 'navigation/WebConstructionWebsite',
@@ -151,9 +145,8 @@
     hideInMenu: false,
     icon: 'crown',
     access: 'canAdmin',
-    key: "play",
+    key: 'play',
     routes: [
-
       {
         path: '/web/play/navigation/VideoWebsite',
         name: '免费电影',
@@ -179,6 +172,13 @@
         component: './navigation/GameWebsite.tsx',
       },
     ],
+  },
+  {
+    path: '/web/navigation/TodayFrequencyStatistics',
+    name: '本站流量分析',
+    hideInMenu: false,
+    icon: 'smile',
+    component: './navigation/TodayFrequencyStatistics.tsx',
   },
   {
     path: '/web/welcome',
