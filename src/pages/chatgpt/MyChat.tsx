@@ -73,29 +73,31 @@ const MyChat: React.FC<Props> = () => {
                         </Tag>
 
                         <table>
-                            <tr>
-                                <td width={"300px"}><Tag color="magenta">支付宝红包</Tag></td>
-                                <td width={"300px"} ><Tag color="volcano">友情赞助</Tag></td>
-                                <td width={"300px"}><Tag color="magenta">交流合作</Tag></td>
-                                <td width={"300px"}><Tag color="magenta">好的想法</Tag></td>
+                            <tbody>
+                                <tr>
+                                    <td width={"300px"}><Tag color="magenta">支付宝红包</Tag></td>
+                                    <td width={"300px"} ><Tag color="volcano">友情赞助</Tag></td>
+                                    <td width={"300px"}><Tag color="magenta">交流合作</Tag></td>
+                                    <td width={"300px"}><Tag color="magenta">好的想法</Tag></td>
 
-                            </tr>
-                            <tr>
-                                <td><img alt="logo" src={zfbhongbao} className={styles.myImg} /></td>
-                                <td><img alt="logo" src={wxzsm} className={styles.myImg} /></td>
+                                </tr>
+                                <tr>
+                                    <td><img alt="logo" src={zfbhongbao} className={styles.myImg} /></td>
+                                    <td><img alt="logo" src={wxzsm} className={styles.myImg} /></td>
 
-                                <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">qq群（915997953、289881319、901169719）</a><br />
-                                    <img alt="logo" src={wxdyh} className={styles.myImg} /> </td>
-                                <td><img alt="logo" src={wx} className={styles.myImg} /></td>
-                            </tr>
-                            <tr>
-                                <td colSpan={3}>
-                                    <br /><br /><br /><br /><br />
-                                    <Tag color="#f50"><h1>网站主要是为了咱们查找网站更加的方便，便捷，公益为主!!!</h1></Tag>
+                                    <td><a href='https://txc.qq.com/products/598216' target='_blank' rel="noreferrer">qq群（915997953、289881319、901169719）</a><br />
+                                        <img alt="logo" src={wxdyh} className={styles.myImg} /> </td>
+                                    <td><img alt="logo" src={wx} className={styles.myImg} /></td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={3}>
+                                        <br /><br /><br /><br /><br />
+                                        <Tag color="#f50"><h1>网站主要是为了咱们查找网站更加的方便，便捷，公益为主!!!</h1></Tag>
 
-                                </td>
+                                    </td>
 
-                            </tr>
+                                </tr>
+                            </tbody>
                         </table>
 
 
