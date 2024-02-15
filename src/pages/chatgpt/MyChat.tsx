@@ -109,7 +109,7 @@ const MyChat: React.FC<Props> = () => {
                         return <Tabs.TabPane tab={item.name} key={uniqueId()}  >
                             <Card bordered={false} key={uniqueId()}>
 
-                                <div><iframe className={styles.myChat} src={item.url} /></div>
+                                <div><iframe className={styles.myChat} src={item.url} allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" /></div>
                             </Card></Tabs.TabPane>;
                     })}
 
