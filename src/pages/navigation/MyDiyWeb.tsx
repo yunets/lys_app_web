@@ -37,7 +37,8 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         list,
         loading,
         dispatch,
-        webInfoUpdateModal
+        webInfoUpdateModal,
+
     } = props;
     const [form] = Form.useForm();
     const [form2] = Form.useForm();
@@ -205,6 +206,15 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         form.setFieldValue("name", record.name);
         form.setFieldValue("quantity", record.quantity);
         form.setFieldValue("pastPrice", record.pastPrice)
+
+    }
+
+    const editInfo = (record: any) => {
+        debugger;
+        form3.setFieldValue("name", record.name);
+        form3.setFieldValue("url", record.url);
+        form3.setFieldValue("name", record.name);
+        form3.setFieldValue("webCategoryId", record.webCategoryId);
 
     }
 
@@ -392,7 +402,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
                             <Card bordered={false} key={item.uid}>
 
                                 <DndProvider backend={HTML5Backend} >
-                                    <MyContainer webCategory={item} updateWebCategoryList={updateWebCategoryList} webInfoUpdate={webInfoUpdate} />
+                                    <MyContainer webCategory={item} updateWebCategoryList={updateWebCategoryList} webInfoUpdate={webInfoUpdate} editInfo={editInfo} />
                                 </DndProvider>
                             </Card></Tabs.TabPane>;
                     })}

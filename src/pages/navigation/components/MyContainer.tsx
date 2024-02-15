@@ -29,13 +29,15 @@ export interface Props {
     title: any;
     dispatch: Dispatch;
     updateWebCategoryList: any;
+    editInfo: any;
 }
 const MyContainer: FC<Props> = (props) => {
     {
         const {
             webCategory,
             dispatch,
-            updateWebCategoryList
+            updateWebCategoryList,
+            editInfo
         } = props;
 
 
@@ -44,6 +46,9 @@ const MyContainer: FC<Props> = (props) => {
 
         const aaa = () => {
             updateWebCategoryList();
+        }
+        const editInfo2 = (webInfoList: any) => {
+            editInfo(webInfoList);
         }
 
 
@@ -130,6 +135,7 @@ const MyContainer: FC<Props> = (props) => {
                         itemUrl={card}
                         moveCard={moveCard}
                         aa={() => aaa()}
+                        editInfo={() => editInfo2(card)}
                     />
                 )
             },

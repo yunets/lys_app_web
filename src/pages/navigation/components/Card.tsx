@@ -22,6 +22,7 @@ export interface CardProps {
     itemUrl: any;
     index: number;
     aa: Function;
+    editInfo: Function;
     moveCard: (dragIndex: number, hoverIndex: number) => void
 }
 
@@ -31,7 +32,7 @@ interface DragItem {
     type: string
 }
 
-export const Card: FC<CardProps> = ({ id, text, itemUrl, index, aa, moveCard, }) => {
+export const Card: FC<CardProps> = ({ id, text, itemUrl, index, aa, editInfo, moveCard }) => {
     const ref = useRef<HTMLDivElement>(null)
     const [{ handlerId }, drop] = useDrop<
         DragItem,
@@ -112,10 +113,15 @@ export const Card: FC<CardProps> = ({ id, text, itemUrl, index, aa, moveCard, })
         console.log(ref);
         aa();
     }
+    const editInfo1 = (webInfoList: any) => {
+        console.log('编辑');
+        editInfo(webInfoList);
+    }
+
     return (
         <div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
 
-            <ItemShow item={itemUrl} a={a} />
+            <ItemShow item={itemUrl} a={a} editInfo={editInfo1} />
         </div>
     )
 }

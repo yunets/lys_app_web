@@ -10,9 +10,10 @@ export interface Props {
   item: any;
   dispatch: Dispatch;
   a: Function;
+  editInfo: Function;
 }
 
-const ItemShow: React.FC<Props> = ({ item, dispatch, a }) => {
+const ItemShow: React.FC<Props> = ({ item, dispatch, a, editInfo }) => {
 
   const fetchUpdateWebInfoList = (webInfoList: any) => {
 
@@ -28,7 +29,7 @@ const ItemShow: React.FC<Props> = ({ item, dispatch, a }) => {
   };
 
   const setWebInfoModalEfect = (webInfoList: any) => {
-
+    editInfo(webInfoList);
     dispatch({
       type: 'navigation/setWebInfoModal',
       payload: {
