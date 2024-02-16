@@ -107,6 +107,9 @@ const TodayFrequencyStatistics: React.FC<Props> = (props) => {
 
     const handleCancel = () => {
         setIsModalOpen(false);
+        if ("admin".includes(localStorage.getItem("user-name")) || localStorage.getItem("user-name").includes("shengsir")) {
+            todayFrequencyStatistics();
+        }
     };
 
 
@@ -116,7 +119,7 @@ const TodayFrequencyStatistics: React.FC<Props> = (props) => {
 
 
             <Modal title="数据查看验证" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <p>赞赏后获取验证码查看</p><br />
+                <p>赞赏后关注：恒生科技小姐姐，获取验证码查看<a href="https://web.51.la/report/main?comId=21845483" target='_blank'> 概览</a><br /></p><br />
 
                 <Form form={form}>
                     <Form.Item
