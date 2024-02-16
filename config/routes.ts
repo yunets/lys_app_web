@@ -188,7 +188,7 @@
   },
   {
     path: '/web/house',
-    name: '房子',
+    name: '域名探测',
     icon: 'smile',
     hideInMenu: false,
     component: './house/DiscoveryWeb.tsx',
