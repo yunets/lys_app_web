@@ -1,5 +1,5 @@
 import { GridContent, PageContainer } from '@ant-design/pro-layout';
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Modal, Select } from 'antd';
 import React, { useState } from 'react';
 import { useRequest } from 'umi';
 import SettingCard from '../components/SettingCard';
@@ -19,6 +19,8 @@ export interface Props {
 
 const VIPVideo: React.FC<Props> = () => {
     const [vipUrl, setVipUrl] = useState("")
+    const [shareUrl, setShareUrl] = useState("http://124.220.104.235/web/play/navigation/VIPVideo")
+    const [shareModal, setShareModal] = useState(false)
     const [form] = Form.useForm();
     const [urlItemList, setUrlItemList] = useState<any>([])
     useRequest(() => ({
@@ -33,7 +35,12 @@ const VIPVideo: React.FC<Props> = () => {
                 setUrlItemList(result.content);
             }
 
+            const urls = window.location.href.split("VIPVideo?");
+            const paramsURL = new URLSearchParams(urls[1]);
 
+            form.setFieldValue('url', paramsURL.get("url"));
+            form.setFieldValue('vipSrc', paramsURL.get("vipSrc"));
+            setShareUrl(window.location.href);
         },
     });
 
@@ -57,13 +64,19 @@ const VIPVideo: React.FC<Props> = () => {
         form.validateFields()
             .then((values) => {
                 setVipUrl(values.vipSrc + values.url);
+                setShareUrl(window.location.origin + "/web/play/navigation/VIPVideo?url=" + values.url + "&vipSrc=" + values.vipSrc);
             })
             .catch((errorInfo) => {
                 console.log(errorInfo);
             });
     };
 
-
+    const setShareModalFalse = async () => {
+        setShareModal(false);
+    };
+    const setShareModalTrue = async () => {
+        setShareModal(true);
+    };
 
     return (
         <PageContainer>
@@ -103,21 +116,31 @@ const VIPVideo: React.FC<Props> = () => {
                 <Button type="primary" onClick={handleOk}>
                     播放
                 </Button>
+                <Button type="primary" onClick={setShareModalTrue}>
+                    视频分享
+                </Button>
                 <div><iframe src={vipUrl} allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" width="100%" height="450px" /></div>
                 <SettingCard name="vipPageFooter" />
-                <QRCode
-                    id="qrCode"
-                    value="https://qgeybn-ovmiro-8000.preview.myide.io/web/play/navigation/VIPVideo?url=https://v.youku.com/v_show/id_XNjM3MTYyMTY1Ng==.html?spm=a2hja.14919748_WEBMOVIE_JINGXUAN.drawer3.d_zj1_3&s=fcacdd773de94ab5aa4d&scm=20140719.apircmd.4424.show_fcacdd773de94ab5aa4d&vipSrc=https://jx.xmflv.com/?url="
-                    size={200} // 二维码的大小
-                    fgColor="#000000" // 二维码的颜色
-                    style={{ margin: 'auto' }}
-                    imageSettings={{ // 二维码中间的logo图片
-                        src: 'logoUrl',
-                        height: 100,
-                        width: 100,
-                        excavate: true, // 中间图片所在的位置是否镂空
-                    }}
-                />
+
+
+                <Modal title="视频分享" open={shareModal} onOk={setShareModalFalse} onCancel={setShareModalFalse}>
+                    <p> 微信或者手机浏览器扫描二维码手机观看或者复制链接浏览器直接打开：<br />
+                        {shareUrl}<br />
+                    </p>
+                    <QRCode
+                        id="qrCode"
+                        value={shareUrl}
+                        size={200} // 二维码的大小
+                        fgColor="#000000" // 二维码的颜色
+                        style={{ margin: 'auto' }}
+                        imageSettings={{ // 二维码中间的logo图片
+                            src: 'logoUrl',
+                            height: 100,
+                            width: 100,
+                            excavate: true, // 中间图片所在的位置是否镂空
+                        }}
+                    />
+                </Modal>
 
             </GridContent>
         </PageContainer>
