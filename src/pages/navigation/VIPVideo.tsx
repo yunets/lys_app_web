@@ -3,6 +3,7 @@ import { Button, Form, Input, Select } from 'antd';
 import React, { useState } from 'react';
 import { useRequest } from 'umi';
 import SettingCard from '../components/SettingCard';
+import QRCode from 'qrcode.react';
 
 
 
@@ -104,6 +105,20 @@ const VIPVideo: React.FC<Props> = () => {
                 </Button>
                 <div><iframe src={vipUrl} allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" width="100%" height="450px" /></div>
                 <SettingCard name="vipPageFooter" />
+                <QRCode
+                    id="qrCode"
+                    value="https://qgeybn-ovmiro-8000.preview.myide.io/web/play/navigation/VIPVideo?url=https://v.youku.com/v_show/id_XNjM3MTYyMTY1Ng==.html?spm=a2hja.14919748_WEBMOVIE_JINGXUAN.drawer3.d_zj1_3&s=fcacdd773de94ab5aa4d&scm=20140719.apircmd.4424.show_fcacdd773de94ab5aa4d&vipSrc=https://jx.xmflv.com/?url="
+                    size={200} // 二维码的大小
+                    fgColor="#000000" // 二维码的颜色
+                    style={{ margin: 'auto' }}
+                    imageSettings={{ // 二维码中间的logo图片
+                        src: 'logoUrl',
+                        height: 100,
+                        width: 100,
+                        excavate: true, // 中间图片所在的位置是否镂空
+                    }}
+                />
+
             </GridContent>
         </PageContainer>
     );
