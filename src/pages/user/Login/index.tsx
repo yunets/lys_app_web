@@ -19,6 +19,7 @@ import { Alert, Button, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import { FormattedMessage, history, SelectLang, useIntl, useModel } from 'umi';
 import styles from './index.less';
+import wxdyh from '@/assets/img/wxdyh.png';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -116,11 +117,18 @@ const Login: React.FC = () => {
                 defaultMessage: '账户密码登录',
               })}
             />
-            <Tabs.TabPane
+            {/* <Tabs.TabPane
               key="mobile"
               tab={intl.formatMessage({
                 id: 'pages.login.phoneLogin.tab',
                 defaultMessage: '手机号登录',
+              })}
+            /> */}
+            <Tabs.TabPane
+              key="weixin"
+              tab={intl.formatMessage({
+                id: 'pages.login.weixinLogin.tab',
+                defaultMessage: '微信登录',
               })}
             />
           </Tabs>
@@ -132,6 +140,12 @@ const Login: React.FC = () => {
                 defaultMessage: '账户或密码错误(admin/ant.design)',
               })}
             />
+          )}
+          {type === 'weixin' && (
+            <>
+              <img alt="logo" src={wxdyh} className={styles.myImg} />
+
+            </>
           )}
           {type === 'account' && (
             <>
@@ -288,9 +302,9 @@ const Login: React.FC = () => {
           </div>
         </LoginForm>
 
-      </div>
+      </div >
       <Footer />
-    </div>
+    </div >
   );
 };
 
