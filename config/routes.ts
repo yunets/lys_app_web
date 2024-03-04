@@ -188,10 +188,10 @@
   },
   {
     path: '/web/house',
-    name: '域名探测',
+    name: '租房',
     icon: 'smile',
     hideInMenu: false,
-    component: './house/DiscoveryWeb.tsx',
+    component: './house/RentingHouseList.tsx',
   },
   {
     path: '/web/users',
