@@ -26,13 +26,11 @@ const ItemShowReadOnly: React.FC<Props> = ({ item }) => {
     <Fragment>
       <div className={styles.urlCard}>
         <div className={styles.urlOperate}>
-          <img src={shoucangyes} className={styles.toolImg} />
-          <img src={shoucangno} className={styles.toolImg} />
-          <img src={dashang} className={styles.toolImg} />
+          <img src={shoucangyes} className={styles.toolImg} title='收藏' />
+          <img src={shoucangno} className={styles.toolImg} title='收藏' />
+          <img src={dashang} className={styles.toolImg} title='打赏' />
 
-          {/* <DeleteOutlined onClick={() => fetchUpdateWebInfoList(item)} spin title='点击删除！！！' />
-          <HeartTwoTone twoToneColor="#eb2f96" onClick={() => fetchUpdateWebInfoList(item)} title='收藏！！！' />
-          <HomeTwoTone twoToneColor="#222222" onClick={() => fetchUpdateWebInfoList(item)} title='添加到首页！！！' /> */}
+
         </div>
 
         <div className={styles.urlContent}>
