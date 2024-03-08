@@ -26,11 +26,9 @@ const ItemShowReadOnly: React.FC<Props> = ({ item }) => {
     <Fragment>
       <div className={styles.urlCard}>
         <div className={styles.urlOperate}>
-          <img src={shoucangyes} className={styles.toolImg} title='收藏' />
-          <img src={shoucangno} className={styles.toolImg} title='收藏' />
-          <img src={dashang} className={styles.toolImg} title='打赏' />
-
-
+          <img src={shoucangyes} className={styles.toolImg} title="收藏" />
+          <img src={shoucangno} className={styles.toolImg} title="收藏" />
+          <img src={dashang} className={styles.toolImg} title="打赏" />
         </div>
 
         <div className={styles.urlContent}>
