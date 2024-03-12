@@ -6,7 +6,7 @@ import { connect, Dispatch } from 'umi';
 import shoucangyes from '@/assets/svg/shoucangyes.svg';
 import shoucangno from '@/assets/svg/shoucangno.svg';
 import dashang from '@/assets/svg/dashang.svg';
-import { Form, Modal, Select, message } from 'antd';
+import { Form, Input, Modal, Select, message } from 'antd';
 const { Option } = Select;
 
 export interface Props {
@@ -37,12 +37,14 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
       payload: {},
       callback: (response: any) => {
         setWebCategoryList(response.content);
-      }
+      },
     });
-  }
+  };
 
   const handleModalTrue = async () => {
     setAddMyWebInfoModal(true);
+    form.setFieldValue('name', item.name);
+    form.setFieldValue('url', item.url);
     updateWebCategoryList();
   };
 
@@ -51,31 +53,44 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
   };
 
   const addMyWebInfoModalEfect = () => {
-    setAddMyWebInfoModal(false);
-
-    dispatch({
-      type: 'navigation/fetchWebInfoSave',
-      payload: {
-        item,
-      },
-      callback: (response: any) => {
-        message.success('收藏成功！');
-        setAddMyWebInfoModal(false);
-      },
-    });
+    form
+      .validateFields()
+      .then((values) => {
+        const result = webCategoryList.find((item1: any) => item1.uid === values.webCategoryId);
+        const my = {
+          name: item.name,
+          url: item.url,
+          webCategoryId: values.webCategoryId,
+          webCategoryName: result.name,
+        };
+        dispatch({
+          type: 'navigation/fetchWebInfoSave',
+          payload: {
+            ...my,
+          },
+          callback: (response: any) => {
+            message.success('收藏成功！');
+            setAddMyWebInfoModal(false);
+          },
+        });
+      })
+      .catch((errorInfo) => {
+        console.log(errorInfo);
+      });
   };
 
-
   const renderWebCategoryOptions = () => {
-    const options: any = []
+    const options: any = [];
     webCategoryList.forEach((item2: any) => {
-      options.push(<Option key={item2.uid} value={item2.uid}>{item2.name}</Option>)
-    })
+      options.push(
+        <Option key={item2.uid} value={item2.uid}>
+          {item2.name}
+        </Option>,
+      );
+    });
 
-    return <Select style={{ width: 120 }}  >
-      {options}
-    </Select>
-  }
+    return <Select style={{ width: 120 }}>{options}</Select>;
+  };
 
   return (
     <Fragment>
@@ -85,18 +100,39 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
         onOk={addMyWebInfoModalEfect}
         onCancel={handleCancel}
       >
-
-        <Form form={form} >
+        <Form form={form}>
           <Form.Item
             name="webCategoryId"
             label="分类"
             rules={[{ required: true, message: '分类!', whitespace: true }]}
           >
-
             {renderWebCategoryOptions()}
+          </Form.Item>
 
-          </Form.Item></Form>
-        sdfasfasfafs
+          <Form.Item
+            name="name"
+            label="名称"
+            rules={[{ required: true, message: '网页名称自动回填可修改!', whitespace: true }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="url"
+            label="网址"
+            rules={[
+              {
+                type: 'url',
+                message: '网址不合法，样例https://poe-mirror.com!',
+              },
+              {
+                required: true,
+                message: '请输入网址',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Form>
       </Modal>
       <div className={styles.urlCard}>
         <div className={styles.urlOperate}>
