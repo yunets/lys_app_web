@@ -79,7 +79,7 @@ const ItemShow: React.FC<Props> = ({ item, dispatch, a, editInfo }) => {
               className={styles.urlImg}
               src={getImg(item)} onError={(e) => {
                 const img = e.currentTarget;
-                img.src = "https://api.iowen.cn/favicon/www.aliued.cn.png";
+                img.src = "https://api.iowen.cn/favicon/github.com.png";
                 img.οnerrοr = null;
 
 
