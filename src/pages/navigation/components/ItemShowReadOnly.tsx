@@ -52,6 +52,10 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
     setAddMyWebInfoModal(false);
   };
 
+  const handleVip = async () => {
+    message.success('关注公众号：恒生科技小姐姐，解锁更多免费功能', 5);
+  };
+
   const addMyWebInfoModalEfect = () => {
     form
       .validateFields()
@@ -142,8 +146,8 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
             title="收藏"
             onClick={() => handleModalTrue()}
           />
-          <img src={shoucangno} className={styles.toolImg} title="收藏" />
-          <img src={dashang} className={styles.toolImg} title="打赏" />
+          <img src={shoucangno} className={styles.toolImg} title="扫码解锁" onClick={() => handleVip()} />
+          <img src={dashang} className={styles.toolImg} title="打赏解锁" onClick={() => handleVip()} />
         </div>
 
         <div className={styles.urlContent}>
