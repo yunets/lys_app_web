@@ -14,6 +14,12 @@
     ],
   },
   {
+    path: '/web/chatgpt1111',
+    name: '测试分离的移动',
+    icon: 'smile',
+    component: './navigation/download1.tsx',
+  },
+  {
     path: '/web/chatgpt',
     name: '免费chatGPT',
     icon: 'smile',
