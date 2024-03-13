@@ -10,6 +10,7 @@ import {
   updateWebCategoryName,
   todayFrequencyStatistics,
   webInfoUpdateSelect,
+  webCategoryUpdateList,
 } from '@/services/appweb/appweb';
 import type { Effect, Reducer } from 'umi';
 
@@ -39,6 +40,7 @@ export type UserModelType = {
     fetchWebCategoryListAll: Effect;
     fetchWebInfoSave: Effect;
     fetchWebCategorySave: Effect;
+    fetchWebCategoryUpdateList: Effect;
     fetchWebInfoUpdateList: Effect;
     fetchWebInfoDelete: Effect;
     fetchWebCategoryDelete: Effect;
@@ -95,6 +97,11 @@ const UserModel1: UserModelType = {
     },
     *fetchWebInfoSave({ payload, callback }, { call, put }) {
       const response = yield call(webInfoSave, { ...payload });
+
+      callback(response);
+    },
+    *fetchWebCategoryUpdateList({ payload, callback }, { call, put }) {
+      const response = yield call(webCategoryUpdateList, [...payload]);
 
       callback(response);
     },

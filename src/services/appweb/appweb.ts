@@ -45,6 +45,14 @@ export async function webCategorySave(params?: any) {
     });
 }
 
+export async function webCategoryUpdateList(params: any) {
+    return request('/api/webCategory/updateList', {
+        method: 'POST',
+        data: params,
+    });
+}
+
+
 export async function webInfoSave(params: any) {
     return request('/api/webInfo/save', {
         method: 'POST',

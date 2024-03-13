@@ -1,7 +1,6 @@
 import update from 'immutability-helper'
 import { useCallback, useState } from 'react'
-import { Card } from './Card.tsx'
-import React from 'react'
+import { Card } from './Card'
 const style = {
     width: 400,
 }
