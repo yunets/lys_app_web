@@ -25,6 +25,7 @@ import { connect, Dispatch, request, useRequest } from 'umi';
 import MyContainer from './components/MyContainer';
 import { getAuthority } from '@/utils/authority';
 import MutilSearchBar from './components/MutilSearchBar';
+import CateContainer from './catecompents/CateContainer';
 
 const { Option } = Select;
 export interface Props {
@@ -67,6 +68,7 @@ const MyDiyWeb: React.FC<Props> = (props) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWebCategoryModalOpen, setIsWebCategoryModalOpen] = useState(false);
+  const [isSortWebCategoryModalOpen, setIsSortWebCategoryModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -125,6 +127,12 @@ const MyDiyWeb: React.FC<Props> = (props) => {
   };
   const handleCancelWebCategory = () => {
     setIsWebCategoryModalOpen(false);
+  };
+
+
+  const handleSortCancelWebCategory = () => {
+    updateWebCategoryList();
+    setIsSortWebCategoryModalOpen(!isSortWebCategoryModalOpen);
   };
 
   const renderWebCategoryOptions = () => {
@@ -344,6 +352,26 @@ const MyDiyWeb: React.FC<Props> = (props) => {
         </Form>
       </Modal>
 
+      <Modal
+
+        title="分类排序(防止失去网站联系请关注公众号：恒生科技小姐姐)"
+        open={isSortWebCategoryModalOpen}
+        onOk={handleSortCancelWebCategory}
+        onCancel={handleSortCancelWebCategory}
+        width={1000}
+
+      >
+        <div >
+          <DndProvider backend={HTML5Backend} >
+            <CateContainer a="a" />
+          </DndProvider>
+        </div>
+        <hr />
+        <br />
+        <p></p>
+        <p></p>
+      </Modal>
+
       <GridContent>
         <MutilSearchBar name={''} />
         <br />
@@ -356,6 +384,9 @@ const MyDiyWeb: React.FC<Props> = (props) => {
           </Button>
           <Button type="primary" onClick={showWebCategoryModal}>
             新增分类
+          </Button>
+          <Button type="primary" onClick={handleSortCancelWebCategory}>
+            分类排序
           </Button>
           <Button type="primary" onClick={handleDownload}>
             备份下载

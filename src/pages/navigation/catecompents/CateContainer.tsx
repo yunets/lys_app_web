@@ -77,7 +77,6 @@ export const CateContainer: FC<Props> = (props) => {
 
 
         const fetchUpdateWebInfoList = (webCategoryList1: any) => {
-            debugger
             if (webCategoryList1.length > 0) {
                 dispatch({
                     type: 'navigation/fetchWebCategoryUpdateList',
