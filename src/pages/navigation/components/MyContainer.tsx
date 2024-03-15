@@ -147,7 +147,7 @@ const MyContainer: FC<Props> = (props) => {
         const [isWebCategoryModalOpen, setIsWebCategoryModalOpen] = useState(false);
 
         const handleCancelWebCategory = () => {
-            setIsWebCategoryModalOpen(true);
+            setIsWebCategoryModalOpen(!isWebCategoryModalOpen);
         };
         const handleOk = async () => {
             form.validateFields()
@@ -185,7 +185,7 @@ const MyContainer: FC<Props> = (props) => {
 
                 <br />
                 <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
-                <Modal title="新增分类" open={isWebCategoryModalOpen} onOk={handleOk} onCancel={handleCancelWebCategory}>
+                <Modal title="编辑分类" open={isWebCategoryModalOpen} onOk={handleOk} onCancel={handleCancelWebCategory}>
                     <Form form={form}>
                         <Form.Item
                             name="name"
