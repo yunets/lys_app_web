@@ -5,7 +5,8 @@ import { Dispatch, connect, useDispatch, useRequest } from 'umi'
 
 import { Card } from './Card'
 const style = {
-    width: 400,
+    // width: 100,
+
 }
 export interface ContainerState {
     cards: any[]
