@@ -22,13 +22,13 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
   const [webCategoryList, setWebCategoryList] = useState<any>([]);
   const getImg = (url: { url: string | URL }) => {
     const u = new URL(url.url);
-    // return "" + u.origin + "/favicon.ico";
+    return '' + u.origin + '/favicon.ico';
     // return "https://api.iowen.cn/favicon/www.aliued.cn.png";
-    return (
-      'https://api.iowen.cn/favicon/' +
-      u.origin.replace('https://', '').replace('http://', '') +
-      '.png'
-    );
+    // return (
+    //   'https://api.iowen.cn/favicon/' +
+    //   u.origin.replace('https://', '').replace('http://', '') +
+    //   '.png'
+    // );
   };
 
   const updateWebCategoryList = () => {
@@ -146,8 +146,18 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
             title="收藏"
             onClick={() => handleModalTrue()}
           />
-          <img src={shoucangno} className={styles.toolImg} title="扫码解锁" onClick={() => handleVip()} />
-          <img src={dashang} className={styles.toolImg} title="打赏解锁" onClick={() => handleVip()} />
+          <img
+            src={shoucangno}
+            className={styles.toolImg}
+            title="扫码解锁"
+            onClick={() => handleVip()}
+          />
+          <img
+            src={dashang}
+            className={styles.toolImg}
+            title="打赏解锁"
+            onClick={() => handleVip()}
+          />
         </div>
 
         <div className={styles.urlContent}>
@@ -161,7 +171,7 @@ const ItemShowReadOnly: React.FC<Props> = ({ item, dispatch }) => {
               src={getImg(item)}
               onError={(e) => {
                 const img = e.currentTarget;
-                img.src = 'https://api.iowen.cn/favicon/github.com.png';
+                img.src = 'https://chat.58chat-ai.com/favicon.ico';
                 (img as any).οnerrοr = null;
                 // img.οnerrοr = null;
               }}
