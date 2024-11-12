@@ -80,3 +80,9 @@ You can view full document on our [official website](https://pro.ant.design). An
 export NODE_OPTIONS=--openssl-legacy-provider
 
 ```
+
+## 2.提交代码
+
+```
+git commit -a -m '提交语' --no-verify
+```
