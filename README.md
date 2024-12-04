@@ -2,8 +2,8 @@
 
 ```
 git config --global credential.helper store
-git config --global user.email "@qq.com"
-git config --global user.name ""
+git config --global user.email "578888218@qq.com"
+git config --global user.name "liuyunshengsir"
 ```
 
 # 技术点

@@ -39,9 +39,13 @@ const ItemShow: React.FC<Props> = ({ item, dispatch, a, editInfo }) => {
   const getImg = (url: { url: string | URL }) => {
     const u = new URL(url.url);
     //console.log("" + u.origin + "/favicon.ico");
-    return '' + u.origin + '/favicon.ico';
+    // return '' + u.origin + '/favicon.ico';
     // return "https://api.iowen.cn/favicon/www.aliued.cn.png";
-    //return "https://api.iowen.cn/favicon/" + u.origin.replace("https://", "").replace("http://", "") + ".png";
+    return (
+      'https://www.boltp.com/favicon/' +
+      u.origin.replace('https://', '').replace('http://', '') +
+      '.png'
+    );
   };
 
   return (
@@ -76,7 +80,7 @@ const ItemShow: React.FC<Props> = ({ item, dispatch, a, editInfo }) => {
               src={getImg(item)}
               onError={(e) => {
                 const img = e.currentTarget;
-                img.src = 'https://api.iowen.cn/favicon/github.com.png';
+                img.src = 'https://chat.58chat-ai.com/favicon.ico';
                 img.οnerrοr = null;
               }}
             />
