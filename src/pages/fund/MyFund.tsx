@@ -149,7 +149,14 @@ const MyFund: React.FC<Props> = (props) => {
             title: '持有收益',
             dataIndex: 'currentCost',
             key: 'currentCost',
-            render: (text: any) => parseFloat(text).toFixed(2),
+            render: (_: any, record: any) => {
+                if (record.currentPrice == null) {
+                    record.currentPrice = 0.00001;
+                }
+                let values = ((record.currentPrice - record.pastPrice) * record.quantity).toFixed(2);
+                return values
+            },
+
         },
         {
             title: '今日收益',
